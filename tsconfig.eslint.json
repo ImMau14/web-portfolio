@@ -1,0 +1,7 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "composite": false
+  },
+  "include": ["src/**/*", "vite.config.ts", "eslint.config.js", "postcss.config.js", "tailwind.config.js"]
+}

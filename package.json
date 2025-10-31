@@ -13,7 +13,9 @@
     "format:check": "prettier --check ."
   },
   "dependencies": {
+    "@fontsource-variable/montserrat": "^5.2.8",
     "@fontsource/kanit": "^5.2.8",
+    "framer-motion": "^12.23.24",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-icons": "^5.5.0"

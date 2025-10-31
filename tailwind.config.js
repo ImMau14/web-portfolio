@@ -5,6 +5,7 @@ export default {
     extend: {
       fontFamily: {
         heading: ["Kanit"],
+        logo: ["Montserrat Variable"],
       },
     },
   },

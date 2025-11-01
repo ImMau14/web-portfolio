@@ -9,5 +9,5 @@ export default {
       },
     },
   },
-  plugins: ["@tailwindcss/typography"],
+  plugins: ["@tailwindcss/typography", "@tailwindcss/forms"],
 }

@@ -2,25 +2,55 @@
 import BaseLayout from "@layouts/BaseLayout.astro"
 import AnimatedBackground from "@components/AnimatedBackground.tsx"
 import AvatarPhoto from "@components/AvatarPhoto.tsx"
+import { FaGithub, FaLinkedin } from "react-icons/fa6"
 ---
 
 <BaseLayout className="flex flex-col items-center justify-center">
   <AnimatedBackground className="w-full" client:load>
     <div class="flex flex-col-reverse md:flex-row items-center justify-center gap-8 px-4 py-4 md:py-0 md:px-20">
-      <div class="flex-1 flex flex-col gap-4">
-        <h1 class="text-white text-4xl md:text-6xl text-center md:text-start font-semibold font-heading">
-          Mauricio Rodríguez
-        </h1>
-        <section class="mt-4 text-gray-400 leading-relaxed text-center md:text-start flex flex-col gap-4">
+      <div class="flex-1 flex flex-col gap-6">
+        <div class="flex flex-col items-center md:items-start">
+          <h1
+            class="font-heading text-2xl bg-gradient-to-b from-gray-100 via-gray-100 to-gray-200 bg-clip-text font-bold text-transparent text-4xl md:text-6xl text-center md:text-start font-semibold font-heading pb-1"
+          >
+            Mauricio Rodríguez
+          </h1>
+          <p
+            class="font-heading text-2xl bg-gradient-to-r from-green-300 via-green-200 to-lime-200 bg-clip-text font-bold text-transparent pb-1"
+          >
+            Fullstack Developer
+          </p>
+        </div>
+
+        <section class="text-gray-400 leading-relaxed text-center md:text-start flex flex-col gap-4">
           <p>
             I am a 20-year-old systems engineering student, passionate about programming, with other hobbies such as
             drawing, working out, and listening to music.
           </p>
           <p>I hope to become a great Full-Stack Developer.</p>
         </section>
+
+        <div class="flex gap-4 items-center justify-center md:justify-start">
+          <a
+            href="https://linkedin.com/in/ImMau14"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-gray-200 text-3xl hover:text-white duration-150"
+            aria-label="Perfil de LinkedIn"><FaLinkedin client:visible /></a
+          >
+          <a
+            href="https://github.com/ImMau14"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-gray-200 text-3xl hover:text-white duration-150"
+            aria-label="Perfil de GitHub"><FaGithub client:visible /></a
+          >
+        </div>
       </div>
 
-      <AvatarPhoto className="w-[180px] h-[180px] md:w-96 md:h-96 bg-gray-700 rounded-full border-2 border-gray-100/50"/>
+      <AvatarPhoto
+        className="w-[160px] h-[160px] md:w-96 md:h-96 bg-gray-700 rounded-full border-2 border-gray-100/50 shadow-xl"
+      />
     </div>
   </AnimatedBackground>
 </BaseLayout>

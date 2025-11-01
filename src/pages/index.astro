@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro"
 import AnimatedBackground from "@components/AnimatedBackground.tsx"
+import AvatarPhoto from "@components/AvatarPhoto.tsx"
 ---
 
 <BaseLayout className="flex flex-col items-center justify-center">
@@ -19,7 +20,7 @@ import AnimatedBackground from "@components/AnimatedBackground.tsx"
         </section>
       </div>
 
-      <div class="w-[180px] h-[180px] md:w-96 md:h-96 bg-gray-700 rounded-full"></div>
+      <AvatarPhoto className="w-[180px] h-[180px] md:w-96 md:h-96 bg-gray-700 rounded-full border-2 border-gray-100/50"/>
     </div>
   </AnimatedBackground>
 </BaseLayout>

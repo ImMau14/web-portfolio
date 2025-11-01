@@ -3,6 +3,7 @@ import BaseLayout from "@layouts/BaseLayout.astro"
 import AnimatedBackground from "@components/AnimatedBackground.tsx"
 import AvatarPhoto from "@components/AvatarPhoto.tsx"
 import { FaGithub, FaLinkedin } from "react-icons/fa6"
+import { FaTelegramPlane } from "react-icons/fa"
 ---
 
 <BaseLayout className="flex flex-col items-center justify-center">
@@ -32,20 +33,27 @@ import { FaGithub, FaLinkedin } from "react-icons/fa6"
           <p>I hope to become a great Full-Stack Developer.</p>
         </section>
 
-        <div class="flex gap-4 items-center justify-center md:justify-start">
+        <div class="flex gap-6 items-center justify-center md:justify-start">
           <a
             href="https://linkedin.com/in/ImMau14"
             target="_blank"
             rel="noopener noreferrer"
             class="text-gray-200 text-3xl hover:text-white duration-150"
-            aria-label="Perfil de LinkedIn"><FaLinkedin client:visible /></a
+            aria-label="LinkedIn profile"><FaLinkedin client:visible /></a
           >
           <a
             href="https://github.com/ImMau14"
             target="_blank"
             rel="noopener noreferrer"
             class="text-gray-200 text-3xl hover:text-white duration-150"
-            aria-label="Perfil de GitHub"><FaGithub client:visible /></a
+            aria-label="GitHub profile"><FaGithub client:visible /></a
+          >
+          <a
+            href="https://t.me/l0mauu"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-gray-200 hover:text-white text-3xl duration-100"
+            aria-label="Telegram contact"><FaTelegramPlane client:visible /></a
           >
         </div>
       </div>

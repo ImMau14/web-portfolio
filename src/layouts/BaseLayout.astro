@@ -4,6 +4,7 @@ import Logo from "@components/Logo.tsx"
 import Links from "@components/NavBar/Links.tsx"
 import type { Page } from "@components/NavBar/types.ts"
 import { FaGithub, FaLinkedin } from "react-icons/fa6"
+import { FaTelegramPlane } from "react-icons/fa"
 
 interface LayoutProps {
   title?: string
@@ -67,14 +68,21 @@ const pages: Page = [
           target="_blank"
           rel="noopener noreferrer"
           class="text-gray-400 hover:text-white text-2xl duration-100"
-          aria-label="Perfil de LinkedIn"><FaLinkedin client:visible /></a
+          aria-label="LinkedIn profile"><FaLinkedin client:visible /></a
         >
         <a
           href="https://github.com/ImMau14"
           target="_blank"
           rel="noopener noreferrer"
           class="text-gray-400 hover:text-white text-2xl duration-100"
-          aria-label="Perfil de GitHub"><FaGithub client:visible /></a
+          aria-label="GitHub profile"><FaGithub client:visible /></a
+        >
+        <a
+          href="https://t.me/l0mauu"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-gray-400 hover:text-white text-2xl duration-100"
+          aria-label="Telegram contact"><FaTelegramPlane client:visible /></a
         >
       </div>
     </footer>

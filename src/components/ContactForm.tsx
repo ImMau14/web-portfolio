@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import { IoIosMail, IoIosCall } from "react-icons/io"
 
 export const ContactForm = () => {
   const [name, setName] = useState("")
@@ -27,24 +28,27 @@ export const ContactForm = () => {
     form.submit()
   }
 
-  const inputStyles = "mt-1 block w-full rounded border p-2 border-gray-700/40 bg-gray-900/50 rounded-md"
+  const inputStyles =
+    "mt-1 block w-full rounded border p-2 border-silver-600 bg-silver-750 rounded-md font-body text-sm focus:outline-none hover:border-green-300/80 duration-150 text-silver-400"
 
   return (
     <form
       onSubmit={handleSubmit}
       action="https://formsubmit.co/immau140@gmail.com"
       method="POST"
-      className="flex w-[90%] flex-col items-center gap-4 rounded-xl border-2 border-gray-900 p-6 md:w-[500px]"
+      className="flex w-[90%] flex-col items-start gap-4 rounded-xl border-2 border-silver-700 bg-gradient-to-b from-silver-850 via-silver-900 to-silver-950 p-6 md:w-[500px]"
     >
       <input type="hidden" name="_captcha" value="false" />
       <input type="hidden" name="_template" value="table" />
 
-      <h1 className="bg-gradient-to-b from-gray-100 via-gray-100 to-gray-200 bg-clip-text font-heading text-2xl font-semibold text-transparent">
-        Contact
-      </h1>
-
+      <div className="flex flex-row items-center gap-4">
+        <IoIosCall class="text-3xl text-silver-500" />
+        <h1 className="bg-gradient-to-b from-gray-100 via-gray-100 to-gray-300 bg-clip-text font-heading text-3xl font-bold text-transparent">
+          Contact
+        </h1>
+      </div>
       <label className="block w-full">
-        <span className="block text-sm font-semibold text-gray-300">Name</span>
+        <span className="block font-body text-sm text-gray-300">Name</span>
         <input
           required
           name="name"
@@ -56,7 +60,7 @@ export const ContactForm = () => {
       </label>
 
       <label className="block w-full">
-        <span className="block text-sm font-semibold text-gray-300">Email</span>
+        <span className="block font-body text-sm text-gray-300">Email</span>
         <input
           required
           type="email"
@@ -69,7 +73,7 @@ export const ContactForm = () => {
       </label>
 
       <label className="block w-full">
-        <span className="block text-sm font-semibold text-gray-300">Message</span>
+        <span className="block font-body text-sm text-gray-300">Message</span>
         <textarea
           required
           name="message"
@@ -84,8 +88,9 @@ export const ContactForm = () => {
 
       <button
         type="submit"
-        className="mt-4 w-full rounded-xl border-2 border-lime-400/30 bg-[#648d2c] py-2 font-semibold text-white"
+        className="duration-250 mt-2 flex w-full flex-row items-center justify-center gap-2 rounded-md bg-green-700 py-2 font-body text-sm font-semibold text-white hover:bg-green-600 active:bg-green-500"
       >
+        <IoIosMail class="text-xl" />
         Send
       </button>
     </form>

@@ -13,6 +13,7 @@
     "format:check": "prettier --check ."
   },
   "dependencies": {
+    "@fontsource-variable/inter": "^5.2.8",
     "@fontsource-variable/montserrat": "^5.2.8",
     "@fontsource/kanit": "^5.2.8",
     "framer-motion": "^12.23.24",
@@ -46,6 +47,7 @@
     "prettier": "^3.6.2",
     "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-tailwindcss": "^0.6.14",
+    "tailwind-scrollbar": "^4.0.2",
     "tailwindcss": "3.4.17"
   }
 }

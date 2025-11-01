@@ -28,8 +28,13 @@ const pages: Page = [
     <meta name="generator" content={Astro.generator} />
     <title>{pageTitle ? `${pageTitle} · ImMau14` : "ImMau14"}</title>
   </head>
-  <body class="w-full min-h-screen flex flex-col bg-black">
-    <header class="h-20 w-full flex items-center justify-between p-8 border-b-2 border-gray-900 z-20" client:load>
+  <body
+    class="w-full min-h-screen flex flex-col bg-silver-950 scrollbar scrollbar-thumb-silver-600 scrollbar-track-silver-800 scrollbar-thin scrollbar-gutter-stable"
+  >
+    <header
+      class="h-16 md:h-20 w-full flex items-center justify-between p-8 border-b-2 border-silver-800 md:border-silver-700 z-20 bg-gradient-to-r from-silver-1000 via-silver-950 to-silver-900 md:from-silver-950 md:via-silver-900 md:to-silver-850"
+      client:load
+    >
       <div class="flex items-center gap-4">
         <a href="/"><Logo className="w-6 md:w-8" /></a>
         <a href="/"
@@ -51,9 +56,9 @@ const pages: Page = [
     </main>
 
     <footer
-      class="w-full h-24 md:h-20 flex flex-col md:flex-row gap-2 md:gap-4 items-center p-4 md:p-8 border-t-2 border-gray-900 justify-center md:justify-between"
+      class="w-full h-24 md:h-20 flex flex-col md:flex-row gap-2 md:gap-4 items-center p-4 md:p-8 border-t-2 border-silver-800 md:border-silver-700 justify-cenborder-silver-800 md:ter md:justify-between bg-gradient-to-r from-silver-1000 via-silver-950 to-silver-900 md:from-silver-950 md:via-silver-900 md:to-silver-850"
     >
-      <p class="text-gray-400 text-sm text-center md:text-left">
+      <p class="text-gray-400 text-sm text-center md:text-left font-body">
         © 2025 <b>·</b> Mauricio "ImMau14" Rodríguez <b>·</b> All rights reserved
       </p>
       <div class="flex gap-4 md:gap-6 items-center">

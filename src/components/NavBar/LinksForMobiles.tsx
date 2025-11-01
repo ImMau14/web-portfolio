@@ -48,8 +48,7 @@ export const LinksForMobiles = ({ pages }: Page[]) => {
             exit="hidden"
             variants={listVariants}
             transition={{ type: "spring", stiffness: 250, damping: 25 }}
-            className="absolute right-0 top-6 z-40 mt-2 w-40 overflow-hidden rounded-md border-2 border-gray-900 shadow-lg"
-            style={{ backgroundColor: "black" }}
+            className="absolute right-0 top-6 z-40 mt-2 w-40 overflow-hidden rounded-md border-2 border-silver-800 bg-silver-1000 shadow-lg"
           >
             {pages.map((page, idx) => (
               <motion.li
@@ -59,7 +58,7 @@ export const LinksForMobiles = ({ pages }: Page[]) => {
                 initial={false}
                 whileHover={{ backgroundColor: "rgba(10, 198, 107, 0.2)" }}
               >
-                <a href={page.href} onClick={() => setIsOpen(false)} className="font-body block px-4 py-2 text-sm">
+                <a href={page.href} onClick={() => setIsOpen(false)} className="block px-4 py-2 font-body text-sm">
                   {page.name}
                 </a>
               </motion.li>

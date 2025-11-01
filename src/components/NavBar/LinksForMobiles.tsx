@@ -29,7 +29,7 @@ export const LinksForMobiles = ({ pages }: Page[]) => {
         initial={false}
         whileHover={{ scale: 1.03 }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
-        className=""
+        className="relative z-30"
         style={{
           backgroundColor: "transparent",
           color: "#eff3ff",
@@ -48,7 +48,7 @@ export const LinksForMobiles = ({ pages }: Page[]) => {
             exit="hidden"
             variants={listVariants}
             transition={{ type: "spring", stiffness: 250, damping: 25 }}
-            className="absolute right-0 top-6 mt-2 w-40 overflow-hidden rounded-md border-2 border-gray-900 shadow-lg"
+            className="absolute right-0 top-6 z-40 mt-2 w-40 overflow-hidden rounded-md border-2 border-gray-900 shadow-lg"
             style={{ backgroundColor: "black" }}
           >
             {pages.map((page, idx) => (

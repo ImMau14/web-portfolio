@@ -34,7 +34,7 @@ export const ContactForm = () => {
       onSubmit={handleSubmit}
       action="https://formsubmit.co/immau140@gmail.com"
       method="POST"
-      className="flex w-[500px] flex-col items-center gap-4 rounded-xl border-2 border-gray-900 p-6"
+      className="flex w-[90%] flex-col items-center gap-4 rounded-xl border-2 border-gray-900 p-6 md:w-[500px]"
     >
       <input type="hidden" name="_captcha" value="false" />
       <input type="hidden" name="_template" value="table" />

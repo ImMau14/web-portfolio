@@ -1,4 +1,4 @@
-# Web Portfolio · [![NodeJS CI](https://github.com/ImMau14/web-portfolio/actions/workflows/node-ci.yaml/badge.svg)](https://github.com/ImMau14/web-portfolio/actions/workflows/node-ci.yaml) 
+# Web Portfolio · [![NodeJS CI](https://github.com/ImMau14/web-portfolio/actions/workflows/node-ci.yaml/badge.svg)](https://github.com/ImMau14/web-portfolio/actions/workflows/node-ci.yaml)
 
 <div align="left">
   <img src="https://img.shields.io/badge/Astro-5.14.4-794093?style=plastic&logo=astro" alt="Astro">
@@ -8,6 +8,10 @@
 </div>
 
 Welcome to my personal portfolio, a modern web application built with Astro, React, TypeScript, and TailwindCSS. This site showcases my projects, skills, and experience as a developer.
+
+---
+
+<img width="1024" height="600" alt="image" src="./public/portfolio-img.webp" />
 
 ---
 
@@ -43,6 +47,7 @@ This portfolio is built with a modern and efficient stack:
 ### Installation Steps
 
 1. **Clone the repository:**
+
    ```bash
    git clone https://github.com/ImMau14/web-portfolio.git
    ```
@@ -84,6 +89,7 @@ pnpm run format:check  # Check code formatting without fixing
 ### Code Quality
 
 This project includes comprehensive code quality tools:
+
 - **ESLint** - For code linting and identifying potential issues
 - **Prettier** - For consistent code formatting
 - **TypeScript** - For type safety and better developer experience

@@ -9,13 +9,28 @@ import { FaTelegramPlane } from "react-icons/fa"
 interface LayoutProps {
   title?: string
   className?: string
+  description?: string
+  ogDescription?: string
+  ogImage?: string
+  ogUrl?: string
+  twitterDescription?: string
+  twitterImage?: string
 }
 
-const { pageTitle, className } = Astro.props as LayoutProps
+const {
+  title: pageTitle,
+  className,
+  description = "This is the portfolio of Mauricio Rodríguez, Systems Engineering student and developer. Here you'll find projects, information about me, and how to contact me.",
+  ogDescription = "This is the portfolio of Mauricio Rodríguez, Systems Engineering student and developer.",
+  ogImage = "/portfolio-img.webp",
+  ogUrl = "https://immau14.vercel.app",
+  twitterDescription = "This is the portfolio of Mauricio Rodríguez, Systems Engineering student and developer. Here you'll find projects, information about me, and how to contact me.",
+  twitterImage = "/portfolio-img.webp",
+} = Astro.props as LayoutProps
 
-const pages: Page = [
+const pages: Page[] = [
   { name: "Home", href: "/" },
-  { name: "Projects", href: "/projecs" },
+  { name: "Projects", href: "/projects" },
   { name: "About", href: "/about" },
   { name: "Contact", href: "/contact" },
 ]
@@ -28,6 +43,23 @@ const pages: Page = [
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <title>{pageTitle ? `${pageTitle} · ImMau14` : "ImMau14"}</title>
+
+    <meta name="description" content={description} />
+
+    <meta property="og:title" content={pageTitle ? `${pageTitle} · ImMau14` : "ImMau14"} />
+    <meta property="og:description" content={ogDescription} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:url" content={ogUrl} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_En" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle ? `${pageTitle} · ImMau14` : "ImMau14"} />
+    <meta name="twitter:description" content={twitterDescription} />
+    <meta name="twitter:image" content={twitterImage} />
+
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#0f1011" />
   </head>
   <body
     class="w-full min-h-screen flex flex-col bg-silver-950 scrollbar scrollbar-thumb-silver-600 scrollbar-track-silver-800 scrollbar-thin scrollbar-gutter-stable"
@@ -37,7 +69,7 @@ const pages: Page = [
       client:load
     >
       <div class="flex items-center gap-4">
-        <a href="/"><Logo className="w-6 md:w-8" /></a>
+        <a href="/" aria-label="ImMau14 Logo"><Logo className="w-6 md:w-8" /></a>
         <a href="/"
           ><h2
             class="flex flex-col text-xl md:text-xl font-logo bg-gradient-to-b from-gray-100 via-gray-100 to-gray-200 bg-clip-text font-bold text-transparent"
@@ -57,7 +89,7 @@ const pages: Page = [
     </main>
 
     <footer
-      class="w-full h-24 md:h-20 flex flex-col md:flex-row gap-2 md:gap-4 items-center p-4 md:p-8 border-t-2 border-silver-800 md:border-silver-700 justify-cenborder-silver-800 md:ter md:justify-between bg-gradient-to-r from-silver-1000 via-silver-950 to-silver-900 md:from-silver-950 md:via-silver-900 md:to-silver-850"
+      class="w-full h-24 md:h-20 flex flex-col md:flex-row gap-2 md:gap-4 items-center p-4 md:p-8 border-t-2 border-silver-800 md:border-silver-700 justify-center md:justify-between bg-gradient-to-r from-silver-1000 via-silver-950 to-silver-900 md:from-silver-950 md:via-silver-900 md:to-silver-850"
     >
       <p class="text-gray-400 text-sm text-center md:text-left font-body">
         © 2025 <b>·</b> Mauricio "ImMau14" Rodríguez <b>·</b> All rights reserved

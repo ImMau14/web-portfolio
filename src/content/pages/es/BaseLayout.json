@@ -1,0 +1,16 @@
+{
+  "lang": "es",
+  "description": "Este es el portfolio de Mauricio Rodríguez, estudiante de Ingeniería de Sistemas y desarrollador. Aquí encontrará proyectos, información sobre él y cómo contactarlo.",
+  "ogDescription": "Este es el portfolio de Mauricio Rodríguez, estudiante de Ingeniería de Sistemas y desarrollador.",
+  "ogImage": "/projects-images/web-portfolio.webp",
+  "ogUrl": "https://immau14.vercel.app",
+  "twitterDescription": "Este es el portfolio de Mauricio Rodríguez, estudiante de Ingeniería de Sistemas y desarrollador. Aquí encontrará proyectos, información sobre él y cómo contactarlo.",
+  "twitterImage": "/projects-images/web-portfolio.webp",
+  "pages": [
+    { "name": "Inicio", "href": "/es" },
+    { "name": "Proyectos", "href": "/es/projects" },
+    { "name": "Acerca de", "href": "/es/about" },
+    { "name": "Contacto", "href": "/es/contact" }
+  ],
+  "footer": "© 2025 · Mauricio \"ImMau14\" Rodríguez · Todos los derechos reservados"
+}

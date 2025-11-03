@@ -11,7 +11,7 @@ Welcome to my personal portfolio, a modern web application built with Astro, Rea
 
 ---
 
-<img width="1024" height="600" alt="image" src="./public/portfolio-img.webp" />
+<img width="1024" height="600" alt="image" src="./public/projects-images/web-portfolio.webp" />
 
 ---
 

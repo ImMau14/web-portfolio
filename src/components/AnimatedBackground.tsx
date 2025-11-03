@@ -63,8 +63,8 @@ export const AnimatedBackground = ({ children, className = "", loadTimeoutMs = 5
   }, [loadTimeoutMs, markReady])
 
   return (
-    <section className={`relative w-full overflow-visible ${className}`}>
-      <div className="pointer-events-none absolute inset-x-0 top-0 z-[-10] h-[calc(100vh-5rem-4.8rem)] overflow-hidden">
+    <section className={`relative h-[calc(100vh-5rem)] w-full overflow-hidden ${className}`}>
+      <div className="pointer-events-none absolute inset-0 z-[-10] overflow-hidden">
         <motion.video
           ref={videoRef}
           src={bgVideo}
@@ -81,7 +81,7 @@ export const AnimatedBackground = ({ children, className = "", loadTimeoutMs = 5
         />
       </div>
 
-      <div className="relative z-10 flex min-h-[calc(100vh-5rem-5rem)] w-full flex-col items-center justify-center">
+      <div className="relative z-10 flex h-[calc(100vh-5rem)] w-full flex-col items-center justify-center">
         {children}
       </div>
     </section>

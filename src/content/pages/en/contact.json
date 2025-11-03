@@ -1,0 +1,11 @@
+{
+  "pageName": "Contact",
+  "header": "Contact",
+  "name": "Name",
+  "email": "Email",
+  "message": "Message",
+  "namePlaceholder": "Your name",
+  "emailPlaceholder": "your@email.com",
+  "messagePlaceholder": "Your message",
+  "send": "Send"
+}

@@ -1,0 +1,11 @@
+{
+  "pageName": "Contacto",
+  "header": "Contacto",
+  "name": "Nombre",
+  "email": "Correo",
+  "message": "Mensaje",
+  "namePlaceholder": "Tu nombre",
+  "emailPlaceholder": "tu@correo.com",
+  "messagePlaceholder": "Tu mensaje",
+  "send": "Enviar"
+}

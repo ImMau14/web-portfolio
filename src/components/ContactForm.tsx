@@ -1,7 +1,35 @@
 import React, { useState } from "react"
 import { IoIosMail, IoIosCall } from "react-icons/io"
 
-export const ContactForm = () => {
+type TextData = {
+  pageName: string
+  header: string
+  name: string
+  email: string
+  message: string
+  namePlaceholder: string
+  emailPlaceholder: string
+  messagePlaceholder: string
+  send: string
+}
+
+interface ContactFormPromps {
+  textData?: TextData
+}
+
+export const ContactForm = ({
+  textData = {
+    pageName: "Contact",
+    header: "Contact",
+    name: "Name",
+    email: "Email",
+    message: "Message",
+    namePlaceholder: "Your name",
+    emailPlaceholder: "your@email.com",
+    messagePlaceholder: "Your message",
+    send: "Send",
+  },
+}: ContactFormPromps) => {
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [message, setMessage] = useState("")
@@ -44,23 +72,23 @@ export const ContactForm = () => {
       <div className="flex flex-row items-center gap-4">
         <IoIosCall class="text-3xl text-silver-500" />
         <h1 className="bg-gradient-to-b from-gray-100 via-gray-100 to-gray-300 bg-clip-text font-heading text-3xl font-bold text-transparent">
-          Contact
+          {textData.header}
         </h1>
       </div>
       <label className="block w-full">
-        <span className="block font-body text-sm text-gray-300">Name</span>
+        <span className="block font-body text-sm text-gray-300">{textData.name}</span>
         <input
           required
           name="name"
           value={name}
           onChange={(e) => setName(e.target.value)}
           className={inputStyles}
-          placeholder="Your name"
+          placeholder={textData.namePlaceholder}
         />
       </label>
 
       <label className="block w-full">
-        <span className="block font-body text-sm text-gray-300">Email</span>
+        <span className="block font-body text-sm text-gray-300">{textData.email}</span>
         <input
           required
           type="email"
@@ -68,19 +96,19 @@ export const ContactForm = () => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           className={inputStyles}
-          placeholder="your@email.com"
+          placeholder={textData.emailPlaceholder}
         />
       </label>
 
       <label className="block w-full">
-        <span className="block font-body text-sm text-gray-300">Message</span>
+        <span className="block font-body text-sm text-gray-300">{textData.message}</span>
         <textarea
           required
           name="message"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           className={`${inputStyles} min-h-[140px]`}
-          placeholder="Your message"
+          placeholder={textData.messagePlaceholder}
         />
       </label>
 
@@ -91,7 +119,7 @@ export const ContactForm = () => {
         className="duration-250 mt-2 flex w-full flex-row items-center justify-center gap-2 rounded-md bg-green-700 py-2 font-body text-sm font-semibold text-white hover:bg-green-600 active:bg-green-500"
       >
         <IoIosMail class="text-xl" />
-        Send
+        {textData.send}
       </button>
     </form>
   )

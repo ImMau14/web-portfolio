@@ -1,0 +1,16 @@
+{
+  "lang": "en",
+  "description": "This is the portfolio of Mauricio Rodríguez, Systems Engineering student and developer. Here you will find projects, information about him, and how to contact him.",
+  "ogDescription": "This is the portfolio of Mauricio Rodríguez, Systems Engineering student and developer.",
+  "ogImage": "/projects-images/web-portfolio.webp",
+  "ogUrl": "https://immau14.vercel.app",
+  "twitterDescription": "This is the portfolio of Mauricio Rodríguez, Systems Engineering student and developer. Here you will find projects, information about him, and how to contact him.",
+  "twitterImage": "/projects-images/web-portfolio.webp",
+  "pages": [
+    { "name": "Home", "href": "/en" },
+    { "name": "Projects", "href": "/en/projects" },
+    { "name": "About", "href": "/en/about" },
+    { "name": "Contact", "href": "/en/contact" }
+  ],
+  "footer": "© 2025 · Mauricio \"ImMau14\" Rodríguez · All rights reserved"
+}

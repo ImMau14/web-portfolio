@@ -6,59 +6,69 @@ import type { Page } from "@components/NavBar/types.ts"
 import { FaGithub, FaLinkedin } from "react-icons/fa6"
 import { FaTelegramPlane } from "react-icons/fa"
 
-interface LayoutProps {
-  title?: string
-  className?: string
+interface BaseLayoutLang {
   description?: string
   ogDescription?: string
   ogImage?: string
   ogUrl?: string
   twitterDescription?: string
   twitterImage?: string
+  pages?: Page[]
+  footer?: string
+}
+
+interface LayoutProps {
+  pageName?: string
+  className?: string
+  baseLang?: BaseLayoutLang
 }
 
 const {
-  title: pageTitle,
+  pageName = "",
   className,
-  description = "This is the portfolio of Mauricio Rodríguez, Systems Engineering student and developer. Here you'll find projects, information about me, and how to contact me.",
-  ogDescription = "This is the portfolio of Mauricio Rodríguez, Systems Engineering student and developer.",
-  ogImage = "/portfolio-img.webp",
-  ogUrl = "https://immau14.vercel.app",
-  twitterDescription = "This is the portfolio of Mauricio Rodríguez, Systems Engineering student and developer. Here you'll find projects, information about me, and how to contact me.",
-  twitterImage = "/portfolio-img.webp",
+  baseLang = {
+    description:
+      "This is the portfolio of Mauricio Rodríguez, Systems Engineering student and developer. Here you'll find projects, information about me, and how to contact me.",
+    ogDescription: "This is the portfolio of Mauricio Rodríguez, Systems Engineering student and developer.",
+    ogImage: "/portfolio-img.webp",
+    ogUrl: "https://immau14.vercel.app",
+    twitterDescription:
+      "This is the portfolio of Mauricio Rodríguez, Systems Engineering student and developer. Here you'll find projects, information about me, and how to contact me.",
+    twitterImage: "/portfolio-img.webp",
+    pages: [
+      { name: "Home", href: "/" },
+      { name: "Projects", href: "/projects" },
+      { name: "About", href: "/about" },
+      { name: "Contact", href: "/contact" },
+    ],
+    footer: '© 2025 · Mauricio "ImMau14" Rodríguez · All rights reserved',
+  },
 } = Astro.props as LayoutProps
-
-const pages: Page[] = [
-  { name: "Home", href: "/" },
-  { name: "Projects", href: "/projects" },
-  { name: "About", href: "/about" },
-  { name: "Contact", href: "/contact" },
-]
 ---
 
-<html lang="en" class="w-full">
+<!doctype html>
+<html lang={baseLang.lang} class="w-full">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>{pageTitle ? `${pageTitle} · ImMau14` : "ImMau14"}</title>
+    <title>{pageName && pageName !== "" ? `${pageName} · ImMau14` : "ImMau14"}</title>
 
-    <meta name="description" content={description} />
+    <meta name="description" content={baseLang.description} />
 
-    <meta property="og:title" content={pageTitle ? `${pageTitle} · ImMau14` : "ImMau14"} />
-    <meta property="og:description" content={ogDescription} />
-    <meta property="og:image" content={ogImage} />
-    <meta property="og:url" content={ogUrl} />
+    <meta property="og:title" content={pageName ? `${pageName} · ImMau14` : "ImMau14"} />
+    <meta property="og:description" content={baseLang.ogDescription} />
+    <meta property="og:image" content={baseLang.ogImage} />
+    <meta property="og:url" content={baseLang.ogUrl} />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="en_En" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={pageTitle ? `${pageTitle} · ImMau14` : "ImMau14"} />
-    <meta name="twitter:description" content={twitterDescription} />
-    <meta name="twitter:image" content={twitterImage} />
+    <meta name="twitter:title" content={pageName ? `${pageName} · ImMau14` : "ImMau14"} />
+    <meta name="twitter:description" content={baseLang.twitterDescription} />
+    <meta name="twitter:image" content={baseLang.twitterImage} />
 
-    <!-- Theme Color -->
     <meta name="theme-color" content="#0f1011" />
   </head>
   <body
@@ -69,8 +79,8 @@ const pages: Page[] = [
       client:load
     >
       <div class="flex items-center gap-4">
-        <a href="/" aria-label="ImMau14 Logo"><Logo className="w-6 md:w-8" /></a>
-        <a href="/"
+        <a href={`/${baseLang.lang}`} aria-label="ImMau14 Logo"><Logo className="w-6 md:w-8" /></a>
+        <a href={`/${baseLang.lang}`}
           ><h2
             class="flex flex-col text-xl md:text-xl font-logo bg-gradient-to-b from-gray-100 via-gray-100 to-gray-200 bg-clip-text font-bold text-transparent"
           >
@@ -80,7 +90,7 @@ const pages: Page[] = [
       </div>
 
       <nav class="text-gray-100 flex">
-        <Links {pages} client:load />
+        <Links pages={baseLang.pages} client:load />
       </nav>
     </header>
 
@@ -92,7 +102,7 @@ const pages: Page[] = [
       class="w-full h-24 md:h-20 flex flex-col md:flex-row gap-2 md:gap-4 items-center p-4 md:p-8 border-t-2 border-silver-800 md:border-silver-700 justify-center md:justify-between bg-gradient-to-r from-silver-1000 via-silver-950 to-silver-900 md:from-silver-950 md:via-silver-900 md:to-silver-850"
     >
       <p class="text-gray-400 text-sm text-center md:text-left font-body">
-        © 2025 <b>·</b> Mauricio "ImMau14" Rodríguez <b>·</b> All rights reserved
+        {baseLang.footer}
       </p>
       <div class="flex gap-4 md:gap-6 items-center">
         <a

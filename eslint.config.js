@@ -127,4 +127,11 @@ export default defineConfig([
       "@typescript-eslint/consistent-type-definitions": "off",
     },
   },
+
+  {
+    files: ["src/content.config.ts"],
+    rules: {
+      "import/no-unresolved": "off",
+    },
+  },
 ])

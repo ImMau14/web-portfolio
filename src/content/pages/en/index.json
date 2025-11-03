@@ -1,0 +1,19 @@
+{
+  "pageName": "",
+  "title": "Mauricio Rodríguez",
+  "metaDescription": "Fullstack Developer — portfolio of projects and contact.",
+  "heroTitle": "Mauricio Rodríguez",
+  "heroSubtitle": "Fullstack Developer",
+  "intro": [
+    "Fullstack Developer and 20-year-old systems engineering student, passionate about programming, with other hobbies such as drawing, working out, and listening to music.",
+    "I hope to become a great Fullstack Developer."
+  ],
+  "featuredHeading": "Featured Projects",
+  "featuredLimit": 3,
+  "social": {
+    "linkedin": "https://linkedin.com/in/ImMau14",
+    "github": "https://github.com/ImMau14",
+    "telegram": "https://t.me/l0mauu"
+  },
+  "lang": "en"
+}

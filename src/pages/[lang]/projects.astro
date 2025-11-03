@@ -1,0 +1,78 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro"
+import { getCollection, getEntry } from "astro:content"
+import type { CollectionEntry } from "astro:content"
+
+import { locales, defaultLocale } from "@content/utils"
+
+export async function getStaticPaths() {
+  return locales.map((lang) => ({ params: { lang } }))
+}
+
+const { lang } = Astro.params as { lang: string }
+
+async function getEntryOrFallback(
+  collection: string,
+  id: string,
+  fallbackLang = defaultLocale,
+): Promise<CollectionEntry<any> | undefined> {
+  const entry = await getEntry(collection, id)
+  if (entry) return entry
+
+  const parts = id.split("/")
+  if (parts.length === 0) return undefined
+  parts[0] = fallbackLang
+  const fallbackId = parts.join("/")
+  const fallbackEntry = await getEntry(collection, fallbackId)
+  return fallbackEntry ?? undefined
+}
+
+const all = await getCollection("projects")
+
+let byLang = all.filter((e) => e.id.startsWith(`${lang}/`))
+if (byLang.length === 0 && lang !== defaultLocale) {
+  byLang = all.filter((e) => e.id.startsWith(`${defaultLocale}/`))
+}
+
+function projectUrlFromEntry(eId: string) {
+  const parts = eId.split("/")
+  const entryLang = parts.shift() ?? defaultLocale
+  if (parts[0] === "project") parts.shift()
+  const slug = parts.join("/")
+  return `/${entryLang}/project/${slug}`
+}
+
+const layoutEntryId = `${lang}/BaseLayout`
+const layoutEntryData = await getEntryOrFallback("pages", layoutEntryId)
+
+const projectsEntryId = `${lang}/projects`
+const projectsEntry = await getEntryOrFallback("pages", projectsEntryId)
+const projectsEntryData = (projectsEntry as any)?.data ?? {
+  title: "Projects",
+  description: "",
+  lang,
+}
+---
+
+<BaseLayout
+  title={projectsEntryData.pageName}
+  className="flex flex-col justify-center text-white items-center"
+  baseLang={layoutEntryData.data}
+  pageName={projectsEntryData.pageName}
+>
+  <h1>{projectsEntryData.header}</h1>
+
+  {
+    byLang.length === 0 ? (
+      <p>{projectsEntryData.notProjectsFound}</p>
+    ) : (
+      <ul>
+        {byLang.map((p) => (
+          <li>
+            <a href={projectUrlFromEntry(p.slug)}>{p.data.title ?? p.id}</a>
+          </li>
+        ))}
+      </ul>
+    )
+  }
+</BaseLayout>

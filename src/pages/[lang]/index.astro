@@ -1,0 +1,190 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro"
+import AnimatedBackground from "@components/AnimatedBackground.tsx"
+import AvatarPhoto from "@components/AvatarPhoto.tsx"
+import { FaGithub, FaLinkedin } from "react-icons/fa6"
+import { FaTelegramPlane, FaCode } from "react-icons/fa"
+import ProjectCard from "@components/home/ProjectCard.tsx"
+
+import { getCollection, getEntry } from "astro:content"
+import type { CollectionEntry } from "astro:content"
+
+import { locales, defaultLocale } from "@content/utils"
+
+export async function getStaticPaths() {
+  return locales.map((lang) => ({ params: { lang } }))
+}
+
+const { lang } = Astro.params as { lang: string }
+
+async function getEntryOrFallback(
+  collection: string,
+  id: string,
+  fallbackLang = defaultLocale,
+): Promise<CollectionEntry<any> | undefined> {
+  const entry = await getEntry(collection, id)
+  if (entry) return entry
+
+  const parts = id.split("/")
+  if (parts.length === 0) return undefined
+  parts[0] = fallbackLang
+  const fallbackId = parts.join("/")
+  const fallbackEntry = await getEntry(collection, fallbackId)
+  return fallbackEntry ?? undefined
+}
+
+const entryId = `${lang}/index`
+const pageEntry = await getEntryOrFallback("pages", entryId)
+
+const pageData = (pageEntry as any)?.data ?? {
+  title: "",
+  heroTitle: "Mauricio Rodríguez",
+  heroSubtitle: "Fullstack Developer",
+  intro: [],
+  featuredHeading: "Featured Projects",
+  featuredLimit: 3,
+  social: {},
+  lang,
+}
+
+const layoutEntryId = `${lang}/BaseLayout`
+const layoutEntryData = await getEntryOrFallback("pages", layoutEntryId)
+
+const intro: string[] = pageData.intro ?? pageData.introParagraphs ?? []
+const featuredHeading: string = pageData.featuredHeading ?? pageData.featuredTitle ?? "Featured Projects"
+const featuredLimit: number = Number(pageData.featuredLimit ?? 3)
+const social: Record<string, string> = pageData.social ?? {}
+const heroTitle: string = pageData.heroTitle ?? pageData.title ?? "Mauricio Rodríguez"
+const heroSubtitle: string = pageData.heroSubtitle ?? ""
+
+const allProjects = await getCollection("projects")
+let projectsByLang = allProjects.filter((p) => p.id.startsWith(`${lang}/`))
+
+if (projectsByLang.length === 0 && lang !== defaultLocale) {
+  projectsByLang = allProjects.filter((p) => p.id.startsWith(`${defaultLocale}/`))
+}
+
+const featuredProjects = projectsByLang
+  .filter((p) => (p as any).data.isFeatured === true)
+  .slice(0, featuredLimit) as CollectionEntry<"projects">[]
+
+function slugFromEntryId(eid: string) {
+  const parts = eid.split("/")
+  parts.shift()
+  if (parts[0] === "project") parts.shift()
+  return parts.join("/")
+}
+---
+
+<BaseLayout className="flex flex-col items-center" baseLang={layoutEntryData.data}>
+  <AnimatedBackground className="w-full" client:idle>
+    <div
+      class="flex flex-col-reverse md:flex-row items-center justify-center gap-8 md:gap-16 px-4 py-4 md:py-0 md:px-40"
+    >
+      <div class="flex-1 flex flex-col gap-6">
+        <div class="flex flex-col items-center md:items-start">
+          <h1
+            class="font-heading text-2xl bg-gradient-to-b from-gray-100 via-gray-100 to-gray-200 bg-clip-text font-bold text-transparent text-4xl md:text-6xl text-center md:text-start font-semibold font-heading pb-1 leading-tight"
+          >
+            {heroTitle}
+          </h1>
+          <p
+            class="font-heading text-2xl bg-gradient-to-r from-green-300 via-green-200 to-lime-200 bg-clip-text font-bold text-transparent pb-1"
+          >
+            {heroSubtitle}
+          </p>
+        </div>
+
+        <section class="text-gray-400 leading-relaxed text-center md:text-start flex flex-col gap-4 font-body">
+          {intro.length > 0 ? intro.map((p) => <p>{p}</p>) : <p class="text-gray-400">No intro content for {lang}.</p>}
+        </section>
+
+        <div class="flex gap-6 items-center justify-center md:justify-start">
+          {
+            social?.linkedin && (
+              <a
+                href={social.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-gray-200 text-3xl hover:text-white duration-150"
+                aria-label="LinkedIn profile"
+              >
+                <FaLinkedin client:visible />
+              </a>
+            )
+          }
+          {
+            social?.github && (
+              <a
+                href={social.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-gray-200 text-3xl hover:text-white duration-150"
+                aria-label="GitHub profile"
+              >
+                <FaGithub client:visible />
+              </a>
+            )
+          }
+          {
+            social?.telegram && (
+              <a
+                href={social.telegram}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-gray-200 hover:text-white text-3xl duration-100"
+                aria-label="Telegram contact"
+              >
+                <FaTelegramPlane client:visible />
+              </a>
+            )
+          }
+        </div>
+      </div>
+
+      <AvatarPhoto
+        className="w-[160px] h-[160px] md:w-[290px] md:h-[290px] bg-gray-700 rounded-full border-2 border-gray-100/50 shadow-xl"
+      />
+    </div>
+  </AnimatedBackground>
+
+  <div
+    class="w-full pt-4 bg-silver-950 relative flex items-center flex-col before:absolute before:content-[''] before:w-full before:h-16 before:top-[-4rem] before:bg-gradient-to-t before:from-silver-950 before:via-transparent before:to-transparent"
+  >
+    <article class="px-4 py-4 md:px-40 md:py-10 flex gap-8 flex-col w-full">
+      <header class="flex gap-4 items-center">
+        <FaCode className="text-4xl text-gray-300" />
+        <h2
+          class="font-heading text-4xl bg-gradient-to-b from-gray-100 via-gray-100 to-gray-200 bg-clip-text font-bold text-transparent pb-2"
+        >
+          {featuredHeading}
+        </h2>
+      </header>
+      <div class="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {
+          featuredProjects.length === 0 ? (
+            <p class="text-gray-400">No projects yet for {lang}.</p>
+          ) : (
+            featuredProjects.map((p) => {
+              const slug = slugFromEntryId(p.id)
+              const href = `/${lang}/project/${slug.split(".")[0]}`
+              return (
+                <ProjectCard
+                  title={p.data.title}
+                  image={p.data.image}
+                  alt={p.data.alt}
+                  description={p.data.description}
+                  techs={p.data.tech}
+                  githubUrl={p.data.githubUrl}
+                  isPublic={p.data.isPublic}
+                  articleUrl={href}
+                  client:visible
+                />
+              )
+            })
+          )
+        }
+      </div>
+    </article>
+  </div>
+</BaseLayout>

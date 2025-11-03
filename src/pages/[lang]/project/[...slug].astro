@@ -1,0 +1,42 @@
+---
+import { getCollection, getEntry, render } from "astro:content"
+
+export async function getStaticPaths() {
+  const entries = await getCollection("projects")
+
+  return entries.map((e) => {
+    const parts = e.id.split("/")
+    const lang = parts.shift()
+
+    if (parts[0] === "project") parts.shift()
+    const slug = parts.length ? parts.join("/") : undefined
+    const cleanSlug = slug?.replace(/\.md$/i, "")
+
+    return {
+      params: {
+        lang,
+        slug: cleanSlug,
+      },
+      props: { entryId: e.id },
+    }
+  })
+}
+
+const { lang, slug } = Astro.params as { lang: string; slug?: string }
+const slugParts = slug ? slug.split("/") : []
+const entryId = `${lang}/${slugParts.length ? slugParts.join("/") : "index"}`
+
+const entry = await getEntry("projects", entryId)
+if (!entry) throw new Error(`Project not found: ${entryId}`)
+const { Content } = await render(entry)
+---
+
+<html {lang}>
+  <head><meta charset="utf-8" /><title>{entry.data.title}</title></head>
+  <body>
+    <article>
+      <h1>{entry.data.title}</h1>
+      <Content />
+    </article>
+  </body>
+</html>

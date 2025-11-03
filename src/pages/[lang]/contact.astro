@@ -1,0 +1,38 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro"
+import ContactForm from "@components/ContactForm.tsx"
+import { getEntry } from "astro:content"
+import { locales, defaultLocale } from "@content/utils"
+
+export async function getStaticPaths() {
+  return locales.map((lang) => ({ params: { lang } }))
+}
+
+const { lang } = Astro.params as { lang: string }
+
+async function getEntryOrFallback(collection: string, id: string, fallbackLang = defaultLocale) {
+  const entry = await getEntry(collection, id)
+  if (entry) return entry
+
+  const fallbackId = id.replace(/^.*?\//, `${fallbackLang}/`)
+  const fallbackEntry = await getEntry(collection, fallbackId)
+  if (fallbackEntry) return fallbackEntry
+
+  throw new Error(`Entry not found for ${id} and fallback ${fallbackId}`)
+}
+
+const layoutEntryId = `${lang}/BaseLayout`
+const layoutEntryData = await getEntryOrFallback("pages", layoutEntryId)
+
+const contactEntryId = `${lang}/contact`
+const contactData = await getEntryOrFallback("pages", contactEntryId)
+---
+
+<BaseLayout
+  pageTitle="Contact"
+  className="flex flex-col items-center justify-center py-4 bg-silver-1000"
+  baseLang={layoutEntryData.data}
+  pageName={contactData.data.pageName}
+>
+  <ContactForm className="w-full" textData={contactData.data} />
+</BaseLayout>

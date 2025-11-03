@@ -1,0 +1,32 @@
+---
+import { defaultLocale, locales } from "@content/utils.ts"
+
+interface RedirectLayoutProps {
+  destiny: string
+}
+
+const { destiny } = Astro.props as RedirectLayoutProps
+---
+
+<!doctype html>
+<html lang={defaultLocale}>
+  <head>
+    <meta charset="utf-8" />
+    <meta property="og:image" content="/projects-images/web-portfolio.webp" />
+    <meta name="twitter:image" content="/projects-images/web-portfolio.webp" />
+    <meta
+      name="twitter:description"
+      content="This is the portfolio of Mauricio Rodríguez, Systems Engineering student and developer. Here you will find projects, information about him, and how to contact him."
+    />
+    <meta
+      property="og:description"
+      content="This is the portfolio of Mauricio Rodríguez, Systems Engineering student and developer."
+    />
+    <script define:vars={{ locales, defaultLocale, destiny }}>
+      const code = navigator.language.split("-")[0]
+      const location = `${code}/${destiny}`
+      const fallback = `${defaultLocale}/${destiny}`
+      window.location.replace(`/${locales.includes(code) ? location : fallback}`)
+    </script>
+  </head>
+</html>

@@ -1,5 +1,7 @@
 {
   "pageName": "Projects",
   "header": "Projects",
-  "notProjectsFound": "Not projects found."
+  "notProjectsFound": "Not projects found.",
+  "description": "Here's a selection of my projects, most of them personal. For each, I detail its functionality, the development process, and the key lessons learned during its implementation.",
+  "noProjects": "No projects to show yet."
 }

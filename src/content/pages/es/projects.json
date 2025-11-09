@@ -1,5 +1,7 @@
 {
   "pageName": "Proyectos",
   "header": "Proyectos",
-  "notProjectsFound": "No se encontraron proyectos."
+  "notProjectsFound": "No se encontraron proyectos.",
+  "description": "Aquí presento una selección de mis proyectos, la mayoría de ellos de carácter personal. Para cada uno, detallo su funcionalidad, el proceso de desarrollo y las lecciones clave aprendidas durante su implementación.",
+  "noProjects": "Aún no hay projectos a mostrar."
 }

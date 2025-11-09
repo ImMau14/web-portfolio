@@ -2,6 +2,9 @@
 import BaseLayout from "@layouts/BaseLayout.astro"
 import { getCollection, getEntry } from "astro:content"
 import type { CollectionEntry } from "astro:content"
+import { FaLaptopCode } from "react-icons/fa"
+
+import ProjectCard from "@components/home/ProjectCard.tsx"
 
 import { locales, defaultLocale } from "@content/utils"
 
@@ -34,14 +37,6 @@ if (byLang.length === 0 && lang !== defaultLocale) {
   byLang = all.filter((e) => e.id.startsWith(`${defaultLocale}/`))
 }
 
-function projectUrlFromEntry(eId: string) {
-  const parts = eId.split("/")
-  const entryLang = parts.shift() ?? defaultLocale
-  if (parts[0] === "project") parts.shift()
-  const slug = parts.join("/")
-  return `/${entryLang}/project/${slug}`
-}
-
 const layoutEntryId = `${lang}/BaseLayout`
 const layoutEntryData = await getEntryOrFallback("pages", layoutEntryId)
 
@@ -56,23 +51,48 @@ const projectsEntryData = (projectsEntry as any)?.data ?? {
 
 <BaseLayout
   title={projectsEntryData.pageName}
-  className="flex flex-col justify-center text-white items-center"
+  className="flex flex-col p-8 md:py-16 md:px-40 text-white items-center"
   baseLang={layoutEntryData.data}
   pageName={projectsEntryData.pageName}
 >
-  <h1>{projectsEntryData.header}</h1>
+  <section class="flex flex-col gap-6">
+    <header class="flex flex-row items-center gap-4">
+      <FaLaptopCode className="text-3xl md:text-4xl text-green-300/80" />
+      <h1
+        class="text-2xl bg-gradient-to-b from-gray-100 via-gray-100 to-gray-200 bg-clip-text font-bold text-transparent text-4xl md:text-5xl text-center md:text-start font-semibold font-heading pb-2 leading-tight"
+      >
+        {projectsEntryData.header}
+      </h1>
+    </header>
 
-  {
-    byLang.length === 0 ? (
-      <p>{projectsEntryData.notProjectsFound}</p>
-    ) : (
-      <ul>
-        {byLang.map((p) => (
-          <li>
-            <a href={projectUrlFromEntry(p.slug)}>{p.data.title ?? p.id}</a>
-          </li>
-        ))}
-      </ul>
-    )
-  }
+    <p class="font-body text-silver-500 leading-relaxed">
+      {projectsEntryData.description}
+    </p>
+
+    {
+      byLang.length === 0 ? (
+        <p class="text-gray-400 font-body">{projectsEntryData.noProjects}</p>
+      ) : (
+        <ul class="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-4 md:mt-2">
+          {byLang.map((p) => {
+            const slug = p.id.split("/")[1].split(".")[0]
+            const href = `/${lang}/project/${slug}`
+            return (
+              <ProjectCard
+                title={p.data.title}
+                image={p.data.image}
+                alt={p.data.alt}
+                description={p.data.description}
+                techs={p.data.tech}
+                githubUrl={p.data.githubUrl}
+                isPublic={p.data.isPublic}
+                articleUrl={href}
+                client:visible
+              />
+            )
+          })}
+        </ul>
+      )
+    }
+  </section>
 </BaseLayout>

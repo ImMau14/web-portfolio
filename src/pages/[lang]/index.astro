@@ -56,6 +56,7 @@ const featuredLimit: number = Number(pageData.featuredLimit ?? 3)
 const social: Record<string, string> = pageData.social ?? {}
 const heroTitle: string = pageData.heroTitle ?? pageData.title ?? "Mauricio Rodríguez"
 const heroSubtitle: string = pageData.heroSubtitle ?? ""
+const noProjects: string = pageData.noProjects ?? ""
 
 const allProjects = await getCollection("projects")
 let projectsByLang = allProjects.filter((p) => p.id.startsWith(`${lang}/`))
@@ -84,7 +85,7 @@ function slugFromEntryId(eid: string) {
       <div class="flex-1 flex flex-col gap-6">
         <div class="flex flex-col items-center md:items-start">
           <h1
-            class="font-heading text-2xl bg-gradient-to-b from-gray-100 via-gray-100 to-gray-200 bg-clip-text font-bold text-transparent text-4xl md:text-6xl text-center md:text-start font-semibold font-heading pb-1 leading-tight"
+            class="text-2xl bg-gradient-to-b from-gray-100 via-gray-100 to-gray-200 bg-clip-text font-bold text-transparent text-4xl md:text-6xl text-center md:text-start font-semibold font-heading pb-1 leading-tight"
           >
             {heroTitle}
           </h1>
@@ -153,19 +154,20 @@ function slugFromEntryId(eid: string) {
   >
     <article class="px-4 py-4 md:px-40 md:py-10 flex gap-8 flex-col w-full">
       <header class="flex gap-4 items-center">
-        <FaCode className="text-4xl text-gray-300" />
+        <FaCode className="text-4xl text-green-300/80" />
         <h2
-          class="font-heading text-4xl bg-gradient-to-b from-gray-100 via-gray-100 to-gray-200 bg-clip-text font-bold text-transparent pb-2"
+          class="font-heading text-4xl bg-gradient-to-b from-gray-100 via-gray-100 to-gray-200 bg-clip-text font-bold text-transparent"
         >
           {featuredHeading}
         </h2>
       </header>
-      <div class="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {
-          featuredProjects.length === 0 ? (
-            <p class="text-gray-400">No projects yet for {lang}.</p>
-          ) : (
-            featuredProjects.map((p) => {
+
+      {
+        featuredProjects.length === 0 ? (
+          <p class="text-gray-400 font-body">{noProjects}</p>
+        ) : (
+          <div class="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
+            {featuredProjects.map((p) => {
               const slug = slugFromEntryId(p.id)
               const href = `/${lang}/project/${slug.split(".")[0]}`
               return (
@@ -181,10 +183,10 @@ function slugFromEntryId(eid: string) {
                   client:visible
                 />
               )
-            })
-          )
-        }
-      </div>
+            })}
+          </div>
+        )
+      }
     </article>
   </div>
 </BaseLayout>

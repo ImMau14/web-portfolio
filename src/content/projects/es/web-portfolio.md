@@ -8,7 +8,7 @@ description: "Mi portafolio personal, desarrollado con Astro, con soporte multil
 tech: ["react", "astro", "typescript", "tailwind"]
 githubUrl: "https://www.github.com/ImMau14/web-portfolio"
 isPublic: true
-isFeatured: true
+isFeatured: false
 ---
 
 Este es un texto provisional dentro de este artículo. Más adelante, cuando se mejore el aspecto, el orden y la presentación de la página de cada artículo, se cargarán todos los archivos y descripciones de forma adecuada.

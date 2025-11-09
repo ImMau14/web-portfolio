@@ -3,6 +3,7 @@ import type { IconType } from "react-icons"
 import { RiJavascriptFill, RiHtml5Fill, RiTailwindCssFill } from "react-icons/ri"
 import { SiAstro, SiTypescript, SiFlask, SiActix } from "react-icons/si"
 import { FaReact, FaCss3Alt, FaPython, FaRust } from "react-icons/fa"
+import { BiLogoPostgresql } from "react-icons/bi"
 
 const duration = "duration-100"
 
@@ -50,6 +51,10 @@ const ICONS = {
   actix: {
     component: SiActix,
     defaultClassName: `text-silver-300 hover:text-silver-300 ${duration}`,
+  },
+  postgre: {
+    component: BiLogoPostgresql,
+    defaultClassName: `text-blue-400 hover:text-blue-300 ${duration}`,
   },
 } as const
 

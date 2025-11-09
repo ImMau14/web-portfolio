@@ -24,3 +24,5 @@ pnpm-debug.log*
 
 # vs code setting folder
 .vscode/
+
+**/Thumbs.db

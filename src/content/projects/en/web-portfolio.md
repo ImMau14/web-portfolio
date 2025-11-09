@@ -8,7 +8,7 @@ description: "My personal portfolio, developed using Astro, with multilingual su
 tech: ["react", "astro", "typescript", "tailwind"]
 githubUrl: "https://www.github.com/ImMau14/web-portfolio"
 isPublic: true
-isFeatured: true
+isFeatured: false
 ---
 
 This is a temporary text within this article. Later, once the appearance, layout, and presentation of each article's page are improved, all files and descriptions will be properly uploaded.

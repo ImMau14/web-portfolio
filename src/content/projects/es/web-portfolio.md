@@ -11,4 +11,8 @@ isPublic: true
 isFeatured: false
 ---
 
-Este es un texto provisional dentro de este artículo. Más adelante, cuando se mejore el aspecto, el orden y la presentación de la página de cada artículo, se cargarán todos los archivos y descripciones de forma adecuada.
+# Mi Portfolio Web
+
+Portafolio web desarrollado con Astro y TypeScript, usando componentes React y estilos con TailwindCSS. Incluye una sección de contenido gestionada con Content Layer para publicar artículos escritos en Markdown y traducciones en varios idiomas.
+
+> El proyecto me permitió explorar el flujo de trabajo de contenido en Astro y comprobar por qué lo considero uno de mis frameworks de frontend favoritos.

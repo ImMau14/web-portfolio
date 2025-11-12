@@ -6,7 +6,7 @@ image: "/projects-images/tscrapingbot.webp"
 alt: "TScrapingbot photo"
 description: "A Telegram chatbot with AI and Web Scraping capabilities."
 tech: ["python", "postgre", "flask"]
-githubUrl: "https://www.github.com/ImMau14/tscrapingbot"
+githubUrl: "https://www.github.com/ImMau14/TScrapingBot"
 isPublic: true
 isFeatured: true
 ---
@@ -21,8 +21,5 @@ Developed in Python, it seamlessly integrates Gemini 2.5, Scrape.do, and Supabas
 
 The underlying technologies may evolve in the future to further enhance the bot's efficiency.
 
----
-
-Bringing this project to life has been a truly fascinating journey. The idea stemmed from my desire to find a way to analyze any webpage using AI, making it as simple as sending a message. During the process, I delved into the intricacies of Telegram updates and gained valuable experience with Supabase and Render deployments.
-
-This project marked my first significant tool as a programmer—one I continue to use and refine to this day.
+> Bringing this project to life has been a truly fascinating journey. The idea stemmed from my desire to find a way to analyze any webpage using AI, making it as simple as sending a message. During the process, I delved into the intricacies of Telegram updates and gained valuable experience with Supabase and Render deployments.<br/><br/>
+> This project marked my first significant tool as a programmer—one I continue to use and refine to this day.

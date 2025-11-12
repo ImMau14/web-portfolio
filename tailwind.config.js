@@ -1,10 +1,26 @@
 import tailwindScrollbar from "tailwind-scrollbar"
+import tailwindTypography from "@tailwindcss/typography"
 
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./src/**/*.{js,ts,jsx,tsx,astro}"],
   theme: {
     extend: {
+      typography: {
+        DEFAULT: {
+          css: {
+            h1: {
+              fontFamily: "Kanit",
+            },
+            p: {
+              fontFamily: "Inter Variable",
+            },
+            "*": {
+              color: "#f0f4ff",
+            },
+          },
+        },
+      },
       fontFamily: {
         heading: ["Kanit"],
         logo: ["Montserrat Variable"],
@@ -36,5 +52,5 @@ export default {
       },
     },
   },
-  plugins: ["@tailwindcss/typography", "@tailwindcss/forms", tailwindScrollbar],
+  plugins: [tailwindTypography, tailwindScrollbar],
 }

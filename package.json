@@ -7,7 +7,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "lint": "eslint . --ignore-pattern \"./.astro/**\"",
+    "lint": "eslint . --ignore-pattern \"./.astro/**\" --ignore-pattern \"./dist/**\"",
     "lint:fix": "eslint . --fix --ignore-pattern \"./.astro/**\"",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
@@ -26,6 +26,7 @@
     "@astrojs/tailwind": "^6.0.2",
     "@eslint/eslintrc": "^3.3.1",
     "@eslint/js": "^9.38.0",
+    "@tailwindcss/typography": "^0.5.19",
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.1",
     "@typescript-eslint/eslint-plugin": "^8.46.2",

@@ -1,7 +1,7 @@
 import { motion } from "framer-motion"
 import { FaGithub, FaLock } from "react-icons/fa6"
 import { IoOpenOutline } from "react-icons/io5"
-import TechIcon, { type TechIconKey } from "./ProjectCard/TechIcon"
+import TechIcon, { type TechIconKey } from "./TechIcon"
 
 export interface ProjectCardProps {
   title: string

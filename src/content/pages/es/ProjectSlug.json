@@ -1,0 +1,10 @@
+{
+  "back": "Volver a proyectos",
+  "loadingText": "Cargando datos de GitHub",
+  "noData": "Repositorio privado: No hay datos qué mostrar",
+  "unknowError": "Error desconocido",
+  "stars": "estrellas",
+  "forks": "forks",
+  "watchers": "watchers",
+  "privateText": "Privado"
+}

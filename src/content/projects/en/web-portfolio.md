@@ -11,4 +11,8 @@ isPublic: true
 isFeatured: false
 ---
 
-This is a temporary text within this article. Later, once the appearance, layout, and presentation of each article's page are improved, all files and descriptions will be properly uploaded.
+# My Web Portfolio
+
+Web portfolio developed with Astro and TypeScript, using React components and TailwindCSS for styling. It includes a content section managed with Content Layer to publish articles written in Markdown and translations in multiple languages.
+
+> This project allowed me to explore Astro’s content workflow and confirmed why I consider it one of my favorite frontend frameworks.

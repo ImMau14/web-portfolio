@@ -1,0 +1,10 @@
+{
+  "back": "Back to projects",
+  "loadingText": "Loading data from GitHub",
+  "noData": "Private repository: No data to display.",
+  "unknownError": "Unknown error",
+  "stars": "stars",
+  "forks": "forks",
+  "watchers": "watchers",
+  "privateText": "Private"
+}

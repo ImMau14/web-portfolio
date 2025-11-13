@@ -1,7 +1,7 @@
 import React from "react"
 import type { IconType } from "react-icons"
 import { RiJavascriptFill, RiHtml5Fill, RiTailwindCssFill } from "react-icons/ri"
-import { SiAstro, SiTypescript, SiFlask, SiActix } from "react-icons/si"
+import { SiAstro, SiTypescript, SiFlask, SiActix, SiExpress, SiSqlite } from "react-icons/si"
 import { FaReact, FaCss3Alt, FaPython, FaRust } from "react-icons/fa"
 import { BiLogoPostgresql } from "react-icons/bi"
 
@@ -54,6 +54,14 @@ const ICONS = {
   },
   postgre: {
     component: BiLogoPostgresql,
+    defaultClassName: `text-blue-400 hover:text-blue-300 ${duration}`,
+  },
+  express: {
+    component: SiExpress,
+    defaultClassName: `text-silver-300 hover:text-silver-300 ${duration}`,
+  },
+  sqlite: {
+    component: SiSqlite,
     defaultClassName: `text-blue-400 hover:text-blue-300 ${duration}`,
   },
 } as const

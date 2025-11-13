@@ -1,6 +1,6 @@
 ---
 title: "Mi Portafolio Web"
-date: 2025-11-10
+date: 2025-04-16
 lang: "es"
 image: "/projects-images/web-portfolio.webp"
 alt: "Imagen de portafolio"

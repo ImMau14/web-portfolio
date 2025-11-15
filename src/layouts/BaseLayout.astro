@@ -59,7 +59,7 @@ const {
 
     <meta property="og:title" content={pageName ? `${pageName} · ImMau14` : "ImMau14"} />
     <meta property="og:description" content={baseLang.ogDescription} />
-    <meta property="og:image" content={baseLang.ogImage} />
+    <meta property="og:image" content={baseLang.ogUrl + baseLang.ogImage} />
     <meta property="og:url" content={baseLang.ogUrl} />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="en_En" />
@@ -67,7 +67,7 @@ const {
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={pageName ? `${pageName} · ImMau14` : "ImMau14"} />
     <meta name="twitter:description" content={baseLang.twitterDescription} />
-    <meta name="twitter:image" content={baseLang.twitterImage} />
+    <meta name="twitter:image" content={baseLang.ogUrl + baseLang.twitterImage} />
 
     <meta name="theme-color" content="#0f1011" />
   </head>

@@ -57,6 +57,7 @@ const social: Record<string, string> = pageData.social ?? {}
 const heroTitle: string = pageData.heroTitle ?? pageData.title ?? "Mauricio Rodríguez"
 const heroSubtitle: string = pageData.heroSubtitle ?? ""
 const noProjects: string = pageData.noProjects ?? ""
+const featuredDescription: string = pageData.featuredDescription ?? ""
 
 const allProjects = await getCollection("projects")
 let projectsByLang = allProjects.filter((p) => p.id.startsWith(`${lang}/`))
@@ -162,11 +163,13 @@ function slugFromEntryId(eid: string) {
         </h2>
       </header>
 
+      <p class="font-body text-md text-gray-300 leading-relaxed">{featuredDescription}</p>
+
       {
         featuredProjects.length === 0 ? (
           <p class="text-gray-400 font-body">{noProjects}</p>
         ) : (
-          <div class="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
+          <div class="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {featuredProjects.map((p) => {
               const slug = slugFromEntryId(p.id)
               const href = `/${lang}/project/${slug.split(".")[0]}`

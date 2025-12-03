@@ -3,15 +3,19 @@ import { getCollection, getEntry, render } from "astro:content"
 import BaseLayout from "@layouts/BaseLayout.astro"
 import RepoCard from "@components/RepoCard.tsx"
 import { IoMdArrowRoundBack } from "react-icons/io"
-
+import type { CollectionEntry, DataEntryMap } from "astro:content"
 import { defaultLocale } from "@content/utils"
 
-async function getEntryOrFallback(collection: string, id: string, fallbackLang = defaultLocale) {
-  const entry = await getEntry(collection, id)
+async function getEntryOrFallback<C extends keyof DataEntryMap>(
+  collection: C,
+  id: string,
+  fallbackLang = defaultLocale,
+): Promise<CollectionEntry<C>> {
+  const entry = (await getEntry(collection, id)) as CollectionEntry<C> | undefined
   if (entry) return entry
 
   const fallbackId = id.replace(/^.*?\//, `${fallbackLang}/`)
-  const fallbackEntry = await getEntry(collection, fallbackId)
+  const fallbackEntry = (await getEntry(collection, fallbackId)) as CollectionEntry<C> | undefined
   if (fallbackEntry) return fallbackEntry
 
   throw new Error(`Entry not found for ${id} and fallback ${fallbackId}`)

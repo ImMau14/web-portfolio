@@ -45,7 +45,7 @@ export const ProjectCard = ({
       transition={{ duration: 0.36, ease: "easeOut" }}
       aria-labelledby={`project-card-${title}`}
     >
-      <div className="h-62 w-full overflow-hidden bg-red-400 md:h-48">
+      <div className="w-full overflow-hidden bg-red-400 md:h-48">
         <img src={imgSrc} alt={alt || `${title} preview`} className="w-full object-cover md:h-full" loading="lazy" />
       </div>
 
@@ -87,7 +87,7 @@ export const ProjectCard = ({
             </a>
           ) : (
             <div
-              className="text-md flex items-center gap-2 text-silver-500 hover:cursor-not-allowed hover:text-silver-400"
+              className="flex items-center gap-2 text-silver-500 hover:cursor-not-allowed hover:text-silver-400"
               title={isPublic ? "Repo not provided" : "Private repository"}
               aria-hidden={false}
               role="img"

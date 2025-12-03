@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import { FaRegStar } from "react-icons/fa"
 import { FaCodeFork, FaGithub, FaLock } from "react-icons/fa6"
 import { GrView } from "react-icons/gr"
@@ -183,7 +183,7 @@ const RepoCard = ({ data, langData }: RepoCardProps) => {
             </a>
           ) : (
             <div
-              className="text-md flex items-center gap-2 text-silver-500 hover:cursor-not-allowed"
+              className="flex items-center gap-2 text-silver-500 hover:cursor-not-allowed"
               title="Private"
               aria-label="Private"
             >

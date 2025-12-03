@@ -116,7 +116,7 @@ export const ContactForm = ({
 
       <button
         type="submit"
-        className="duration-250 mt-2 flex w-full flex-row items-center justify-center gap-2 rounded-md bg-green-700 py-2 font-body text-sm font-semibold text-white hover:bg-green-600 active:bg-green-500"
+        className="mt-2 flex w-full flex-row items-center justify-center gap-2 rounded-md bg-green-700 py-2 font-body text-sm font-semibold text-white hover:bg-green-600 active:bg-green-500"
       >
         <IoIosMail class="text-xl" />
         {textData.send}

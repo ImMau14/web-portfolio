@@ -183,7 +183,7 @@ const RepoCard = ({ data, langData }: RepoCardProps) => {
             </a>
           ) : (
             <div
-              className="text-md flex items-center gap-2 text-silver-500 hover:cursor-not-allowed"
+              className="flex items-center gap-2 text-silver-500 hover:cursor-not-allowed"
               title="Private"
               aria-label="Private"
             >

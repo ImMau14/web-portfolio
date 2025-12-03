@@ -8,7 +8,7 @@ export const LinksForDesktops = ({ pages }: Page[]) => {
           <li key={index}>
             <a
               href={page.href}
-              className="text-md relative bg-gradient-to-b from-gray-100 via-gray-100 to-gray-200 bg-clip-text font-body font-semibold text-transparent duration-100 hover:text-white"
+              className="relative bg-gradient-to-b from-gray-100 via-gray-100 to-gray-200 bg-clip-text font-body font-semibold text-transparent duration-100 hover:text-white"
             >
               {page.name}
             </a>

@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro"
 import { getCollection, getEntry } from "astro:content"
-import type { CollectionEntry } from "astro:content"
+import type { CollectionEntry, DataEntryMap } from "astro:content"
 import { FaLaptopCode } from "react-icons/fa"
 
 import ProjectCard from "@components/ProjectCard/ProjectCard.tsx"
@@ -14,19 +14,20 @@ export async function getStaticPaths() {
 
 const { lang } = Astro.params as { lang: string }
 
-async function getEntryOrFallback(
-  collection: string,
+async function getEntryOrFallback<C extends keyof DataEntryMap>(
+  collection: C,
   id: string,
   fallbackLang = defaultLocale,
-): Promise<CollectionEntry<any> | undefined> {
-  const entry = await getEntry(collection, id)
+): Promise<CollectionEntry<C> | undefined> {
+  const entry = (await getEntry(collection, id)) as CollectionEntry<C> | undefined
   if (entry) return entry
 
   const parts = id.split("/")
   if (parts.length === 0) return undefined
   parts[0] = fallbackLang
   const fallbackId = parts.join("/")
-  const fallbackEntry = await getEntry(collection, fallbackId)
+
+  const fallbackEntry = (await getEntry(collection, fallbackId)) as CollectionEntry<C> | undefined
   return fallbackEntry ?? undefined
 }
 
@@ -52,14 +53,14 @@ const projectsEntryData = (projectsEntry as any)?.data ?? {
 <BaseLayout
   title={projectsEntryData.pageName}
   className="flex flex-col p-8 md:py-16 md:px-40 text-white items-center"
-  baseLang={layoutEntryData.data}
+  baseLang={layoutEntryData!.data}
   pageName={projectsEntryData.pageName}
 >
   <section class="flex flex-col gap-6">
     <header class="flex flex-row items-center gap-4">
       <FaLaptopCode className="text-3xl md:text-4xl text-green-300/80" />
       <h1
-        class="text-2xl bg-gradient-to-b from-gray-100 via-gray-100 to-gray-200 bg-clip-text font-bold text-transparent text-4xl md:text-5xl text-center md:text-start font-semibold font-heading pb-2 leading-tight"
+        class="text-2xl bg-gradient-to-b from-gray-100 via-gray-100 to-gray-200 bg-clip-text font-bold text-transparentmd:text-5xl text-center md:text-start font-heading pb-2 leading-tight"
       >
         {projectsEntryData.header}
       </h1>

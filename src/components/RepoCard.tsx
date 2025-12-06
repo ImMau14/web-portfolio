@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import { FaRegStar } from "react-icons/fa"
 import { FaCodeFork, FaGithub, FaLock } from "react-icons/fa6"
 import { GrView } from "react-icons/gr"

@@ -5,7 +5,7 @@ const projects = defineCollection({
   type: "content",
   schema: z.object({
     title: z.string(),
-    date: z.preprocess((v) => new Date(String(v)), z.date()),
+    date: z.preprocess((v: any) => new Date(String(v)), z.date()),
     lang: z.enum(locales),
     slug: z.string().optional(),
     tech: z.array(z.string()).optional(),
@@ -19,7 +19,7 @@ const projects = defineCollection({
   computedFields: {
     slug: {
       type: "string",
-      resolve: (entry) => {
+      resolve: (entry: any) => {
         return entry.data.slug ?? entry.id.replace(/^[^/]+\//, "")
       },
     },

@@ -46,8 +46,8 @@ jobs:
       - name: Run ESLint (fail on warnings)
         run: pnpm exec eslint . --ext .js,.jsx,.ts,.tsx,.astro --max-warnings=0
 
-  build:
-    name: Build
+  type-check:
+    name: type-check
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -77,5 +77,5 @@ jobs:
         if: steps.node-modules-cache.outputs.cache-hit != 'true'
         run: pnpm install --frozen-lockfile
 
-      - name: Build
-        run: pnpm run build
+      - name: type-check
+        run: pnpm run type-check

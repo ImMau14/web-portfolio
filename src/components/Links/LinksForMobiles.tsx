@@ -3,7 +3,11 @@ import { useState, useRef } from "react"
 import { IoIosMenu } from "react-icons/io"
 import type { Page } from "./types"
 
-export const LinksForMobiles = ({ pages }: Page[]) => {
+interface LinksProps {
+  pages: Page[]
+}
+
+export const LinksForMobiles = ({ pages }: LinksProps) => {
   const [isOpen, setIsOpen] = useState(false)
   const btnRef = useRef<HTMLButtonElement>(null)
 

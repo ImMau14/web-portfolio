@@ -2,7 +2,11 @@ import { LinksForDesktops } from "./LinksForDesktops"
 import { LinksForMobiles } from "./LinksForMobiles"
 import type { Page } from "./types"
 
-export const Links = ({ pages }: Page[]) => {
+interface LinksProps {
+  pages: Page[]
+}
+
+export const Links = ({ pages }: LinksProps) => {
   return (
     <>
       <LinksForMobiles pages={pages} />

@@ -22,7 +22,7 @@ const { destiny } = Astro.props as RedirectLayoutProps
       property="og:description"
       content="This is the portfolio of Mauricio Rodríguez, Systems Engineering student and developer."
     />
-    <script define:vars={{ locales, defaultLocale, destiny }}>
+    <script define:vars={{ locales, defaultLocale, destiny }} is:inline>
       const code = navigator.language.split("-")[0]
       const location = `${code}/${destiny}`
       const fallback = `${defaultLocale}/${destiny}`

@@ -2,19 +2,20 @@
 import "@styles/main.css"
 import Logo from "@components/Logo.tsx"
 import Links from "@components/Links/Links.tsx"
-import type { Page } from "@components/NavBar/types.ts"
+import type { Page } from "@components/Links/types.ts"
 import { FaGithub, FaLinkedin } from "react-icons/fa6"
 import { FaTelegramPlane } from "react-icons/fa"
 
 interface BaseLayoutLang {
   description?: string
   ogDescription?: string
-  ogImage?: string
-  ogUrl?: string
+  ogImage: string
+  ogUrl: string
   twitterDescription?: string
   twitterImage?: string
   pages?: Page[]
   footer?: string
+  lang: string
 }
 
 interface LayoutProps {
@@ -42,6 +43,7 @@ const {
       { name: "Contact", href: "/contact" },
     ],
     footer: '© 2025 · Mauricio "ImMau14" Rodríguez · All rights reserved',
+    lang: "en",
   },
 } = Astro.props as LayoutProps
 ---
@@ -76,7 +78,6 @@ const {
   >
     <header
       class="h-16 md:h-20 w-full flex items-center justify-between p-8 border-b-2 border-silver-800 md:border-silver-700 z-20 bg-gradient-to-r from-silver-1000 via-silver-950 to-silver-900 md:from-silver-950 md:via-silver-900 md:to-silver-850"
-      client:load
     >
       <div class="flex items-center gap-4">
         <a href={`/${baseLang.lang}`} aria-label="ImMau14 Logo"><Logo className="w-6 md:w-8" /></a>
@@ -90,7 +91,7 @@ const {
       </div>
 
       <nav class="text-gray-100 flex">
-        <Links pages={baseLang.pages} client:load />
+        <Links pages={baseLang.pages || []} client:load />
       </nav>
     </header>
 

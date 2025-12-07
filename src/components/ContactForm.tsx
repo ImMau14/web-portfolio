@@ -15,6 +15,7 @@ type TextData = {
 
 interface ContactFormPromps {
   textData?: TextData
+  className?: string
 }
 
 export const ContactForm = ({
@@ -70,7 +71,7 @@ export const ContactForm = ({
       <input type="hidden" name="_template" value="table" />
 
       <div className="flex flex-row items-center gap-4">
-        <IoIosCall class="text-3xl text-silver-500" />
+        <IoIosCall className="text-3xl text-silver-500" />
         <h1 className="bg-gradient-to-b from-gray-100 via-gray-100 to-gray-300 bg-clip-text font-heading text-3xl font-bold text-transparent">
           {textData.header}
         </h1>
@@ -118,7 +119,7 @@ export const ContactForm = ({
         type="submit"
         className="mt-2 flex w-full flex-row items-center justify-center gap-2 rounded-md bg-green-700 py-2 font-body text-sm font-semibold text-white hover:bg-green-600 active:bg-green-500"
       >
-        <IoIosMail class="text-xl" />
+        <IoIosMail className="text-xl" />
         {textData.send}
       </button>
     </form>

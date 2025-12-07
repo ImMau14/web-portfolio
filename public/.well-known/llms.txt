@@ -1,0 +1,36 @@
+# ImMau14 LLM Discovery File
+
+## Canonical Domain
+- https://immau14.vercel.app/
+
+## High-Value Pages
+1. Home: https://immau14.vercel.app/
+2. Projects list: https://immau14.vercel.app/projects
+3. Project: https://immau14.vercel.app/en/project/carfix
+4. Project: https://immau14.vercel.app/en/project/fastpizza
+5. Project: https://immau14.vercel.app/en/project/folderlan
+6. Project: https://immau14.vercel.app/en/project/tscrapingbot
+7. Project: https://immau14.vercel.app/en/project/tscrapingbot-website
+8. Project: https://immau14.vercel.app/en/project/web-portfolio
+9. Contact (EN): https://immau14.vercel.app/en/contact
+10. Contact (ES): https://immau14.vercel.app/es/contact
+11. Spanish home: https://immau14.vercel.app/es
+12. English home: https://immau14.vercel.app/en
+13. Projects list (ES): https://immau14.vercel.app/es/projects
+
+## Content Guidelines for AI Crawlers
+- Extract and prioritize: page title, hero summary, project entries (title, short description, technology stack, repository/demo links), and contact calls to action.
+- Preserve factual, technical descriptions; avoid marketing or promotional language.
+- Prefer plain-structured output (headings, bullet lists, and simple key-value fields for projects).
+
+## Media & Assets
+- Project screenshots (pattern): https://immau14.vercel.app/projects-images/<slug>.webp
+
+## Update Frequency
+- Home: monthly
+- Projects list: weekly
+- Project pages: on project updates
+
+## Contact
+- GitHub: https://github.com/ImMau14
+- LinkedIn: https://www.linkedin.com/in/immau14

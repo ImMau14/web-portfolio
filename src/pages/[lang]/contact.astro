@@ -3,6 +3,7 @@ import BaseLayout from "@layouts/BaseLayout.astro"
 import ContactForm from "@components/ContactForm.tsx"
 import { getEntry } from "astro:content"
 import { locales, defaultLocale } from "@content/utils"
+import type { CollectionEntry, DataEntryMap } from "astro:content"
 
 export async function getStaticPaths() {
   return locales.map((lang) => ({ params: { lang } }))
@@ -10,12 +11,16 @@ export async function getStaticPaths() {
 
 const { lang } = Astro.params as { lang: string }
 
-async function getEntryOrFallback(collection: string, id: string, fallbackLang = defaultLocale) {
-  const entry = await getEntry(collection, id)
+async function getEntryOrFallback<C extends keyof DataEntryMap>(
+  collection: C,
+  id: string,
+  fallbackLang = defaultLocale,
+): Promise<CollectionEntry<C>> {
+  const entry = (await getEntry(collection, id)) as CollectionEntry<C> | undefined
   if (entry) return entry
 
   const fallbackId = id.replace(/^.*?\//, `${fallbackLang}/`)
-  const fallbackEntry = await getEntry(collection, fallbackId)
+  const fallbackEntry = (await getEntry(collection, fallbackId)) as CollectionEntry<C> | undefined
   if (fallbackEntry) return fallbackEntry
 
   throw new Error(`Entry not found for ${id} and fallback ${fallbackId}`)

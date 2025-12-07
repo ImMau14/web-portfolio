@@ -1,6 +1,9 @@
 import type { Page } from "./types"
 
-export const LinksForDesktops = ({ pages }: Page[]) => {
+interface LinksProps {
+  pages: Page[]
+}
+export const LinksForDesktops = ({ pages }: LinksProps) => {
   return (
     <>
       <ul className="hidden gap-8 space-x-4 md:flex">

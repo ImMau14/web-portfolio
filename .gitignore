@@ -1,5 +1,9 @@
 # build output
 dist/
+build/
+# Nueva carpeta de salida que no debe subirse
+.vercel/output/
+
 # generated types
 .astro/
 
@@ -15,14 +19,15 @@ pnpm-debug.log*
 # environment variables
 .env
 .env.production
+.env.development
+.env.local
 
 # macOS-specific files
 .DS_Store
 
-# jetbrains setting folder
+# IDE settings
 .idea/
-
-# vs code setting folder
 .vscode/
 
+# Windows/misc files
 **/Thumbs.db

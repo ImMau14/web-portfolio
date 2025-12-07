@@ -74,23 +74,23 @@ const {
     <meta name="theme-color" content="#0f1011" />
   </head>
   <body
-    class="w-full min-h-screen flex flex-col bg-silver-950 scrollbar scrollbar-thumb-silver-600 scrollbar-track-silver-800 scrollbar-thin scrollbar-gutter-stable"
+    class="flex min-h-screen w-full flex-col bg-silver-950 scrollbar scrollbar-thin scrollbar-track-silver-800 scrollbar-thumb-silver-600 scrollbar-gutter-stable"
   >
     <header
-      class="h-16 md:h-20 w-full flex items-center justify-between p-8 border-b-2 border-silver-800 md:border-silver-700 z-20 bg-gradient-to-r from-silver-1000 via-silver-950 to-silver-900 md:from-silver-950 md:via-silver-900 md:to-silver-850"
+      class="z-20 flex h-16 w-full items-center justify-between border-b-2 border-silver-800 bg-gradient-to-r from-silver-1000 via-silver-950 to-silver-900 p-8 md:h-20 md:border-silver-700 md:from-silver-950 md:via-silver-900 md:to-silver-850"
     >
       <div class="flex items-center gap-4">
         <a href={`/${baseLang.lang}`} aria-label="ImMau14 Logo"><Logo className="w-6 md:w-8" /></a>
         <a href={`/${baseLang.lang}`}
           ><h2
-            class="flex flex-col text-xl md:text-xl font-logo bg-gradient-to-b from-gray-100 via-gray-100 to-gray-200 bg-clip-text font-bold text-transparent"
+            class="flex flex-col bg-gradient-to-b from-gray-100 via-gray-100 to-gray-200 bg-clip-text font-logo text-xl font-bold text-transparent md:text-xl"
           >
             ImMau14
           </h2></a
         >
       </div>
 
-      <nav class="text-gray-100 flex">
+      <nav class="flex text-gray-100">
         <Links pages={baseLang.pages || []} client:load />
       </nav>
     </header>
@@ -100,31 +100,31 @@ const {
     </main>
 
     <footer
-      class="w-full h-24 md:h-20 flex flex-col md:flex-row gap-2 md:gap-4 items-center p-4 md:p-8 border-t-2 border-silver-800 md:border-silver-700 justify-center md:justify-between bg-gradient-to-r from-silver-1000 via-silver-950 to-silver-900 md:from-silver-950 md:via-silver-900 md:to-silver-850"
+      class="flex h-24 w-full flex-col items-center justify-center gap-2 border-t-2 border-silver-800 bg-gradient-to-r from-silver-1000 via-silver-950 to-silver-900 p-4 md:h-20 md:flex-row md:justify-between md:gap-4 md:border-silver-700 md:from-silver-950 md:via-silver-900 md:to-silver-850 md:p-8"
     >
-      <p class="text-gray-400 text-sm text-center md:text-left font-body">
+      <p class="text-center font-body text-sm text-gray-400 md:text-left">
         {baseLang.footer}
       </p>
-      <div class="flex gap-4 md:gap-6 items-center">
+      <div class="flex items-center gap-4 md:gap-6">
         <a
           href="https://linkedin.com/in/ImMau14"
           target="_blank"
           rel="noopener noreferrer"
-          class="text-gray-400 hover:text-white text-2xl duration-100"
+          class="text-2xl text-gray-400 duration-100 hover:text-white"
           aria-label="LinkedIn profile"><FaLinkedin client:visible /></a
         >
         <a
           href="https://github.com/ImMau14"
           target="_blank"
           rel="noopener noreferrer"
-          class="text-gray-400 hover:text-white text-2xl duration-100"
+          class="text-2xl text-gray-400 duration-100 hover:text-white"
           aria-label="GitHub profile"><FaGithub client:visible /></a
         >
         <a
           href="https://t.me/l0mauu"
           target="_blank"
           rel="noopener noreferrer"
-          class="text-gray-400 hover:text-white text-2xl duration-100"
+          class="text-2xl text-gray-400 duration-100 hover:text-white"
           aria-label="Telegram contact"><FaTelegramPlane client:visible /></a
         >
       </div>

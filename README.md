@@ -1,10 +1,10 @@
 # Web Portfolio · [![NodeJS CI](https://github.com/ImMau14/web-portfolio/actions/workflows/node-ci.yaml/badge.svg)](https://github.com/ImMau14/web-portfolio/actions/workflows/node-ci.yaml)
 
 <div align="left">
-  <img src="https://img.shields.io/badge/Astro-5.14.4-794093?style=plastic&logo=astro" alt="Astro">
+  <img src="https://img.shields.io/badge/Astro-5.16.4-794093?style=plastic&logo=astro" alt="Astro">
   <img src="https://img.shields.io/badge/TypeScript-5.9.3-406c93?style=plastic&logo=typescript" alt="TypeScript">
-  <img src="https://img.shields.io/badge/React-19.2.0-408693?style=plastic&logo=react" alt="React">
-  <img src="https://img.shields.io/badge/TailwindCSS-3.4.17-407293?style=plastic&logo=tailwindcss" alt="TailwindCSS">
+  <img src="https://img.shields.io/badge/React-19.2.1-408693?style=plastic&logo=react" alt="React">
+  <img src="https://img.shields.io/badge/TailwindCSS-3.4.18-407293?style=plastic&logo=tailwindcss" alt="TailwindCSS">
 </div>
 
 Welcome to my personal portfolio, a modern web application built with Astro, React, TypeScript, and TailwindCSS. This site showcases my projects, skills, and experience as a developer.
@@ -31,8 +31,7 @@ This portfolio is built with a modern and efficient stack:
 - **Astro** - Web framework for fast, content-focused websites
 - **React** - Library for interactive user interfaces
 - **TypeScript** - Typed JavaScript for more robust code
-- **TailwindCSS** - Utility-first CSS framework for rapid design
-- **Framer Motion** - For smooth animations and transitions
+- **TailwindCSS** - Utility-first CSS framework for rapid design and animations
 - **React Icons** - Comprehensive icon library
 
 ---

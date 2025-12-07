@@ -52,29 +52,29 @@ const projectsEntryData = (projectsEntry as any)?.data ?? {
 
 <BaseLayout
   title={projectsEntryData.pageName}
-  className="flex flex-col p-8 md:py-16 md:px-40 text-white items-center"
+  className="flex flex-col items-center p-8 text-white md:px-40 md:py-16"
   baseLang={layoutEntryData!.data}
   pageName={projectsEntryData.pageName}
 >
   <section class="flex flex-col gap-6">
     <header class="flex flex-row items-center gap-4">
-      <FaLaptopCode className="text-3xl md:text-4xl text-green-300/80" />
+      <FaLaptopCode className="text-3xl text-green-300/80 md:text-4xl" />
       <h1
-        class="text-4xl bg-gradient-to-b from-gray-100 via-gray-100 to-gray-200 bg-clip-text semi-bold text-transparentmd:text-5xl text-center md:text-start font-heading pb-2 leading-tight"
+        class="text-transparentmd:text-5xl bg-gradient-to-b from-gray-100 via-gray-100 to-gray-200 bg-clip-text pb-2 text-center font-heading text-4xl leading-tight md:text-start"
       >
         {projectsEntryData.header}
       </h1>
     </header>
 
-    <p class="font-body text-silver-500 leading-relaxed">
+    <p class="font-body leading-relaxed text-silver-500">
       {projectsEntryData.description}
     </p>
 
     {
       byLang.length === 0 ? (
-        <p class="text-gray-400 font-body">{projectsEntryData.noProjects}</p>
+        <p class="font-body text-gray-400">{projectsEntryData.noProjects}</p>
       ) : (
-        <ul class="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-4 md:mt-2">
+        <div class="mt-4 grid w-full grid-cols-1 gap-4 sm:grid-cols-2 md:mt-2 lg:grid-cols-3">
           {byLang.map((p) => {
             const slug = p.id.split("/")[1].split(".")[0]
             const href = `/${lang}/project/${slug}`
@@ -88,11 +88,10 @@ const projectsEntryData = (projectsEntry as any)?.data ?? {
                 githubUrl={p.data.githubUrl}
                 isPublic={p.data.isPublic}
                 articleUrl={href}
-                client:visible
               />
             )
           })}
-        </ul>
+        </div>
       )
     }
   </section>

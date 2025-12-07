@@ -82,34 +82,34 @@ function slugFromEntryId(eid: string) {
 <BaseLayout className="flex flex-col items-center" baseLang={layoutEntryData!.data}>
   <AnimatedBackground className="w-full" client:idle>
     <div
-      class="flex flex-col-reverse md:flex-row items-center justify-center gap-8 md:gap-16 px-4 py-4 md:py-0 md:px-40"
+      class="flex flex-col-reverse items-center justify-center gap-8 px-4 py-4 md:flex-row md:gap-16 md:px-40 md:py-0"
     >
-      <div class="flex-1 flex flex-col gap-6">
+      <div class="flex flex-1 flex-col gap-6">
         <div class="flex flex-col items-center md:items-start">
           <h1
-            class="text-4xl bg-gradient-to-b from-gray-100 via-gray-100 to-gray-200 bg-clip-text font-bold text-transparent md:text-6xl text-center md:text-start font-heading pb-1 leading-tight"
+            class="bg-gradient-to-b from-gray-100 via-gray-100 to-gray-200 bg-clip-text pb-1 text-center font-heading text-4xl font-bold leading-tight text-transparent md:text-start md:text-6xl"
           >
             {heroTitle}
           </h1>
           <p
-            class="font-heading text-2xl bg-gradient-to-r from-green-300 via-green-200 to-lime-200 bg-clip-text font-bold text-transparent pb-1"
+            class="bg-gradient-to-r from-green-300 via-green-200 to-lime-200 bg-clip-text pb-1 font-heading text-2xl font-bold text-transparent"
           >
             {heroSubtitle}
           </p>
         </div>
 
-        <section class="text-gray-400 leading-relaxed text-center md:text-start flex flex-col gap-4 font-body">
+        <section class="flex flex-col gap-4 text-center font-body leading-relaxed text-gray-400 md:text-start">
           {intro.length > 0 ? intro.map((p) => <p>{p}</p>) : <p class="text-gray-400">No intro content for {lang}.</p>}
         </section>
 
-        <div class="flex gap-6 items-center justify-center md:justify-start">
+        <div class="flex items-center justify-center gap-6 md:justify-start">
           {
             social?.linkedin && (
               <a
                 href={social.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="text-gray-200 text-3xl hover:text-white duration-150"
+                class="text-3xl text-gray-200 duration-150 hover:text-white"
                 aria-label="LinkedIn profile"
               >
                 <FaLinkedin client:visible />
@@ -122,7 +122,7 @@ function slugFromEntryId(eid: string) {
                 href={social.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="text-gray-200 text-3xl hover:text-white duration-150"
+                class="text-3xl text-gray-200 duration-150 hover:text-white"
                 aria-label="GitHub profile"
               >
                 <FaGithub client:visible />
@@ -135,7 +135,7 @@ function slugFromEntryId(eid: string) {
                 href={social.telegram}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="text-gray-200 hover:text-white text-3xl duration-100"
+                class="text-3xl text-gray-200 duration-100 hover:text-white"
                 aria-label="Telegram contact"
               >
                 <FaTelegramPlane client:visible />
@@ -146,31 +146,31 @@ function slugFromEntryId(eid: string) {
       </div>
 
       <AvatarPhoto
-        className="w-[160px] h-[160px] md:w-[290px] md:h-[290px] bg-gray-700 rounded-full border-2 border-gray-100/50 shadow-xl"
+        className="h-[160px] w-[160px] rounded-full border-2 border-gray-100/50 bg-gray-700 shadow-xl md:h-[290px] md:w-[290px]"
       />
     </div>
   </AnimatedBackground>
 
   <div
-    class="w-full pt-4 bg-silver-950 relative flex items-center flex-col before:absolute before:content-[''] before:w-full before:h-16 before:top-[-4rem] before:bg-gradient-to-t before:from-silver-950 before:via-transparent before:to-transparent"
+    class="relative flex w-full flex-col items-center bg-silver-950 pt-4 before:absolute before:top-[-4rem] before:h-16 before:w-full before:bg-gradient-to-t before:from-silver-950 before:via-transparent before:to-transparent before:content-['']"
   >
-    <article class="px-4 py-4 md:px-40 md:py-10 flex gap-8 flex-col w-full">
-      <header class="flex gap-4 items-center">
+    <article class="flex w-full flex-col gap-8 px-4 py-4 md:px-40 md:py-10">
+      <header class="flex items-center gap-4">
         <FaCode className="text-4xl text-green-300/80" />
         <h2
-          class="font-heading text-4xl bg-gradient-to-b from-gray-100 via-gray-100 to-gray-200 bg-clip-text font-bold text-transparent"
+          class="bg-gradient-to-b from-gray-100 via-gray-100 to-gray-200 bg-clip-text font-heading text-4xl font-bold text-transparent"
         >
           {featuredHeading}
         </h2>
       </header>
 
-      <p class="font-body text-md text-gray-300 leading-relaxed">{featuredDescription}</p>
+      <p class="font-body leading-relaxed text-gray-300">{featuredDescription}</p>
 
       {
         featuredProjects.length === 0 ? (
-          <p class="text-gray-400 font-body">{noProjects}</p>
+          <p class="font-body text-gray-400">{noProjects}</p>
         ) : (
-          <div class="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div class="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {featuredProjects.map((p) => {
               const slug = slugFromEntryId(p.id)
               const href = `/${lang}/project/${slug.split(".")[0]}`
@@ -184,7 +184,6 @@ function slugFromEntryId(eid: string) {
                   githubUrl={p.data.githubUrl}
                   isPublic={p.data.isPublic}
                   articleUrl={href}
-                  client:visible
                 />
               )
             })}

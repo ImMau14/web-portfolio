@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState, useCallback } from "react"
 import bgVideo from "@assets/bg.webm"
-import { motion } from "framer-motion"
 
 type AnimatedBackgroundProps = {
   children?: React.ReactNode
@@ -30,31 +29,25 @@ export const AnimatedBackground = ({ children, className = "", loadTimeoutMs = 5
       return
     }
 
-    const onCanPlayThrough = () => markReady()
-    const onLoadedData = () => markReady()
-    const onPlaying = () => markReady()
+    const handleReady = () => markReady()
 
-    v.addEventListener("canplaythrough", onCanPlayThrough)
-    v.addEventListener("loadeddata", onLoadedData)
-    v.addEventListener("playing", onPlaying)
+    v.addEventListener("canplaythrough", handleReady)
+    v.addEventListener("loadeddata", handleReady)
+    v.addEventListener("playing", handleReady)
 
-    const tryPlay = async () => {
-      try {
-        await v.play()
-      } catch (err) {
-        console.warn("Video autoplay prevented or failed to play programmatically:", err)
-      }
-    }
-    tryPlay().catch(() => {})
+    v.play().catch(() => {
+      console.warn("Blocked autoplay")
+    })
 
     timeoutRef.current = window.setTimeout(() => {
       markReady()
     }, loadTimeoutMs)
 
     return () => {
-      v.removeEventListener("canplaythrough", onCanPlayThrough)
-      v.removeEventListener("loadeddata", onLoadedData)
-      v.removeEventListener("playing", onPlaying)
+      v.removeEventListener("canplaythrough", handleReady)
+      v.removeEventListener("loadeddata", handleReady)
+      v.removeEventListener("playing", handleReady)
+
       if (timeoutRef.current !== null) {
         window.clearTimeout(timeoutRef.current)
         timeoutRef.current = null
@@ -65,20 +58,25 @@ export const AnimatedBackground = ({ children, className = "", loadTimeoutMs = 5
   return (
     <section className={`relative h-[calc(100vh-5rem)] w-full overflow-hidden ${className}`}>
       <div className="pointer-events-none absolute inset-0 z-[-10] overflow-hidden">
-        <motion.video
-          ref={videoRef}
-          src={bgVideo}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-          aria-hidden="true"
-          className="pointer-events-none h-full w-full select-none object-cover object-top opacity-50"
-          initial={{ opacity: 0 }}
-          animate={isReady ? { opacity: 0.5 } : { opacity: 0 }}
-          transition={{ duration: 0.4, ease: "easeOut" }}
-        />
+        <div className="absolute inset-0 bg-gradient-to-br from-black/20 to-purple-900/10" />
+
+        <div
+          className={`absolute inset-0 transition-all duration-700 ease-out ${isReady ? "opacity-100" : "scale-110 opacity-0 blur-sm"} `}
+        >
+          <video
+            ref={videoRef}
+            src={bgVideo}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            aria-hidden="true"
+            className={`pointer-events-none h-full w-full select-none object-cover object-top transition-opacity duration-1000 ease-out ${isReady ? "opacity-50" : "opacity-0"} `}
+          />
+        </div>
+
+        <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent" />
       </div>
 
       <div className="relative z-10 flex h-[calc(100vh-5rem)] w-full flex-col items-center justify-center">

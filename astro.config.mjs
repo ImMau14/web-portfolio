@@ -2,13 +2,28 @@ import { defineConfig } from "astro/config"
 
 import tailwind from "@astrojs/tailwind"
 import react from "@astrojs/react"
-
-import vercelStatic from "@astrojs/vercel/static"
+import sitemap from "@astrojs/sitemap"
 
 import { fileURLToPath, URL } from "node:url"
 
 export default defineConfig({
-  integrations: [tailwind(), react(), vercelStatic()],
+  site: "https://immau14.vercel.app",
+
+  experimental: {
+    csp: {
+      scriptDirective: {
+        resources: ["'self'"],
+      },
+
+      styleDirective: {
+        resources: ["'self'"],
+      },
+
+      directives: ["connect-src 'self' https://api.github.com", "img-src 'self'", "font-src 'self'"],
+    },
+  },
+
+  integrations: [tailwind(), react(), sitemap()],
 
   vite: {
     plugins: [],
@@ -22,6 +37,15 @@ export default defineConfig({
         "@content": fileURLToPath(new URL("./src/content", import.meta.url)),
       },
     },
+    build: {
+      sourcemap: false,
+      rollupOptions: {
+        maxParallelFileOps: 1,
+      },
+    },
+    optimizeDeps: {
+      force: false,
+    },
   },
 
   output: "static",
@@ -29,6 +53,7 @@ export default defineConfig({
   build: {
     inlineStylesheets: "auto",
   },
+
   server: {
     host: true,
     port: 4321,

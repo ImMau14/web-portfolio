@@ -1,6 +1,23 @@
 import tailwindScrollbar from "tailwind-scrollbar"
 import tailwindTypography from "@tailwindcss/typography"
 
+const utilsPlugin = ({ addUtilities }) => {
+  const newUtilities = {}
+
+  newUtilities[".scrollbar-gutter-stable"] = {
+    "scrollbar-gutter": "stable",
+  }
+  newUtilities[".scrollbar-gutter-stable-both"] = {
+    "scrollbar-gutter": "stable both-edges",
+  }
+
+  newUtilities[".ease-spring"] = {
+    transitionTimingFunction: "cubic-bezier(0.4, 0, 0.2, 1)",
+  }
+
+  addUtilities(newUtilities)
+}
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./src/**/*.{js,ts,jsx,tsx,astro}"],
@@ -12,20 +29,24 @@ export default {
             h1: {
               fontFamily: "Kanit",
             },
+
             p: {
               fontFamily: "Inter Variable",
             },
+
             "*": {
               color: "#f0f4ff",
             },
           },
         },
       },
+
       fontFamily: {
         heading: ["Kanit"],
         logo: ["Montserrat Variable"],
         body: ["Inter Variable"],
       },
+
       colors: {
         silver: {
           50: "#fcfdff",
@@ -50,7 +71,26 @@ export default {
           1000: "#0f1011",
         },
       },
+
+      transitionDelay: {
+        0: "0ms",
+        40: "40ms",
+        80: "80ms",
+        120: "120ms",
+        160: "160ms",
+        200: "200ms",
+      },
+
+      transitionDuration: {
+        250: "250ms",
+      },
+
+      scale: {
+        103: "1.03",
+        97: "0.97",
+      },
     },
   },
-  plugins: [tailwindTypography, tailwindScrollbar],
+
+  plugins: [tailwindTypography, tailwindScrollbar, utilsPlugin],
 }

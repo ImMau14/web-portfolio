@@ -1,8 +1,7 @@
 # build output
 dist/
 build/
-# Nueva carpeta de salida que no debe subirse
-.vercel/output/
+.vercel/
 
 # generated types
 .astro/

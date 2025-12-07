@@ -1,4 +1,3 @@
-import { motion } from "framer-motion"
 import { FaGithub, FaLock } from "react-icons/fa6"
 import { IoOpenOutline } from "react-icons/io5"
 import TechIcon, { type TechIconKey } from "./TechIcon"
@@ -37,12 +36,8 @@ export const ProjectCard = ({
   const imgSrc = resolveImageSrc(image)
 
   return (
-    <motion.article
-      className={`grid h-[400px] w-full grid-rows-[auto_1fr] overflow-hidden rounded-xl border-2 border-silver-700 bg-silver-900 ${className}`}
-      initial={{ opacity: 0, y: -8 }}
-      animate={{ opacity: 1, y: 0 }}
-      whileHover={{ scale: 1.03 }}
-      transition={{ duration: 0.36, ease: "easeOut" }}
+    <article
+      className={`grid h-[400px] w-full grid-rows-[auto_1fr] overflow-hidden rounded-xl border-2 border-silver-700 bg-silver-900 ${className} transform transition-transform duration-200 ease-in-out hover:scale-[104%]`}
       aria-labelledby={`project-card-${title}`}
     >
       <div className="w-full overflow-hidden bg-red-400 md:h-48">
@@ -50,9 +45,9 @@ export const ProjectCard = ({
       </div>
 
       <section className="flex h-full w-full flex-col gap-3 p-4">
-        <h3 id={`project-card-${title}`} className="font-heading text-2xl leading-tight text-silver-350">
+        <h1 id={`project-card-${title}`} className="font-heading text-2xl leading-tight text-silver-350">
           {title}
-        </h3>
+        </h1>
 
         {description && <p className="mb-2 line-clamp-3 font-body text-sm text-silver-400">{description}</p>}
 
@@ -98,7 +93,7 @@ export const ProjectCard = ({
           )}
         </div>
       </section>
-    </motion.article>
+    </article>
   )
 }
 

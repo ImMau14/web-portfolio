@@ -82,7 +82,7 @@ function slugFromEntryId(eid: string) {
 <BaseLayout className="flex flex-col items-center" baseLang={layoutEntryData!.data}>
   <AnimatedBackground className="w-full" client:idle>
     <div
-      class="flex flex-col-reverse items-center justify-center gap-8 px-4 py-4 md:flex-row md:gap-16 md:px-40 md:py-0"
+      class="flex flex-col-reverse items-center justify-center gap-8 px-4 py-4 md:flex-row md:px-24 md:py-8 xl:gap-16 xl:px-40 xl:py-0"
     >
       <div class="flex flex-1 flex-col gap-6">
         <div class="flex flex-col items-center md:items-start">
@@ -146,7 +146,7 @@ function slugFromEntryId(eid: string) {
       </div>
 
       <AvatarPhoto
-        className="h-[160px] w-[160px] rounded-full border-2 border-gray-100/50 bg-gray-700 shadow-xl md:h-[290px] md:w-[290px]"
+        className="h-[160px] w-[160px] rounded-full border-2 border-gray-100/50 bg-gray-700 shadow-xl md:min-h-[220px] md:min-w-[220px] xl:h-[290px] xl:w-[290px]"
       />
     </div>
   </AnimatedBackground>
@@ -154,7 +154,7 @@ function slugFromEntryId(eid: string) {
   <div
     class="relative flex w-full flex-col items-center bg-silver-950 pt-4 before:absolute before:top-[-4rem] before:h-16 before:w-full before:bg-gradient-to-t before:from-silver-950 before:via-transparent before:to-transparent before:content-['']"
   >
-    <article class="flex w-full flex-col gap-8 px-4 py-4 md:px-40 md:py-10">
+    <article class="flex w-full flex-col gap-8 px-4 py-4 md:px-24 md:py-8 xl:px-40 xl:py-10">
       <header class="flex items-center gap-4">
         <FaCode className="text-4xl text-green-300/80" />
         <h2

@@ -126,7 +126,7 @@ const RepoCard = ({ data, langData }: RepoCardProps) => {
   }, [isPublic, repoName, noData, unknownError])
 
   return (
-    <article className="flex h-[600px] flex-col items-center gap-4 rounded-xl border-2 border-silver-700 bg-gradient-to-b from-silver-850 via-silver-900 to-silver-950 p-2 md:w-full">
+    <article className="flex h-[600px] transform flex-col items-center gap-4 rounded-xl border-2 border-silver-700 bg-gradient-to-b from-silver-850 via-silver-900 to-silver-950 p-2 transition-transform duration-1000 ease-in-out hover:scale-[102%] md:w-full">
       <img src={image} alt={alt} className="rounded-xl border-2 border-silver-600/30" />
       <div className="flex h-full w-full flex-col gap-4 px-2 pb-2">
         <h1 className="font-heading text-2xl text-silver-400">{repoName || title}</h1>

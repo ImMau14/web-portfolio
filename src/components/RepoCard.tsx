@@ -126,14 +126,14 @@ const RepoCard = ({ data, langData }: RepoCardProps) => {
   }, [isPublic, repoName, noData, unknownError])
 
   return (
-    <article className="flex h-[600px] transform flex-col items-center gap-4 rounded-xl border-2 border-silver-700 bg-gradient-to-b from-silver-850 via-silver-900 to-silver-950 p-2 transition-transform duration-1000 ease-in-out hover:scale-[102%] md:w-full">
-      <img src={image} alt={alt} className="rounded-xl border-2 border-silver-600/30" />
+    <article className="pointer-events-auto relative z-0 flex h-[600px] transform flex-col items-center gap-4 overflow-hidden rounded-xl border-2 border-silver-700 bg-gradient-to-b from-silver-850 via-silver-900 to-silver-950 p-2 transition-transform duration-1000 ease-in-out before:absolute before:top-0 before:h-6 before:w-full before:bg-gradient-to-b before:from-silver-1000/50 before:to-transparent after:pointer-events-none after:absolute after:bottom-0 after:h-4 after:w-full after:bg-gradient-to-t after:from-silver-100/5 after:to-transparent hover:scale-[102%] md:w-full">
+      <img src={image} alt={alt} className="z-10 rounded-xl border-2 border-silver-600/30" />
       <div className="flex h-full w-full flex-col gap-4 px-2 pb-2">
         <h1 className="font-heading text-2xl text-silver-400">{repoName || title}</h1>
         <p className="font-body text-silver-500">{description}</p>
 
         {tech.length > 0 && (
-          <div className="flex flex-row gap-2">
+          <div className="flex flex-row gap-3">
             {tech.map((t) => (
               <TechIcon key={t} icon={t as TechIconKey} size={30} title={t} />
             ))}

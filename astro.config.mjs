@@ -27,6 +27,7 @@ export default defineConfig({
 
   vite: {
     plugins: [],
+
     resolve: {
       alias: {
         "@styles": fileURLToPath(new URL("./src/styles", import.meta.url)),
@@ -37,14 +38,22 @@ export default defineConfig({
         "@content": fileURLToPath(new URL("./src/content", import.meta.url)),
       },
     },
+
     build: {
       sourcemap: false,
       rollupOptions: {
         maxParallelFileOps: 1,
       },
     },
+
     optimizeDeps: {
       force: false,
+    },
+
+    server: {
+      fs: {
+        deny: [".git", "node_modules", "dist"],
+      },
     },
   },
 

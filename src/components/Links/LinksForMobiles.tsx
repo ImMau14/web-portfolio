@@ -29,7 +29,7 @@ export const LinksForMobiles = ({ pages }: LinksProps) => {
     } else {
       setAnimationStage((prev) => {
         if (prev !== "hidden") {
-          const _ = setTimeout(() => setAnimationStage("hidden"), 250)
+          setTimeout(() => setAnimationStage("hidden"), 250)
           return "exiting"
         }
         return prev

@@ -30,3 +30,6 @@ pnpm-debug.log*
 
 # Windows/misc files
 **/Thumbs.db
+
+# Cache
+.eslintcache

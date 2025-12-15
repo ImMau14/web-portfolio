@@ -87,18 +87,20 @@ function slugFromEntryId(eid: string) {
       <div class="flex flex-1 flex-col gap-6">
         <div class="flex flex-col items-center md:items-start">
           <h1
-            class="bg-gradient-to-b from-gray-100 via-gray-100 to-gray-200 bg-clip-text pb-1 text-center font-heading text-4xl font-bold leading-tight text-transparent md:text-start md:text-6xl"
+            class="bg-gradient-to-b from-gray-950 via-gray-950 to-gray-800 bg-clip-text pb-1 text-center font-heading text-4xl font-bold leading-tight text-transparent md:text-start md:text-6xl dark:from-gray-100 dark:via-gray-100 dark:to-gray-200"
           >
             {heroTitle}
           </h1>
           <p
-            class="bg-gradient-to-r from-green-300 via-green-200 to-lime-200 bg-clip-text pb-1 font-heading text-2xl font-bold text-transparent"
+            class="bg-gradient-to-r from-green-800 via-green-700 to-lime-700 bg-clip-text pb-1 font-heading text-2xl font-bold text-transparent dark:from-green-300 dark:via-green-300 dark:to-lime-200"
           >
             {heroSubtitle}
           </p>
         </div>
 
-        <section class="flex flex-col gap-4 text-center font-body leading-relaxed text-gray-400 md:text-start">
+        <section
+          class="flex flex-col gap-4 text-center font-body leading-relaxed text-gray-900 md:text-start dark:text-gray-400"
+        >
           {intro.length > 0 ? intro.map((p) => <p>{p}</p>) : <p class="text-gray-400">No intro content for {lang}.</p>}
         </section>
 
@@ -109,7 +111,7 @@ function slugFromEntryId(eid: string) {
                 href={social.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="transform text-3xl text-gray-200 transition-all duration-200 ease-in-out hover:scale-[125%] hover:text-white"
+                class="transform text-3xl text-gray-950 transition-all duration-200 ease-in-out hover:scale-[125%] dark:text-gray-200 dark:hover:text-white"
                 aria-label="LinkedIn profile"
               >
                 <FaLinkedin client:visible />
@@ -122,7 +124,7 @@ function slugFromEntryId(eid: string) {
                 href={social.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="transform text-3xl text-gray-200 transition-all duration-200 ease-in-out hover:scale-[125%] hover:text-white"
+                class="transform text-3xl text-gray-950 transition-all duration-200 ease-in-out hover:scale-[125%] dark:text-gray-200 dark:hover:text-white"
                 aria-label="GitHub profile"
               >
                 <FaGithub client:visible />
@@ -135,7 +137,7 @@ function slugFromEntryId(eid: string) {
                 href={social.telegram}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="transform text-3xl text-gray-200 transition-all duration-200 ease-in-out hover:scale-[125%] hover:text-white"
+                class="transform text-3xl text-gray-950 transition-all duration-200 ease-in-out hover:scale-[125%] dark:text-gray-200 dark:hover:text-white"
                 aria-label="Telegram contact"
               >
                 <FaTelegramPlane client:visible />
@@ -146,25 +148,25 @@ function slugFromEntryId(eid: string) {
       </div>
 
       <AvatarPhoto
-        className="h-[160px] w-[160px] rounded-full border-2 border-gray-100/50 bg-gray-700 shadow-xl md:min-h-[220px] md:min-w-[220px] xl:h-[290px] xl:w-[290px]"
+        className="h-[160px] w-[160px] rounded-full border-2 bg-gray-700 shadow-xl md:min-h-[220px] md:min-w-[220px] xl:h-[290px] xl:w-[290px] dark:border-gray-100/50"
       />
     </div>
   </AnimatedBackground>
 
   <div
-    class="relative flex w-full flex-col items-center bg-silver-950 pt-4 before:absolute before:top-[-4rem] before:h-16 before:w-full before:bg-gradient-to-t before:from-silver-950 before:via-transparent before:to-transparent before:content-['']"
+    class="relative flex w-full flex-col items-center bg-gray-200 pt-4 before:absolute before:top-[-4rem] before:h-16 before:w-full before:bg-gradient-to-t before:from-gray-200 before:via-transparent before:to-transparent before:content-[''] dark:bg-silver-950 before:dark:from-silver-950"
   >
     <article class="flex w-full flex-col gap-8 px-4 py-4 md:px-24 md:py-8 xl:px-40 xl:py-10">
       <header class="flex items-center gap-4">
-        <FaCode className="text-4xl text-green-300/80" />
+        <FaCode className="text-4xl text-green-600 dark:text-green-300/80" />
         <h2
-          class="bg-gradient-to-b from-gray-100 via-gray-100 to-gray-200 bg-clip-text font-heading text-4xl font-bold text-transparent"
+          class="bg-gradient-to-b from-gray-950 via-gray-950 to-gray-800 bg-clip-text font-heading text-4xl font-bold text-transparent dark:from-gray-100 dark:via-gray-100 dark:to-gray-200"
         >
           {featuredHeading}
         </h2>
       </header>
 
-      <p class="font-body leading-relaxed text-gray-300">{featuredDescription}</p>
+      <p class="font-body leading-relaxed text-gray-800 dark:text-gray-300">{featuredDescription}</p>
 
       {
         featuredProjects.length === 0 ? (

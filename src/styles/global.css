@@ -12,7 +12,6 @@ textarea {
 
   /* Firefox */
   scrollbar-width: thin;
-  scrollbar-color: #646873 #383b40;
 }
 
 /* WebKit / Blink */
@@ -21,19 +20,23 @@ textarea {
   height: 7px;
 }
 
-.scrollbar::-webkit-scrollbar-track {
-  background: #383b40;
-}
-
-.scrollbar::-webkit-scrollbar-thumb {
-  background: #646873;
-}
-
-.scrollbar::-webkit-scrollbar-thumb:hover {
-  background: #7e838f;
-}
-
 .scrollbar.scrollbar-rounded::-webkit-scrollbar-track,
 .scrollbar.scrollbar-rounded::-webkit-scrollbar-thumb {
   border-radius: 0.5rem;
+}
+
+.scrollbar {
+  scrollbar-color: #eeeeee #ffffff;
+}
+
+.scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(136, 136, 136, 70%);
+}
+
+.scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #bcbcbc;
 }

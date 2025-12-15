@@ -82,15 +82,18 @@ const {
 
     <meta name="theme-color" content="#0f1011" />
   </head>
-  <body class="scrollbar flex min-h-screen w-full flex-col bg-silver-950">
+  <body class="scrollbar flex min-h-screen w-full flex-col bg-gray-200 dark:bg-silver-950">
     <header
-      class="z-20 flex h-16 w-full items-center justify-between border-b-2 border-silver-800 bg-gradient-to-r from-silver-1000 via-silver-950 to-silver-900 p-8 md:h-20 md:border-silver-700 md:from-silver-950 md:via-silver-900 md:to-silver-850"
+      class="relative z-20 flex h-16 w-full items-center justify-between border-b-2 border-gray-400/60 bg-gradient-to-t from-gray-200 via-silver-300 to-silver-300 p-8 shadow-sm after:pointer-events-none after:absolute after:bottom-0 after:left-0 after:h-3 after:w-full after:bg-gradient-to-t after:from-silver-50/50 after:to-transparent md:h-20 dark:border-silver-800 dark:bg-gradient-to-r dark:from-silver-1000 dark:via-silver-950 dark:to-silver-900 dark:shadow-none dark:after:hidden dark:md:border-silver-700 dark:md:from-silver-950 dark:md:via-silver-900 dark:md:to-silver-850"
     >
       <div class="flex items-center gap-4">
-        <a href={`/${baseLang.lang}`} aria-label="ImMau14 Logo"><Logo className="w-6 md:w-8" /></a>
+        <a href={`/${baseLang.lang}`} aria-label="ImMau14 Logo">
+          <Logo className="w-6 md:w-8 dark:hidden" />
+          <Logo className="hidden w-6 md:w-8 dark:inline-block" theme="dark" />
+        </a>
         <a href={`/${baseLang.lang}`}
           ><h2
-            class="flex flex-col bg-gradient-to-b from-gray-100 via-gray-100 to-gray-200 bg-clip-text font-logo text-xl font-bold text-transparent md:text-xl"
+            class="flex flex-col bg-gradient-to-b from-gray-950 via-gray-950 to-gray-800 bg-clip-text font-logo text-xl font-bold text-transparent md:text-xl dark:from-gray-100 dark:via-gray-100 dark:to-gray-200"
           >
             ImMau14
           </h2></a
@@ -107,9 +110,9 @@ const {
     </main>
 
     <footer
-      class="flex h-24 w-full flex-col items-center justify-center gap-2 border-t-2 border-silver-800 bg-gradient-to-r from-silver-1000 via-silver-950 to-silver-900 p-4 md:h-20 md:flex-row md:justify-between md:gap-4 md:border-silver-700 md:from-silver-950 md:via-silver-900 md:to-silver-850 md:p-8"
+      class="relative flex h-24 w-full flex-col items-center justify-center gap-2 border-t-2 border-gray-400/60 bg-gradient-to-r from-gray-100 via-silver-300 to-silver-300 p-4 before:pointer-events-none before:absolute before:left-0 before:top-0 before:h-4 before:w-full before:bg-gradient-to-b before:from-silver-800/5 before:to-transparent md:h-20 md:flex-row md:justify-between md:gap-4 md:p-8 dark:border-silver-800 dark:from-silver-1000 dark:via-silver-950 dark:to-silver-900 md:dark:border-silver-700 md:dark:from-silver-950 md:dark:via-silver-900 md:dark:to-silver-850"
     >
-      <p class="text-center font-body text-sm text-gray-400 md:text-left">
+      <p class="text-center font-body text-sm text-gray-800 md:text-left dark:text-gray-400">
         {baseLang.footer}
       </p>
       <div class="flex items-center gap-4 md:gap-6">
@@ -117,21 +120,21 @@ const {
           href="https://linkedin.com/in/ImMau14"
           target="_blank"
           rel="noopener noreferrer"
-          class="text-2xl text-gray-400 transition-colors duration-150 hover:text-white"
+          class="text-2xl text-gray-800 transition-colors duration-150 hover:text-black dark:text-gray-400 dark:hover:text-white"
           aria-label="LinkedIn profile"><FaLinkedin client:visible /></a
         >
         <a
           href="https://github.com/ImMau14"
           target="_blank"
           rel="noopener noreferrer"
-          class="text-2xl text-gray-400 transition-colors duration-150 hover:text-white"
+          class="text-2xl text-gray-800 transition-colors duration-150 hover:text-black dark:text-gray-400 dark:hover:text-white"
           aria-label="GitHub profile"><FaGithub client:visible /></a
         >
         <a
           href="https://t.me/l0mauu"
           target="_blank"
           rel="noopener noreferrer"
-          class="text-2xl text-gray-400 transition-colors duration-150 hover:text-white"
+          class="text-2xl text-gray-800 transition-colors duration-150 hover:text-black dark:text-gray-400 dark:hover:text-white"
           aria-label="Telegram contact"><FaTelegramPlane client:visible /></a
         >
       </div>

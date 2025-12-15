@@ -5,64 +5,64 @@ import { SiAstro, SiTypescript, SiFlask, SiActix, SiExpress, SiSqlite } from "re
 import { FaReact, FaCss3Alt, FaPython, FaRust } from "react-icons/fa"
 import { BiLogoPostgresql } from "react-icons/bi"
 
-const duration = "duration-100"
+const duration = "duration-100 transition-colors"
 
 const ICONS = {
   javascript: {
     component: RiJavascriptFill,
-    defaultClassName: `text-yellow-400 hover:text-yellow-300 ${duration}`,
+    defaultClassName: `text-yellow-500 hover:text-yellow-400 dark:text-yellow-400 dark:hover:text-yellow-300 ${duration}`,
   },
   typescript: {
     component: SiTypescript,
-    defaultClassName: `text-blue-400 hover:text-blue-300 ${duration}`,
+    defaultClassName: `text-blue-500 hover:text-blue-400 dark:text-blue-400 dark:hover:text-blue-300 ${duration}`,
   },
   html: {
     component: RiHtml5Fill,
-    defaultClassName: `text-orange-400 hover:text-orange-300 ${duration}`,
+    defaultClassName: `text-orange-500 hover:text-orange-400 dark:text-orange-400 dark:hover:text-orange-300 ${duration}`,
   },
   css: {
     component: FaCss3Alt,
-    defaultClassName: `text-sky-400 hover:text-sky-300 ${duration}`,
+    defaultClassName: `text-sky-500 hover:text-sky-400 dark:text-sky-400 dark:hover:text-sky-300 ${duration}`,
   },
   astro: {
     component: SiAstro,
-    defaultClassName: `text-purple-400 hover:text-purple-300 ${duration}`,
+    defaultClassName: `text-purple-500 hover:text-purple-400 dark:text-purple-400 dark:hover:text-purple-300 ${duration}`,
   },
   react: {
     component: FaReact,
-    defaultClassName: `text-sky-300 hover:text-sky-200 ${duration}`,
+    defaultClassName: `text-sky-400 hover:text-sky-300 dark:text-sky-300 dark:hover:text-sky-200 ${duration}`,
   },
   tailwind: {
     component: RiTailwindCssFill,
-    defaultClassName: `text-sky-400 hover:text-sky-300 ${duration}`,
+    defaultClassName: `text-sky-400 hover:text-sky-300 dark:text-sky-400 dark:hover:text-sky-300 ${duration}`,
   },
   python: {
     component: FaPython,
-    defaultClassName: `text-blue-400 hover:text-blue-300 ${duration}`,
+    defaultClassName: `text-blue-500 hover:text-blue-400 dark:text-blue-400 dark:hover:text-blue-300 ${duration}`,
   },
   flask: {
     component: SiFlask,
-    defaultClassName: `text-silver-300 hover:text-silver-200 ${duration}`,
+    defaultClassName: `text-gray-950 hover:text-gray-800 dark:text-silver-300 dark:hover:text-silver-200 ${duration}`,
   },
   rust: {
     component: FaRust,
-    defaultClassName: `text-orange-400 hover:text-orange-300 ${duration}`,
+    defaultClassName: `text-orange-500 hover:text-orange-400 dark:text-orange-400 dark:hover:text-orange-300 ${duration}`,
   },
   actix: {
     component: SiActix,
-    defaultClassName: `text-silver-300 hover:text-silver-300 ${duration}`,
+    defaultClassName: `text-gray-950 hover:text-gray-800 dark:text-silver-300 dark:hover:text-silver-300 ${duration}`,
   },
   postgre: {
     component: BiLogoPostgresql,
-    defaultClassName: `text-blue-400 hover:text-blue-300 ${duration}`,
+    defaultClassName: `text-blue-500 hover:text-blue-40 dark:text-blue-400 dark:hover:text-blue-300 ${duration}`,
   },
   express: {
     component: SiExpress,
-    defaultClassName: `text-silver-300 hover:text-silver-300 ${duration}`,
+    defaultClassName: `text-gray-950 hover:text-gray-800 dark:text-silver-300 dark:hover:text-silver-300 ${duration}`,
   },
   sqlite: {
     component: SiSqlite,
-    defaultClassName: `text-blue-400 hover:text-blue-300 ${duration}`,
+    defaultClassName: `text-blue-500 hover:text-blue-400 dark:text-blue-400 dark:hover:text-blue-300 ${duration}`,
   },
 } as const
 

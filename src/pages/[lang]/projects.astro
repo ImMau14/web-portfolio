@@ -52,13 +52,13 @@ const projectsEntryData = (projectsEntry as any)?.data ?? {
 
 <BaseLayout
   title={projectsEntryData.pageName}
-  className="flex flex-col items-center p-8 px-4 py-16 text-white md:px-24 xl:px-40"
+  className="flex flex-col items-center p-8 px-4 py-16 text-gray-950 md:px-24 xl:px-40 dark:text-white"
   baseLang={layoutEntryData!.data}
   pageName={projectsEntryData.pageName}
 >
   <section class="flex flex-col gap-6">
     <header class="flex flex-row items-center gap-4">
-      <FaLaptopCode className="text-3xl text-green-300/80 md:text-4xl" />
+      <FaLaptopCode className="text-3xl text-green-500 md:text-4xl dark:text-green-300/80" />
       <h1
         class="text-transparentmd:text-5xl bg-gradient-to-b from-gray-100 via-gray-100 to-gray-200 bg-clip-text pb-2 text-center font-heading text-4xl leading-tight md:text-start"
       >
@@ -66,7 +66,7 @@ const projectsEntryData = (projectsEntry as any)?.data ?? {
       </h1>
     </header>
 
-    <p class="font-body leading-relaxed text-silver-500">
+    <p class="font-body leading-relaxed text-gray-800 dark:text-silver-500">
       {projectsEntryData.description}
     </p>
 

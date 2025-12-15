@@ -58,7 +58,7 @@ export const AnimatedBackground = ({ children, className = "", loadTimeoutMs = 5
   return (
     <section className={`relative h-[calc(100vh-5rem)] w-full overflow-hidden ${className}`}>
       <div className="pointer-events-none absolute inset-0 z-[-10] overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-black/20 to-purple-900/10" />
+        <div className="absolute inset-0 bg-gray-300 dark:bg-purple-900/10" />
 
         <div
           className={`absolute inset-0 transition-all duration-700 ease-out ${isReady ? "opacity-100" : "scale-110 opacity-0 blur-sm"} `}
@@ -72,11 +72,11 @@ export const AnimatedBackground = ({ children, className = "", loadTimeoutMs = 5
             playsInline
             preload="auto"
             aria-hidden="true"
-            className={`pointer-events-none h-full w-full select-none object-cover object-top transition-opacity duration-1000 ease-out ${isReady ? "opacity-50" : "opacity-0"} `}
+            className={`pointer-events-none h-full w-full select-none object-cover object-top transition-opacity duration-1000 ease-out ${isReady ? "opacity-50" : "opacity-0"} invert dark:invert-0`}
           />
         </div>
 
-        <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-white/10 via-transparent to-transparent dark:bg-gradient-to-t dark:from-black/10 dark:via-transparent dark:to-transparent" />
       </div>
 
       <div className="relative z-10 flex h-[calc(100vh-5rem)] w-full flex-col items-center justify-center">

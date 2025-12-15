@@ -6,6 +6,10 @@ import type { Page } from "@components/Links/types.ts"
 import { FaGithub, FaLinkedin } from "react-icons/fa6"
 import { FaTelegramPlane } from "react-icons/fa"
 
+import montserratUrl from "@fontsource-variable/montserrat/files/montserrat-latin-wght-normal.woff2?url"
+import kanitUrl from "@fontsource/kanit/files/kanit-latin-400-normal.woff2?url"
+import interUrl from "@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url"
+
 interface BaseLayoutLang {
   description?: string
   ogDescription?: string
@@ -53,6 +57,11 @@ const {
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <link rel="preload" href={montserratUrl} as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href={kanitUrl} as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href={interUrl} as="font" type="font/woff2" crossorigin="anonymous" />
+
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <title>{pageName && pageName !== "" ? `${pageName} · ImMau14` : "ImMau14"}</title>
@@ -73,9 +82,7 @@ const {
 
     <meta name="theme-color" content="#0f1011" />
   </head>
-  <body
-    class="flex min-h-screen w-full flex-col bg-silver-950 scrollbar scrollbar-thin scrollbar-track-silver-800 scrollbar-thumb-silver-600 scrollbar-gutter-stable"
-  >
+  <body class="scrollbar flex min-h-screen w-full flex-col bg-silver-950">
     <header
       class="z-20 flex h-16 w-full items-center justify-between border-b-2 border-silver-800 bg-gradient-to-r from-silver-1000 via-silver-950 to-silver-900 p-8 md:h-20 md:border-silver-700 md:from-silver-950 md:via-silver-900 md:to-silver-850"
     >

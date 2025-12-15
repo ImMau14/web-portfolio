@@ -1,15 +1,7 @@
-import tailwindScrollbar from "tailwind-scrollbar"
 import tailwindTypography from "@tailwindcss/typography"
 
 const utilsPlugin = ({ addUtilities }) => {
   const newUtilities = {}
-
-  newUtilities[".scrollbar-gutter-stable"] = {
-    "scrollbar-gutter": "stable",
-  }
-  newUtilities[".scrollbar-gutter-stable-both"] = {
-    "scrollbar-gutter": "stable both-edges",
-  }
 
   newUtilities[".ease-spring"] = {
     transitionTimingFunction: "cubic-bezier(0.4, 0, 0.2, 1)",
@@ -92,5 +84,5 @@ export default {
     },
   },
 
-  plugins: [tailwindTypography, tailwindScrollbar, utilsPlugin],
+  plugins: [tailwindTypography, utilsPlugin],
 }

@@ -170,23 +170,49 @@ function slugFromEntryId(eid: string) {
         featuredProjects.length === 0 ? (
           <p class="font-body text-gray-400">{noProjects}</p>
         ) : (
-          <div class="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {featuredProjects.map((p) => {
-              const slug = slugFromEntryId(p.id)
-              const href = `/${lang}/project/${slug.split(".")[0]}`
-              return (
-                <ProjectCard
-                  title={p.data.title}
-                  image={p.data.image}
-                  alt={p.data.alt}
-                  description={p.data.description}
-                  techs={p.data.tech}
-                  githubUrl={p.data.githubUrl}
-                  isPublic={p.data.isPublic}
-                  articleUrl={href}
-                />
-              )
-            })}
+          <div class="w-full">
+            <div
+              class="flex touch-pan-x snap-x snap-mandatory gap-4 overflow-x-auto pb-4 scrollbar scrollbar-thin scrollbar-track-silver-800 scrollbar-thumb-silver-600 md:hidden"
+              role="region"
+            >
+              {featuredProjects.map((p) => {
+                const slug = slugFromEntryId(p.id)
+                const href = `/${lang}/project/${slug.split(".")[0]}`
+                return (
+                  <div class="min-w-[260px] max-w-full flex-shrink-0 snap-center">
+                    <ProjectCard
+                      title={p.data.title}
+                      image={p.data.image}
+                      alt={p.data.alt}
+                      description={p.data.description}
+                      techs={p.data.tech}
+                      githubUrl={p.data.githubUrl}
+                      isPublic={p.data.isPublic}
+                      articleUrl={href}
+                    />
+                  </div>
+                )
+              })}
+            </div>
+
+            <div class="hidden w-full grid-cols-2 gap-4 md:grid lg:grid-cols-3">
+              {featuredProjects.map((p) => {
+                const slug = slugFromEntryId(p.id)
+                const href = `/${lang}/project/${slug.split(".")[0]}`
+                return (
+                  <ProjectCard
+                    title={p.data.title}
+                    image={p.data.image}
+                    alt={p.data.alt}
+                    description={p.data.description}
+                    techs={p.data.tech}
+                    githubUrl={p.data.githubUrl}
+                    isPublic={p.data.isPublic}
+                    articleUrl={href}
+                  />
+                )
+              })}
+            </div>
           </div>
         )
       }

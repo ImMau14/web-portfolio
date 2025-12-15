@@ -37,7 +37,7 @@ export const ProjectCard = ({
 
   return (
     <article
-      className={`pointer-events-auto relative z-0 grid h-[400px] w-full transform grid-rows-[auto_1fr] overflow-hidden rounded-xl border-2 border-silver-700 bg-gradient-to-b from-silver-850 via-silver-900 to-silver-950 transition-transform duration-200 ease-in-out before:absolute before:top-0 before:h-6 before:w-full before:bg-gradient-to-b before:from-silver-1000/10 before:to-transparent after:pointer-events-none after:absolute after:bottom-0 after:h-2 after:w-full after:bg-gradient-to-t after:from-silver-150/5 after:to-transparent hover:scale-[104%] ${className}`}
+      className={`pointer-events-auto relative z-0 grid h-[400px] w-full transform grid-rows-[auto_1fr] overflow-hidden rounded-xl border-2 border-silver-700 bg-gradient-to-b from-silver-850 via-silver-900 to-silver-950 ease-in-out before:absolute before:top-0 before:h-6 before:w-full before:bg-gradient-to-b before:from-silver-1000/10 before:to-transparent after:pointer-events-none after:absolute after:bottom-0 after:h-2 after:w-full after:bg-gradient-to-t after:from-silver-150/5 after:to-transparent md:transition-transform md:duration-200 md:hover:scale-[104%] ${className}`}
       aria-labelledby={`project-card-${title}`}
     >
       <div className="w-full overflow-hidden bg-red-400 md:h-48">

@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import { useState, type SubmitEvent } from "react"
 import { IoIosMail, IoIosCall } from "react-icons/io"
 
 type TextData = {
@@ -40,7 +40,7 @@ export const ContactForm = ({
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e)
   }
 
-  function handleSubmit(ev: React.FormEvent) {
+  function handleSubmit(ev: SubmitEvent) {
     ev.preventDefault()
     setError(null)
 

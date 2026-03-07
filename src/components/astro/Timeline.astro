@@ -1,0 +1,57 @@
+---
+type TimelineItem = {
+  title: string
+  place: string
+  description: string
+  startDate: string
+  endDate: string
+}
+
+export interface Props {
+  data: TimelineItem[]
+}
+
+const { data } = Astro.props
+---
+
+<section class="grid w-[95%] grid-cols-[auto_1fr] items-center justify-center gap-4 sm:w-[90%]">
+  <div class="h-[95%] w-2 rounded-full bg-gradient-to-b from-green-400/30 via-green-400/50 to-green-400/30"></div>
+  <div class="flex w-full flex-col gap-4">
+    {
+      data.map((item) => (
+        <>
+          <div class="relative flex w-full before:absolute before:-left-7 before:top-[2.27rem] before:h-4 before:w-4 before:rounded-full before:bg-green-400">
+            <article class="hidden h-auto w-full transform grid-cols-[25rem_1fr] overflow-hidden rounded-xl border-2 border-silver-700 bg-gradient-to-b from-silver-850 via-silver-900 to-silver-950 shadow-light ease-in-out sm:grid md:transition-transform md:duration-200 md:hover:scale-[101%]">
+              <header class="flex flex-col gap-2 bg-black/30 p-6">
+                <h1 class="font-heading text-2xl text-white">{item.title}</h1>
+                <p class="font-body text-sm text-white/80">{item.place}</p>
+
+                <p class="mt-auto self-end font-body text-sm text-white/70">
+                  {item.startDate} - {item.endDate}
+                </p>
+              </header>
+
+              <div class="h-full w-full p-6">
+                <p class="font-body text-base leading-relaxed text-white/80">{item.description}</p>
+              </div>
+            </article>
+
+            <article class="flex h-auto w-full transform flex-col gap-4 rounded-xl border-2 border-silver-700 bg-gradient-to-b from-silver-850 via-silver-900 to-silver-950 p-6 shadow-light ease-in-out sm:hidden md:transition-transform md:duration-200 md:hover:scale-[104%]">
+              <header class="flex flex-col gap-2">
+                <h1 class="font-heading text-2xl text-white">{item.title}</h1>
+                <p class="font-body text-sm text-white/80">
+                  <b class="text-white/70">
+                    {item.startDate} - {item.endDate}
+                  </b>
+                  , {item.place}
+                </p>
+              </header>
+
+              <p class="font-body text-base leading-relaxed text-white/80">{item.description}</p>
+            </article>
+          </div>
+        </>
+      ))
+    }
+  </div>
+</section>

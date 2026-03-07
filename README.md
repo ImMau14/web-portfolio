@@ -1,10 +1,10 @@
 # Web Portfolio · [![NodeJS CI](https://github.com/ImMau14/web-portfolio/actions/workflows/node-ci.yaml/badge.svg)](https://github.com/ImMau14/web-portfolio/actions/workflows/node-ci.yaml)
 
 <div align="left">
-  <img src="https://img.shields.io/badge/Astro-5.16.4-794093?style=plastic&logo=astro" alt="Astro">
+  <img src="https://img.shields.io/badge/Astro-5.18.0-794093?style=plastic&logo=astro" alt="Astro">
   <img src="https://img.shields.io/badge/TypeScript-5.9.3-406c93?style=plastic&logo=typescript" alt="TypeScript">
-  <img src="https://img.shields.io/badge/React-19.2.1-408693?style=plastic&logo=react" alt="React">
-  <img src="https://img.shields.io/badge/TailwindCSS-3.4.18-407293?style=plastic&logo=tailwindcss" alt="TailwindCSS">
+  <img src="https://img.shields.io/badge/React-19.2.4-408693?style=plastic&logo=react" alt="React">
+  <img src="https://img.shields.io/badge/TailwindCSS-3.4.19-407293?style=plastic&logo=tailwindcss" alt="TailwindCSS">
 </div>
 
 Welcome to my personal portfolio, a modern web application built with Astro, React, TypeScript, and TailwindCSS. This site showcases my projects, skills, and experience as a developer.

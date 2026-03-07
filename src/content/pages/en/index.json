@@ -16,6 +16,25 @@
     "github": "https://github.com/ImMau14",
     "telegram": "https://t.me/l0mauu"
   },
+  "educationTitle": "Education",
+  "educationDescription": "Timeline of my professional education",
+  "educationFooter": "I have learned a great deal about programming thanks to numerous content creators such as Midudev, FreeCodeCamp, among others, and also to university professors who taught me. Moreover, I have used artificial intelligence to study related topics more easily.",
+  "educationData": [
+    {
+      "title": "Systems Engineering",
+      "description": "I chose this degree because I have always been fascinated by programming; through it I have learned to create, use, and maintain any system with my own hands. I am currently in the final stage, about to graduate as an engineer.",
+      "place": "Universidad Nacional Experimental de la Fuerza Armada (UNEFA)",
+      "startDate": "2022",
+      "endDate": "Currently"
+    },
+    {
+      "title": "High School Diploma in Science",
+      "description": "During high school I didn’t study programming, yet I found myself drawn to it, spending hours configuring Minecraft server plugins with the help of the documentation. Rather than the game itself, I was fascinated by seeing everything I wrote work. It’s funny how it all started, haha!",
+      "place": "Liceo Bolivariano Ezequiel Zamora",
+      "startDate": "2017",
+      "endDate": "2022"
+    }
+  ],
   "lang": "en",
   "noProjects": "No featured projects to show yet"
 }

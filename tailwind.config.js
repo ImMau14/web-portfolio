@@ -81,6 +81,10 @@ export default {
         103: "1.03",
         97: "0.97",
       },
+
+      boxShadow: {
+        light: "inset 0px -5px 5px rgb(42, 43, 46), inset 0px 3px 2px rgba(0, 0, 0, 5%)",
+      },
     },
   },
 

@@ -16,6 +16,25 @@
     "github": "https://github.com/ImMau14",
     "telegram": "https://t.me/l0mauu"
   },
+  "educationTitle": "Educación",
+  "educationDescription": "Linea de tiempo de mi desarrollo profesional.",
+  "educationFooter": "He aprendido muchísimo a programar gracias a numerosos creadores de contenido como Midudev, FreeCodeCamp, entre otros, y también a los profesores de la universidad que me guiaron. Además, he utilizado la inteligencia artificial para estudiar temas relacionados con mayor facilidad.",
+  "educationData": [
+    {
+      "title": "Ingeniería de Sistemas",
+      "description": "Elegí esta carrera porque siempre me ha fascinado la programación; a través de ella he aprendido a crear, usar y mantener cualquier sistema por mi mismo. Actualmente estoy en la fase final, a punto de obtener el titulo de ingeniero.",
+      "place": "Universidad Nacional Experimental de la Fuerza Armada (UNEFA)",
+      "startDate": "2022",
+      "endDate": "Actualmente"
+    },
+    {
+      "title": "Bachiller en Ciencias",
+      "description": "Durante el bachillerato no estudié programación, pero descubrí que me llamaba la atención; pasaba horas configurando plugins y servidores de Minecraft con la ayuda de su documentación. Más que el entretenimiento de jugar, me divertía ver que todo lo que escribía funcionaba. ¡Qué curioso que haya empezado así, jeje!",
+      "place": "Liceo Bolivariano Ezequiel Zamora",
+      "startDate": "2017",
+      "endDate": "2022"
+    }
+  ],
   "lang": "es",
   "noProjects": "Aún no hay proyectos destacados a mostrar."
 }

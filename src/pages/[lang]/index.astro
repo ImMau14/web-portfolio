@@ -1,10 +1,14 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro"
+
 import AnimatedBackground from "@components/AnimatedBackground.tsx"
 import AvatarPhoto from "@components/AvatarPhoto.tsx"
-import { FaGithub, FaLinkedin } from "react-icons/fa6"
-import { FaTelegramPlane, FaCode } from "react-icons/fa"
 import ProjectCard from "@components/ProjectCard/ProjectCard.tsx"
+
+import Timeline from "@components/astro/Timeline.astro"
+
+import { FaGithub, FaLinkedin } from "react-icons/fa6"
+import { FaTelegramPlane, FaCode, FaGraduationCap } from "react-icons/fa"
 
 import { getCollection, getEntry } from "astro:content"
 import type { CollectionEntry, DataEntryMap } from "astro:content"
@@ -59,6 +63,12 @@ const heroTitle: string = pageData.heroTitle ?? pageData.title ?? "Mauricio Rodr
 const heroSubtitle: string = pageData.heroSubtitle ?? ""
 const noProjects: string = pageData.noProjects ?? ""
 const featuredDescription: string = pageData.featuredDescription ?? ""
+
+const educationTitle: string = pageData.educationTitle ?? ""
+const educationDescription: string = pageData.educationDescription ?? ""
+const educationFooter: string = pageData.educationFooter ?? ""
+const educationData: { title: string; description: string; place: string; startDate: string; endDate: string }[] =
+  pageData.educationData ?? []
 
 const allProjects = await getCollection("projects")
 let projectsByLang = allProjects.filter((p) => p.id.startsWith(`${lang}/`))
@@ -152,9 +162,9 @@ function slugFromEntryId(eid: string) {
   </AnimatedBackground>
 
   <div
-    class="relative flex w-full flex-col items-center bg-silver-950 pt-4 before:absolute before:top-[-4rem] before:h-16 before:w-full before:bg-gradient-to-t before:from-silver-950 before:via-transparent before:to-transparent before:content-['']"
+    class="relative flex w-full flex-col items-center gap-12 bg-silver-950 px-4 py-4 pt-4 before:absolute before:top-[-4rem] before:h-16 before:w-full before:bg-gradient-to-t before:from-silver-950 before:via-transparent before:to-transparent before:content-[''] md:px-24 md:py-8 xl:px-40 xl:py-10"
   >
-    <article class="flex w-full flex-col gap-8 px-4 py-4 md:px-24 md:py-8 xl:px-40 xl:py-10">
+    <article class="flex w-full flex-col gap-8">
       <header class="flex items-center gap-4">
         <FaCode className="text-4xl text-green-300/80" />
         <h2
@@ -216,6 +226,27 @@ function slugFromEntryId(eid: string) {
           </div>
         )
       }
+    </article>
+
+    <article class="flex w-full flex-col gap-8">
+      <header class="flex items-center gap-4">
+        <FaGraduationCap className="text-4xl text-green-300/80" />
+        <h2
+          class="bg-gradient-to-b from-gray-100 via-gray-100 to-gray-200 bg-clip-text font-heading text-4xl font-bold text-transparent"
+        >
+          {educationTitle}
+        </h2>
+      </header>
+
+      <p class="font-body leading-relaxed text-gray-300">{educationDescription}</p>
+
+      <div class="flex w-full items-center justify-center">
+        <Timeline data={educationData} />
+      </div>
+
+      <p class="font-body leading-relaxed text-gray-300">
+        {educationFooter}
+      </p>
     </article>
   </div>
 </BaseLayout>

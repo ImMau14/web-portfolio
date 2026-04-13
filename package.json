@@ -16,8 +16,8 @@
     "@fontsource-variable/inter": "^5.2.8",
     "@fontsource-variable/montserrat": "^5.2.8",
     "@fontsource/kanit": "^5.2.8",
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5",
     "react-icons": "^5.5.0"
   },
   "devDependencies": {

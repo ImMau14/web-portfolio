@@ -1,0 +1,11 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'
+---
+
+<BaseLayout title="Admin Dashboard">
+  <h1 class="font-geist text-3xl font-bold">Admin Panel</h1>
+  <p>Manage your projects from here.</p>
+  <form method="POST" action="/api/logout">
+    <button type="submit">Log out</button>
+  </form>
+</BaseLayout>

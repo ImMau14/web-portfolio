@@ -1,7 +1,344 @@
 @import "tailwindcss";
-
 @import "@fontsource-variable/geist";
 
+/* ================================================================
+   Design Tokens – Light & Dark Themes
+   ================================================================ */
+@layer base {
+  :root {
+    /* Backgrounds */
+    --ui-back: hsl(0 0% 90%);
+    --ui-base: hsl(300 0% 95%);
+    --ui-front: hsl(300 50% 100%);
+    --ui-back-hover: hsl(0 0% 96%);
+    --ui-base-hover: hsl(300 0% 100%);
+    --ui-front-hover: hsl(300 50% 100%);
+    --ui-back-active: hsl(0 0% 84%);
+    --ui-base-active: hsl(300 0% 89%);
+    --ui-front-active: hsl(300 50% 94%);
+
+    /* Text */
+    --ui-text: hsl(300 0% 4%);
+    --ui-text-muted: hsl(0 0% 28%);
+    --ui-highlight: hsl(300 50% 100%);
+    --ui-text-hover: hsl(300 0% 10%);
+    --ui-text-muted-hover: hsl(0 0% 34%);
+    --ui-text-active: hsl(300 0% 0%);
+    --ui-text-muted-active: hsl(0 0% 22%);
+
+    /* Borders */
+    --ui-border: hsl(0 0% 50%);
+    --ui-border-muted: hsl(340 0% 62%);
+    --ui-border-hover: hsl(0 0% 56%);
+    --ui-border-muted-hover: hsl(340 0% 68%);
+    --ui-border-active: hsl(0 0% 44%);
+    --ui-border-muted-active: hsl(340 0% 56%);
+
+    /* Semantic Colors */
+    --ui-primary: hsl(132 55% 22%);
+    --ui-primary-hover: hsl(132 55% 28%);
+    --ui-primary-active: hsl(132 55% 16%);
+    --ui-secondary: hsl(300 33% 29%);
+    --ui-secondary-hover: hsl(300 33% 35%);
+    --ui-secondary-active: hsl(300 33% 23%);
+    --ui-danger: hsl(9 21% 41%);
+    --ui-danger-hover: hsl(9 21% 47%);
+    --ui-danger-active: hsl(9 21% 35%);
+    --ui-warning: hsl(52 23% 34%);
+    --ui-warning-hover: hsl(52 23% 40%);
+    --ui-warning-active: hsl(52 23% 28%);
+    --ui-success: hsl(147 19% 36%);
+    --ui-success-hover: hsl(147 19% 42%);
+    --ui-success-active: hsl(147 19% 30%);
+    --ui-info: hsl(217 22% 41%);
+    --ui-info-hover: hsl(217 22% 47%);
+    --ui-info-active: hsl(217 22% 35%);
+
+    /* Box Shadows – Light Mode */
+    --shadow-ui:
+      inset 0px 2px 0px var(--ui-highlight), inset 0px -2px 0px rgba(0, 0, 0, 7%),
+      0px 3px 5px rgba(0, 0, 0, 20%);
+    --shadow-2ui:
+      inset 0px 2px 0px var(--ui-highlight), inset 0px -2px 0px rgba(0, 0, 0, 7%),
+      0px 2px 3px rgba(0, 0, 0, 25%);
+    --shadow-3ui:
+      inset 0px 2px 0px var(--ui-highlight), inset 0px -2px 0px rgba(0, 0, 0, 15%),
+      0px 2px 3px rgba(0, 0, 0, 7%);
+    --shadow-dui: var(--shadow-ui);
+
+    /* Glassmorphism – Light Mode */
+    --glass-bg: hsla(0, 0%, 10%, 0.65);
+    --shadow-glass: inset 0px 2px 0px rgba(255, 255, 255, 0.15), 0 4px 12px rgba(0, 0, 0, 0.3);
+    --glass-bg-smoked: hsla(0, 0%, 5%, 0.8);
+    --shadow-glass-smoked:
+      inset 0px 2px 0px rgba(255, 255, 255, 0.1), 0 6px 16px rgba(0, 0, 0, 0.45);
+    --glass-border: hsla(0, 0%, 80%, 0.4);
+    --glass-text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+
+    /* Glass hover */
+    --glass-hover-bg: hsla(0, 0%, 3%, 0.85);
+    --glass-hover-shadow:
+      inset 0px 2px 0px rgba(255, 255, 255, 0.05), 0 6px 14px rgba(0, 0, 0, 0.55);
+
+    /* Scrollbar */
+    --scrollbar-hover-brightness: 0.85;
+    --scrollbar-thumb: auto;
+    --scrollbar-track: transparent;
+    --scrollbar-width: 8px;
+  }
+
+  .dark {
+    /* Backgrounds */
+    --ui-back: hsl(336 0% 1%);
+    --ui-base: hsl(300 0% 4%);
+    --ui-front: hsl(0 0% 9%);
+    --ui-back-hover: hsl(336 0% 7%);
+    --ui-base-hover: hsl(300 0% 10%);
+    --ui-front-hover: hsl(0 0% 15%);
+    --ui-back-active: hsl(336 0% 0%);
+    --ui-base-active: hsl(300 0% 0%);
+    --ui-front-active: hsl(0 0% 3%);
+
+    /* Text */
+    --ui-text: hsl(300 0% 95%);
+    --ui-text-muted: hsl(300 0% 69%);
+    --ui-highlight: hsl(330 0% 39%);
+    --ui-text-hover: hsl(300 0% 100%);
+    --ui-text-muted-hover: hsl(300 0% 75%);
+    --ui-text-active: hsl(300 0% 89%);
+    --ui-text-muted-active: hsl(300 0% 63%);
+
+    /* Borders */
+    --ui-border: hsl(0 0% 28%);
+    --ui-border-muted: hsl(300 0% 18%);
+    --ui-border-hover: hsl(0 0% 34%);
+    --ui-border-muted-hover: hsl(300 0% 24%);
+    --ui-border-active: hsl(0 0% 22%);
+    --ui-border-muted-active: hsl(300 0% 12%);
+
+    /* Semantic Colors */
+    --ui-primary: hsl(126 34% 64%);
+    --ui-primary-hover: hsl(126 34% 70%);
+    --ui-primary-active: hsl(126 34% 58%);
+    --ui-secondary: hsl(301 39% 72%);
+    --ui-secondary-hover: hsl(301 39% 78%);
+    --ui-secondary-active: hsl(301 39% 66%);
+    --ui-danger: hsl(9 26% 64%);
+    --ui-danger-hover: hsl(9 26% 70%);
+    --ui-danger-active: hsl(9 26% 58%);
+    --ui-warning: hsl(52 19% 57%);
+    --ui-warning-hover: hsl(52 19% 63%);
+    --ui-warning-active: hsl(52 19% 51%);
+    --ui-success: hsl(146 17% 59%);
+    --ui-success-hover: hsl(146 17% 65%);
+    --ui-success-active: hsl(146 17% 53%);
+    --ui-info: hsl(217 28% 65%);
+    --ui-info-hover: hsl(217 28% 71%);
+    --ui-info-active: hsl(217 28% 59%);
+
+    /* Box Shadows – Dark Mode */
+    --shadow-ui:
+      inset 0px 2px 0px var(--ui-highlight), inset 0px -2px 0px rgba(0, 0, 0, 20%),
+      0px 3px 5px rgba(0, 0, 0, 20%);
+    --shadow-2ui:
+      inset 0px 2px 0px var(--ui-highlight), inset 0px -2px 0px rgba(0, 0, 0, 20%),
+      0px 2px 3px rgba(0, 0, 0, 25%);
+    --shadow-3ui:
+      inset 0px 2px 0px var(--ui-highlight), inset 0px -2px 0px rgba(0, 0, 0, 25%),
+      0px 2px 3px rgba(0, 0, 0, 15%);
+    --shadow-dui:
+      inset 0px 2px 0px hsl(330 0% 39%), inset 0px -2px 0px rgba(0, 0, 0, 20%),
+      0px 3px 5px rgba(0, 0, 0, 20%);
+
+    /* Glassmorphism – Dark Mode */
+    --glass-bg: hsla(0, 0%, 100%, 0.08);
+    --shadow-glass: inset 0px 2px 0px rgba(255, 255, 255, 0.2), 0 8px 32px rgba(0, 0, 0, 0.3);
+    --glass-bg-smoked: hsla(0, 0%, 100%, 0.15);
+    --shadow-glass-smoked:
+      inset 0px 2px 0px rgba(255, 255, 255, 0.15), 0 8px 32px rgba(0, 0, 0, 0.5);
+    --glass-border: hsla(0, 0%, 100%, 0.15);
+    --glass-text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+
+    /* Glass hover */
+    --glass-hover-bg: hsla(0, 0%, 100%, 0.12);
+    --glass-hover-shadow:
+      inset 0px 2px 0px rgba(255, 255, 255, 0.25), 0 8px 24px rgba(0, 0, 0, 0.45);
+
+    /* Scrollbar */
+    --scrollbar-hover-brightness: 1.25;
+  }
+}
+
+/* ================================================================
+   Tailwind v4 Theme – Token Mapping
+   ================================================================ */
 @theme {
   --font-geist: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
+
+  /* Backgrounds */
+  --color-ui-back: var(--ui-back);
+  --color-ui-back-hover: var(--ui-back-hover);
+  --color-ui-back-active: var(--ui-back-active);
+  --color-ui-base: var(--ui-base);
+  --color-ui-base-hover: var(--ui-base-hover);
+  --color-ui-base-active: var(--ui-base-active);
+  --color-ui-front: var(--ui-front);
+  --color-ui-front-hover: var(--ui-front-hover);
+  --color-ui-front-active: var(--ui-front-active);
+
+  /* Text */
+  --color-ui-text: var(--ui-text);
+  --color-ui-text-hover: var(--ui-text-hover);
+  --color-ui-text-active: var(--ui-text-active);
+  --color-ui-text-muted: var(--ui-text-muted);
+  --color-ui-text-muted-hover: var(--ui-text-muted-hover);
+  --color-ui-text-muted-active: var(--ui-text-muted-active);
+  --color-ui-highlight: var(--ui-highlight);
+
+  /* Borders */
+  --color-ui-border: var(--ui-border);
+  --color-ui-border-hover: var(--ui-border-hover);
+  --color-ui-border-active: var(--ui-border-active);
+  --color-ui-border-muted: var(--ui-border-muted);
+  --color-ui-border-muted-hover: var(--ui-border-muted-hover);
+  --color-ui-border-muted-active: var(--ui-border-muted-active);
+
+  /* Semantic Colors */
+  --color-ui-primary: var(--ui-primary);
+  --color-ui-primary-hover: var(--ui-primary-hover);
+  --color-ui-primary-active: var(--ui-primary-active);
+  --color-ui-secondary: var(--ui-secondary);
+  --color-ui-secondary-hover: var(--ui-secondary-hover);
+  --color-ui-secondary-active: var(--ui-secondary-active);
+  --color-ui-danger: var(--ui-danger);
+  --color-ui-danger-hover: var(--ui-danger-hover);
+  --color-ui-danger-active: var(--ui-danger-active);
+  --color-ui-warning: var(--ui-warning);
+  --color-ui-warning-hover: var(--ui-warning-hover);
+  --color-ui-warning-active: var(--ui-warning-active);
+  --color-ui-success: var(--ui-success);
+  --color-ui-success-hover: var(--ui-success-hover);
+  --color-ui-success-active: var(--ui-success-active);
+  --color-ui-info: var(--ui-info);
+  --color-ui-info-hover: var(--ui-info-hover);
+  --color-ui-info-active: var(--ui-info-active);
+
+  /* Box Shadows */
+  --shadow-ui: var(--shadow-ui);
+  --shadow-2ui: var(--shadow-2ui);
+  --shadow-3ui: var(--shadow-3ui);
+  --shadow-dui: var(--shadow-dui);
+}
+
+/* ================================================================
+   Glassmorphism Components
+   ================================================================ */
+@layer components {
+  .glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--shadow-glass);
+    border-radius: 1rem;
+    color: white;
+    text-shadow: var(--glass-text-shadow);
+  }
+
+  .glass-smoked {
+    background: var(--glass-bg-smoked);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--shadow-glass-smoked);
+    border-radius: 1rem;
+    color: white;
+    text-shadow: var(--glass-text-shadow);
+  }
+
+  .btn-glass {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 1rem;
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--shadow-glass);
+    color: white;
+    font-weight: 600;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    cursor: pointer;
+    text-shadow: var(--glass-text-shadow);
+    transition:
+      transform 75ms ease-in-out,
+      background 250ms ease-in-out,
+      box-shadow 250ms ease-in-out,
+      color 250ms ease-in-out;
+  }
+
+  .btn-glass:hover:not([disabled]) {
+    background: var(--glass-hover-bg);
+    box-shadow: var(--glass-hover-shadow);
+    transform: scale(1.02);
+    text-shadow: none;
+    color: white;
+  }
+
+  .btn-glass:active:not([disabled]) {
+    transform: scale(0.98);
+  }
+
+  .btn-glass[disabled] {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+}
+
+/* ================================================================
+   Scrollbar Utilities
+   ================================================================ */
+@layer utilities {
+  .scrollbar {
+    scrollbar-gutter: stable;
+    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+  }
+
+  .scrollbar::-webkit-scrollbar {
+    width: var(--scrollbar-width);
+    height: var(--scrollbar-width);
+  }
+
+  .scrollbar::-webkit-scrollbar-track {
+    background-color: var(--scrollbar-track);
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbar-thumb);
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb:hover {
+    filter: brightness(var(--scrollbar-hover-brightness));
+  }
+
+  .scrollbar-rounded::-webkit-scrollbar-track,
+  .scrollbar-rounded::-webkit-scrollbar-thumb {
+    border-radius: 0.5rem;
+  }
+
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    --scrollbar-width: 5px;
+  }
+}
+
+@utility scrollbar-thumb-* {
+  --scrollbar-thumb: --value(--color-*);
+}
+
+@utility scrollbar-track-* {
+  --scrollbar-track: --value(--color-*);
 }

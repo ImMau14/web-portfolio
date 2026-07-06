@@ -1,13 +1,10 @@
 ---
+import LoginForm from '@/features/admin/components/LoginForm'
 import BaseLayout from '@/layouts/BaseLayout.astro'
 ---
 
 <BaseLayout title="Admin Login">
-  <form method="POST" action="/api/login">
-    <label>
-      Password
-      <input type="password" name="password" required />
-    </label>
-    <button type="submit">Sign in</button>
-  </form>
+  <div class="flex min-h-screen items-center justify-center px-4">
+    <LoginForm client:load />
+  </div>
 </BaseLayout>

@@ -5,6 +5,8 @@ export interface Props {
   title: string
   description?: string
 }
+
+const nonce = Astro.locals?.cspNonce ?? ''
 ---
 
 <!doctype html>
@@ -19,8 +21,7 @@ export interface Props {
     <meta name="description" content={Astro.props.description ?? 'Personal portfolio'} />
     <title>{Astro.props.title}</title>
 
-    <!-- 👇 asigna la clase dark antes de pintar -->
-    <script is:inline>
+    <script is:inline nonce={nonce}>
       (function () {
         const stored = localStorage.getItem('theme');
         if (stored === 'dark' || (!stored && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -29,39 +30,9 @@ export interface Props {
       })();
     </script>
   </head>
-  <body class="bg-ui-back">
+  <body class="bg-ui-back font-geist">
     <main id="main">
       <slot />
     </main>
-
-    <!-- 🌓 botón de tema (fuera del main para que quede fijo si quieres) -->
-    <button
-      id="theme-toggle"
-      type="button"
-      class="btn-glass fixed bottom-4 right-4 z-50 px-4 py-2"
-    >
-      🌙 Dark
-    </button>
-
-    <script is:inline>
-      (function () {
-        const btn = document.getElementById('theme-toggle');
-        const html = document.documentElement;
-
-        function updateLabel() {
-          const isDark = html.classList.contains('dark');
-          btn.textContent = isDark ? '☀️ Light' : '🌙 Dark';
-        }
-
-        // Sincronizar etiqueta inicial
-        updateLabel();
-
-        btn.addEventListener('click', () => {
-          const isDark = html.classList.toggle('dark');
-          localStorage.setItem('theme', isDark ? 'dark' : 'light');
-          updateLabel();
-        });
-      })();
-    </script>
   </body>
 </html>

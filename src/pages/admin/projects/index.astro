@@ -1,0 +1,29 @@
+---
+import ProjectList from '@/features/admin/components/ProjectList'
+import { getAllProjects } from '@/features/projects/projects.service'
+import AdminLayout from '@/layouts/AdminLayout.astro'
+
+const projects = await getAllProjects()
+---
+
+<AdminLayout title="Projects">
+  <div class="space-y-6">
+    <div class="flex items-center justify-between">
+      <div>
+        <h1 class="font-geist text-2xl font-bold text-ui-text">Projects</h1>
+        <p class="text-sm text-ui-text-muted">{projects.length} project{projects.length !== 1 ? 's' : ''}</p>
+      </div>
+      <a
+        href="/admin/projects/new"
+        class="inline-flex items-center gap-2 rounded-full bg-ui-primary px-5 py-2.5 text-sm font-semibold text-on-primary transition-colors hover:bg-ui-primary-hover active:bg-ui-primary-active"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+        </svg>
+        New Project
+      </a>
+    </div>
+
+    <ProjectList client:load projects={projects} editBase="/admin/projects" />
+  </div>
+</AdminLayout>

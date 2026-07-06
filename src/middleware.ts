@@ -1,8 +1,12 @@
+import { createHash } from 'node:crypto'
 import type { MiddlewareHandler } from 'astro'
 import { verifyAdminCookie } from '@/lib/auth'
 
 export const onRequest: MiddlewareHandler = async (context, next) => {
   const url = new URL(context.request.url)
+
+  const nonce = createHash('sha256').update(Math.random().toString()).digest('base64')
+  context.locals.cspNonce = nonce
 
   if (url.pathname.startsWith('/admin/login')) {
     const isAuthorized = verifyAdminCookie(context.cookies)
@@ -39,7 +43,7 @@ export const onRequest: MiddlewareHandler = async (context, next) => {
   headers.set('Strict-Transport-Security', 'max-age=63072000; includeSubDomains; preload')
   headers.set(
     'Content-Security-Policy',
-    "default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https:; font-src 'self' data: https:; script-src 'self' 'unsafe-inline';",
+    `default-src 'self'; img-src 'self' data: https:; style-src 'self' https:; font-src 'self' data: https:; script-src 'self' 'nonce-${nonce}';`,
   )
 
   return new Response(response.body, {

@@ -1,25 +1,36 @@
 import type { APIRoute } from 'astro'
-import { hashPassword } from '@/lib/auth'
-
-const ADMIN_PASSWORD = import.meta.env.ADMIN_PASSWORD?.trim() ?? ''
+import { generateToken, verifyPassword } from '@/lib/auth'
+import { loginLimiter } from '@/lib/rateLimiter'
 
 export const POST: APIRoute = async ({ request, cookies, redirect }) => {
-  if (!ADMIN_PASSWORD) {
-    return new Response('Server misconfiguration', { status: 500 })
+  const ip = request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'unknown'
+
+  try {
+    await loginLimiter.consume(ip)
+  } catch {
+    return new Response('Too many attempts. Try again later.', { status: 429 })
   }
 
   const formData = await request.formData()
   const password = formData.get('password')?.toString().trim() ?? ''
 
-  const inputHash = hashPassword(password)
-  const expectedHash = hashPassword(ADMIN_PASSWORD)
-
-  if (inputHash !== expectedHash) {
+  const valid = await verifyPassword(password)
+  if (!valid) {
     return new Response('Incorrect password', { status: 401 })
   }
 
-  cookies.set('admin_auth', expectedHash, {
+  const token = generateToken()
+  cookies.set('admin_auth', token, {
     httpOnly: true,
+    secure: import.meta.env.PROD,
+    sameSite: 'lax',
+    path: '/',
+    maxAge: 60 * 60 * 24,
+  })
+
+  const csrfToken = crypto.randomUUID()
+  cookies.set('csrf_token', csrfToken, {
+    httpOnly: false,
     secure: import.meta.env.PROD,
     sameSite: 'lax',
     path: '/',

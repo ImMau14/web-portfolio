@@ -1,0 +1,19 @@
+---
+import ProjectForm from '@/features/admin/components/ProjectForm'
+import { getProjectBySlug } from '@/features/projects/projects.service'
+import AdminLayout from '@/layouts/AdminLayout.astro'
+
+const slugParam = Astro.params.slug
+if (typeof slugParam !== 'string') {
+  throw new Error('Invalid project slug')
+}
+const project = await getProjectBySlug(slugParam)
+if (!project) {
+  throw new Error('Project not found')
+}
+---
+
+<AdminLayout title={`Edit ${project.title}`}>
+  <h1 class="font-geist text-2xl font-bold mb-4 text-ui-text">Edit Project</h1>
+  <ProjectForm client:load mode="edit" project={project} />
+</AdminLayout>

@@ -1,11 +1,15 @@
 ---
-import BaseLayout from '@/layouts/BaseLayout.astro'
+import DashboardCards from '@/features/admin/components/DashboardCards'
+import AdminLayout from '@/layouts/AdminLayout.astro'
 ---
 
-<BaseLayout title="Admin Dashboard">
-  <h1 class="font-geist text-3xl font-bold">Admin Panel</h1>
-  <p>Manage your projects from here.</p>
-  <form method="POST" action="/api/logout">
-    <button type="submit">Log out</button>
-  </form>
-</BaseLayout>
+<AdminLayout title="Admin Dashboard">
+  <div class="space-y-6">
+    <div>
+      <h1 class="font-geist text-3xl font-bold text-ui-text">Dashboard</h1>
+      <p class="mt-1 text-ui-text-muted">Manage your portfolio content</p>
+    </div>
+
+    <DashboardCards client:load />
+  </div>
+</AdminLayout>

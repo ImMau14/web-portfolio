@@ -26,6 +26,9 @@
     --ui-text-active: hsl(300 0% 0%);
     --ui-text-muted-active: hsl(0 0% 22%);
 
+    /* Text on primary */
+    --on-primary: #ffffff;
+
     /* Borders */
     --ui-border: hsl(0 0% 50%);
     --ui-border-muted: hsl(340 0% 62%);
@@ -107,6 +110,9 @@
     --ui-text-muted-hover: hsl(300 0% 75%);
     --ui-text-active: hsl(300 0% 89%);
     --ui-text-muted-active: hsl(300 0% 63%);
+
+    /* Text on primary */
+    --on-primary: #000000;
 
     /* Borders */
     --ui-border: hsl(0 0% 28%);
@@ -194,6 +200,7 @@
   --color-ui-text-muted-hover: var(--ui-text-muted-hover);
   --color-ui-text-muted-active: var(--ui-text-muted-active);
   --color-ui-highlight: var(--ui-highlight);
+  --color-on-primary: var(--on-primary);
 
   /* Borders */
   --color-ui-border: var(--ui-border);

@@ -1,0 +1,44 @@
+---
+import ThemeToggle from '@/features/theme/theme-toggle'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+
+export interface Props {
+  title: string
+  description?: string
+}
+---
+
+<BaseLayout title={Astro.props.title} description={Astro.props.description ?? ''}>
+  <div class="min-h-screen">
+    <header class="sticky top-0 z-40 mx-auto max-w-5xl px-3 pt-3">
+      <div class="glass flex items-center justify-between rounded-full px-6 py-3">
+        <nav class="flex items-center gap-1">
+          <a href="/admin" class="rounded-full px-4 py-2 text-sm font-medium text-white/80 transition-colors hover:bg-white/10 hover:text-white">
+            Dashboard
+          </a>
+          <a href="/admin/projects" class="rounded-full px-4 py-2 text-sm font-medium text-white/80 transition-colors hover:bg-white/10 hover:text-white">
+            Projects
+          </a>
+        </nav>
+
+        <div class="flex items-center gap-2">
+          <ThemeToggle client:load />
+          <form method="POST" action="/api/logout">
+            <button
+              type="submit"
+              class="rounded-full border border-white/20 px-4 py-2 text-sm font-medium text-white/80 transition-colors hover:bg-white/10 hover:text-white"
+            >
+              Logout
+            </button>
+          </form>
+        </div>
+      </div>
+    </header>
+
+    <div class="mx-auto max-w-5xl px-3 pb-8 pt-6">
+      <section class="rounded-3xl border border-ui-border-muted bg-ui-base p-6 shadow-2ui md:p-8">
+        <slot />
+      </section>
+    </div>
+  </div>
+</BaseLayout>

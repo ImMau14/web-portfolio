@@ -41,10 +41,31 @@ export const onRequest: MiddlewareHandler = async (context, next) => {
   headers.set('Referrer-Policy', 'no-referrer-when-downgrade')
   headers.set('Permissions-Policy', 'camera=(), microphone=(), geolocation=()')
   headers.set('Strict-Transport-Security', 'max-age=63072000; includeSubDomains; preload')
-  headers.set(
-    'Content-Security-Policy',
-    `default-src 'self'; img-src 'self' data: https:; style-src 'self' https:; font-src 'self' data: https:; script-src 'self' 'nonce-${nonce}';`,
-  )
+
+  if (import.meta.env.DEV) {
+    headers.set(
+      'Content-Security-Policy',
+      "default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https:; font-src 'self' data: https:; script-src 'self' 'unsafe-inline';",
+    )
+  } else {
+    headers.set(
+      'Content-Security-Policy',
+      `default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https:; font-src 'self' data: https:; script-src 'self' 'nonce-${nonce}';`,
+    )
+  }
+
+  const contentType = response.headers.get('content-type') || ''
+  if (contentType.includes('text/html')) {
+    const html = await response.text()
+    const modifiedHtml = html.replace(
+      /<script(\s(?![^>]*\bnonce=)[^>]*)?>/g,
+      (_match, attrs) => `<script nonce="${nonce}"${attrs || ''}>`,
+    )
+    return new Response(modifiedHtml, {
+      status: response.status,
+      headers,
+    })
+  }
 
   return new Response(response.body, {
     status: response.status,

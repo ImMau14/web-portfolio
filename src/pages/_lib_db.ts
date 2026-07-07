@@ -1,3 +1,5 @@
+// Utility to fetch project slugs and dates for generating sitemap entries.
+
 import { db } from '@/db/client'
 import { projects } from '@/db/schema'
 

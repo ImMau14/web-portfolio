@@ -1,3 +1,5 @@
+// API route for admin login, verifies password, issues JWT and CSRF tokens, rate-limited.
+
 import type { APIRoute } from 'astro'
 import { generateToken, verifyPassword } from '@/lib/auth'
 import { loginLimiter } from '@/lib/rateLimiter'
@@ -5,6 +7,7 @@ import { loginLimiter } from '@/lib/rateLimiter'
 export const POST: APIRoute = async ({ request, cookies, redirect }) => {
   const ip = request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'unknown'
 
+  // Apply rate limiting
   try {
     await loginLimiter.consume(ip)
   } catch {
@@ -19,6 +22,7 @@ export const POST: APIRoute = async ({ request, cookies, redirect }) => {
     return new Response('Incorrect password', { status: 401 })
   }
 
+  // Generate session JWT and CSRF token, set as cookies
   const token = generateToken()
   cookies.set('admin_auth', token, {
     httpOnly: true,

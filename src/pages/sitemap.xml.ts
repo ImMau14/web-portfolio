@@ -1,3 +1,5 @@
+// Dynamically generates sitemap.xml listing project pages with last modification dates.
+
 import type { APIRoute } from 'astro'
 import { fetchPages } from './_lib_db'
 

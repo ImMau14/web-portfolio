@@ -1,3 +1,5 @@
+// Admin login form with password field, CSRF via POST to /api/login.
+
 import { motion } from 'motion/react'
 import { HiLockClosed } from 'react-icons/hi2'
 

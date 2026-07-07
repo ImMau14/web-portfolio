@@ -1,4 +1,6 @@
 ---
+// Edit project page, fetches project by slug and renders ProjectForm in edit mode.
+
 import ProjectForm from '@/features/admin/components/ProjectForm'
 import { getProjectBySlug } from '@/features/projects/projects.service'
 import AdminLayout from '@/layouts/AdminLayout.astro'
@@ -15,5 +17,5 @@ if (!project) {
 
 <AdminLayout title={`Edit ${project.title}`}>
   <h1 class="font-geist text-2xl font-bold mb-4 text-ui-text">Edit Project</h1>
-  <ProjectForm client:load mode="edit" project={project} />
+  <ProjectForm client:load mode="edit" project={{ ...project, isFeatured: project.isFeatured === 1 }} />
 </AdminLayout>

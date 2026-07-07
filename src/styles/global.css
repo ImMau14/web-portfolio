@@ -1,3 +1,5 @@
+/* Global styles with Tailwind CSS, design tokens for light/dark themes, glassmorphism components, and scrollbar utilities. */
+
 @import "tailwindcss";
 @import "@fontsource-variable/geist";
 

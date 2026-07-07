@@ -1,3 +1,5 @@
+// Astro middleware handling admin auth redirection, CSP nonce injection, security headers, and HTML script nonce patching.
+
 import { createHash } from 'node:crypto'
 import type { MiddlewareHandler } from 'astro'
 import { verifyAdminCookie } from '@/lib/auth'
@@ -5,9 +7,11 @@ import { verifyAdminCookie } from '@/lib/auth'
 export const onRequest: MiddlewareHandler = async (context, next) => {
   const url = new URL(context.request.url)
 
+  // Generate a unique nonce for CSP and make it available to layouts/pages
   const nonce = createHash('sha256').update(Math.random().toString()).digest('base64')
   context.locals.cspNonce = nonce
 
+  // If already logged in, redirect away from login page
   if (url.pathname.startsWith('/admin/login')) {
     const isAuthorized = verifyAdminCookie(context.cookies)
     if (isAuthorized) {
@@ -18,6 +22,7 @@ export const onRequest: MiddlewareHandler = async (context, next) => {
     }
   }
 
+  // Protect admin routes (except login/logout API)
   if (
     url.pathname.startsWith('/admin') &&
     !url.pathname.startsWith('/admin/login') &&
@@ -35,6 +40,7 @@ export const onRequest: MiddlewareHandler = async (context, next) => {
 
   const response = await next()
 
+  // Add security headers to every response
   const headers = new Headers(response.headers)
   headers.set('X-Frame-Options', 'DENY')
   headers.set('X-Content-Type-Options', 'nosniff')
@@ -42,6 +48,7 @@ export const onRequest: MiddlewareHandler = async (context, next) => {
   headers.set('Permissions-Policy', 'camera=(), microphone=(), geolocation=()')
   headers.set('Strict-Transport-Security', 'max-age=63072000; includeSubDomains; preload')
 
+  // Content Security Policy: allow inline styles/scripts in dev, use nonce in production
   if (import.meta.env.DEV) {
     headers.set(
       'Content-Security-Policy',
@@ -54,6 +61,7 @@ export const onRequest: MiddlewareHandler = async (context, next) => {
     )
   }
 
+  // If the response is HTML, inject the nonce into every <script> tag that doesn’t already have one
   const contentType = response.headers.get('content-type') || ''
   if (contentType.includes('text/html')) {
     const html = await response.text()

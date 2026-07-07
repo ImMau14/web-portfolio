@@ -1,4 +1,6 @@
 ---
+// Base HTML layout with meta tags, favicon, theme initialization script, and CSP nonce support.
+
 import '@/styles/global.css'
 
 export interface Props {
@@ -21,6 +23,7 @@ const nonce = Astro.locals?.cspNonce ?? ''
     <meta name="description" content={Astro.props.description ?? 'Personal portfolio'} />
     <title>{Astro.props.title}</title>
 
+    <!-- Apply dark theme immediately to avoid flash -->
     <script is:inline nonce={nonce}>
       (function () {
         const stored = localStorage.getItem('theme');

@@ -1,3 +1,5 @@
+// API endpoint to update a project, handles partial updates, image processing, and isFeatured flag.
+
 import { put } from '@vercel/blob'
 import type { APIRoute } from 'astro'
 import { z } from 'astro/zod'
@@ -94,7 +96,7 @@ export const POST: APIRoute = async ({ request, cookies, redirect }) => {
         })
         imageUrl = blob.url
       } else {
-        imageUrl = null
+        imageUrl = null // Explicitly remove image
       }
     }
 
@@ -108,11 +110,18 @@ export const POST: APIRoute = async ({ request, cookies, redirect }) => {
       githubUrl: z.url().optional().nullable(),
       liveUrl: z.url().optional().nullable(),
       image: z.url().optional().nullable(),
+      isFeatured: z.boolean().optional(),
+      date: z.date(),
     })
 
     const inputData: Record<string, unknown> = { ...cleanedData }
     if (imageUrl !== undefined) {
       inputData.image = imageUrl
+    }
+
+    // If isFeatured_touched is present, the checkbox was rendered; use its actual state
+    if (formData.has('isFeatured_touched')) {
+      inputData.isFeatured = formData.has('isFeatured')
     }
 
     const input = schema.parse(inputData)
@@ -129,6 +138,10 @@ export const POST: APIRoute = async ({ request, cookies, redirect }) => {
 
     if (imageUrl !== undefined) {
       updateData.image = input.image ?? null
+    }
+
+    if (input.isFeatured !== undefined) {
+      updateData.isFeatured = input.isFeatured
     }
 
     await updateProject(input.originalSlug, updateData, cookies)

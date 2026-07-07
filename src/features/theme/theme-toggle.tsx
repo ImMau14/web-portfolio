@@ -1,14 +1,18 @@
+// Theme toggle button that toggles the 'dark' class on <html> and persists preference in localStorage.
+
 import { useEffect, useState } from 'react'
 import { HiMoon, HiSun } from 'react-icons/hi2'
 
 export default function ThemeToggle() {
   const [isDark, setIsDark] = useState(false)
 
+  // Initialize state based on current DOM class
   useEffect(() => {
     const dark = document.documentElement.classList.contains('dark')
     setIsDark(dark)
   }, [])
 
+  // Toggle theme and store choice
   const toggle = () => {
     const next = !isDark
     setIsDark(next)

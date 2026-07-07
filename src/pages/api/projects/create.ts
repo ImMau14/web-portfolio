@@ -1,3 +1,5 @@
+// API endpoint to create a project, validates input, processes image upload to Vercel Blob with sharp, and inserts into DB.
+
 import { put } from '@vercel/blob'
 import type { APIRoute } from 'astro'
 import { z } from 'astro/zod'
@@ -5,6 +7,7 @@ import sharp, { type Metadata } from 'sharp'
 import { createProject } from '@/features/projects/projects.service'
 import { verifyAdminCookie, verifyCsrf } from '@/lib/auth'
 
+// Slugs reserved for system routes
 const RESERVED_SLUGS = [
   'admin',
   'api',
@@ -38,6 +41,7 @@ export const POST: APIRoute = async ({ request, cookies, redirect }) => {
     const formData = await request.formData()
     const rawData = Object.fromEntries(formData.entries())
 
+    // Trim optional URL fields
     const cleanedData = {
       ...rawData,
       githubUrl: rawData.githubUrl?.toString().trim() || null,
@@ -48,6 +52,7 @@ export const POST: APIRoute = async ({ request, cookies, redirect }) => {
     const imageFile = formData.get('image') as File | null
 
     if (imageFile && imageFile.size > 0) {
+      // Validate image type and size
       if (!imageFile.type.startsWith('image/')) {
         return new Response('Invalid image type', { status: 400 })
       }
@@ -102,9 +107,15 @@ export const POST: APIRoute = async ({ request, cookies, redirect }) => {
       githubUrl: z.url().optional().nullable(),
       liveUrl: z.url().optional().nullable(),
       image: z.url().optional().nullable(),
+      isFeatured: z.boolean().optional().default(false),
+      date: z.string(),
     })
 
-    const input = schema.parse({ ...cleanedData, image: imageUrl })
+    const input = schema.parse({
+      ...cleanedData,
+      image: imageUrl,
+      isFeatured: formData.has('isFeatured'),
+    })
 
     await createProject(
       {
@@ -116,6 +127,8 @@ export const POST: APIRoute = async ({ request, cookies, redirect }) => {
         githubUrl: input.githubUrl ?? null,
         liveUrl: input.liveUrl ?? null,
         image: input.image ?? null,
+        isFeatured: input.isFeatured,
+        date: input.date,
       },
       cookies,
     )

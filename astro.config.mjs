@@ -1,3 +1,5 @@
+// Astro configuration with React, Vercel adapter, and Tailwind CSS via Vite.
+
 // @ts-check
 
 import react from '@astrojs/react'

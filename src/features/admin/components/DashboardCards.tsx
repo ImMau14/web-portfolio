@@ -1,6 +1,9 @@
+// Dashboard cards showing admin actions: Projects link and a placeholder for future tools.
+
 import { motion } from 'motion/react'
 import { HiOutlineArchiveBox, HiOutlinePlus } from 'react-icons/hi2'
 
+// Staggered animation variants for the container and items
 const container = {
   hidden: { opacity: 0 },
   show: {

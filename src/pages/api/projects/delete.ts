@@ -1,3 +1,5 @@
+// API endpoint to delete a project by slug, with auth and CSRF checks.
+
 import type { APIRoute } from 'astro'
 import { z } from 'astro/zod'
 import { deleteProject } from '@/features/projects/projects.service'

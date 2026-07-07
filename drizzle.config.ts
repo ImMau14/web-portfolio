@@ -1,3 +1,5 @@
+// Drizzle Kit configuration for Turso database, using environment variables for credentials.
+
 import { defineConfig } from 'drizzle-kit'
 
 const url = process.env.ASTRO_DB_REMOTE_URL

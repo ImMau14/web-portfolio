@@ -1,3 +1,5 @@
+// Database client initialization with LibSQL/Turso and Drizzle ORM, exports the db instance.
+
 import { createClient } from '@libsql/client'
 import { drizzle } from 'drizzle-orm/libsql'
 import * as schema from './schema'

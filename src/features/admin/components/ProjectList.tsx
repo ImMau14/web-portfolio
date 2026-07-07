@@ -1,3 +1,5 @@
+// Displays a list of projects with edit and delete actions, empty state, and CSRF token retrieval.
+
 import { motion } from 'motion/react'
 import { useState } from 'react'
 import { HiFolder } from 'react-icons/hi2'
@@ -10,6 +12,7 @@ type Project = {
   image?: string | null
 }
 
+// Retrieve the CSRF token from the browser cookie
 function getCsrfToken(): string {
   const match = document.cookie.match(/(?:^|; )csrf_token=([^;]*)/)
   return match ? (match[1] ?? '') : ''
@@ -38,6 +41,7 @@ export default function ProjectList({
   const [projects, setProjects] = useState<Project[]>(initial)
   const [loading, setLoading] = useState(false)
 
+  // Send a delete request for the given slug and update the local list
   async function handleDelete(slug: string) {
     if (!confirm('Delete project? This action cannot be undone.')) return
     setLoading(true)

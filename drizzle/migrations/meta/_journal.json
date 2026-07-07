@@ -15,6 +15,20 @@
       "when": 1783311621639,
       "tag": "0001_aberrant_golden_guardian",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1783439387084,
+      "tag": "0002_faulty_electro",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "6",
+      "when": 1783444437932,
+      "tag": "0003_eager_sharon_ventura",
+      "breakpoints": true
     }
   ]
 }

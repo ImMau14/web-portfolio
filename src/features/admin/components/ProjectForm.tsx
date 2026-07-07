@@ -1,3 +1,5 @@
+// Project creation and editing form with image upload, slug auto-generation, CSRF protection, and validation.
+
 import { motion } from 'motion/react'
 import { useState } from 'react'
 import { HiArrowPath, HiChevronRight } from 'react-icons/hi2'
@@ -12,6 +14,8 @@ type Project = {
   githubUrl?: string | null
   liveUrl?: string | null
   image?: string | null
+  isFeatured?: boolean
+  date: string
 }
 
 type Props = {
@@ -19,6 +23,7 @@ type Props = {
   project?: Project
 }
 
+// Convert a string into a URL-friendly slug
 function slugify(text: string): string {
   return text
     .toLowerCase()
@@ -28,6 +33,7 @@ function slugify(text: string): string {
     .replace(/-+/g, '-')
 }
 
+// Retrieve the CSRF token from the browser cookie
 function getCsrfToken(): string {
   const match = document.cookie.match(/(?:^|; )csrf_token=([^;]*)/)
   return match ? (match[1] ?? '') : ''
@@ -43,16 +49,19 @@ export default function ProjectForm({ mode, project }: Props) {
     githubUrl: project?.githubUrl ?? '',
     liveUrl: project?.liveUrl ?? '',
     image: null as File | null,
+    isFeatured: project?.isFeatured ?? false,
+    date: project?.date ?? '',
   }))
   const [imagePreview, setImagePreview] = useState<string | null>(project?.image ?? null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [showAdvanced, setShowAdvanced] = useState(false)
 
+  // Handle input changes, auto-fill slug from title in create mode
   function onChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
-    const { name, value } = e.target
+    const { name, value, type, checked } = e.target as HTMLInputElement
     setForm((s) => {
-      const next = { ...s, [name]: value }
+      const next = { ...s, [name]: type === 'checkbox' ? checked : value }
       if (name === 'title' && mode === 'create') {
         next.slug = slugify(value)
       }
@@ -60,6 +69,7 @@ export default function ProjectForm({ mode, project }: Props) {
     })
   }
 
+  // Update image preview when a new file is selected
   function handleImageChange(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0] ?? null
     setForm((s) => ({ ...s, image: file }))
@@ -72,6 +82,7 @@ export default function ProjectForm({ mode, project }: Props) {
     }
   }
 
+  // Submit form data to the correct API endpoint
   async function onSubmit(e: React.SubmitEvent<HTMLFormElement>) {
     e.preventDefault()
     setLoading(true)
@@ -85,8 +96,14 @@ export default function ProjectForm({ mode, project }: Props) {
         data.append('originalSlug', project.slug)
       }
 
+      // If editing and no new image selected, remove the image field to avoid overwriting
       if (mode === 'edit' && !form.image && imagePreview === project?.image) {
         data.delete('image')
+      }
+
+      // Hidden field to help the API detect whether the isFeatured checkbox was toggled
+      if (mode === 'edit') {
+        data.append('isFeatured_touched', 'true')
       }
 
       const url = mode === 'create' ? '/api/projects/create' : '/api/projects/update'
@@ -247,6 +264,35 @@ export default function ProjectForm({ mode, project }: Props) {
         <p className="mt-1 text-xs text-ui-text-muted">
           Optional. Max 5MB. Will be displayed as a banner.
         </p>
+      </div>
+
+      <div className="flex items-center gap-2">
+        <input
+          id="isFeatured"
+          name="isFeatured"
+          type="checkbox"
+          checked={form.isFeatured}
+          onChange={onChange}
+          className="h-4 w-4 rounded border-ui-border text-ui-primary focus:ring-ui-primary"
+        />
+        <label htmlFor="isFeatured" className="text-sm font-medium text-ui-text">
+          Featured project
+        </label>
+      </div>
+
+      <div>
+        <label htmlFor="date" className="mb-1.5 block text-sm font-medium text-ui-text">
+          Project Date
+        </label>
+        <input
+          id="date"
+          name="date"
+          type="date"
+          value={form.date}
+          onChange={onChange}
+          required
+          className={inputClass}
+        />
       </div>
 
       <div>

@@ -14,15 +14,9 @@ const nonce = Astro.locals?.cspNonce ?? ''
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <meta name="theme-color" content="#ffffff" />
-    <meta name="description" content={Astro.props.description ?? 'Personal portfolio'} />
-    <title>{Astro.props.title}</title>
-
+    
     <!-- Apply dark theme immediately to avoid flash -->
     <script is:inline nonce={nonce}>
       (function () {

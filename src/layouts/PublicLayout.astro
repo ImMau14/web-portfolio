@@ -1,0 +1,13 @@
+---
+import Header from '@/components/Header.astro'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+
+export interface Props {
+  title: string
+}
+---
+
+<BaseLayout title={Astro.props.title}>
+  <Header />
+  <slot />
+</BaseLayout>

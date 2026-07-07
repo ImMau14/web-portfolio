@@ -8,9 +8,11 @@ export interface Props {
   title: string
   description?: string
 }
+
+const { title, description } = Astro.props
 ---
 
-<BaseLayout title={Astro.props.title} description={Astro.props.description ?? ''}>
+<BaseLayout title={title} {...(description ? { seo: { description } } : {})}>
   <div class="min-h-screen">
     <header class="sticky top-0 z-40 mx-auto max-w-5xl px-3 pt-3">
       <div class="glass flex items-center justify-between rounded-full px-6 py-3">

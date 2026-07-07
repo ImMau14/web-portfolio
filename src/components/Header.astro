@@ -1,0 +1,23 @@
+---
+import Logo from '@/components/Logo'
+---
+
+<header class="fixed top-0 left-0 z-50 h-24 w-full py-4 px-20 text-white">
+  <div
+    class="glass flex h-full w-full items-center justify-center rounded-full px-10 sm:justify-between"
+  >
+    <h2 class="font-geist text-lg font-bold tracking-wide">
+      <a href="/" class="flex flex-row justify-center gap-4">
+        <Logo className="w-8" />
+        <span>ImMau14</span>
+      </a>
+    </h2>
+    <nav class="opacity-90">
+      <ul class="font-geist flex flex-row items-center gap-10">
+        <li class="transition-all hover:scale-105"><a href="/">Home</a></li>
+        <li class="transition-all hover:scale-105"><a href="/projects">Projects</a></li>
+        <li class="transition-all hover:scale-105"><a href="/about">About Me</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>

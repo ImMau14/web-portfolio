@@ -2,11 +2,20 @@
 // Base HTML layout with meta tags, favicon, theme initialization script, and CSP nonce support.
 
 import '@/styles/global.css'
+import SeoHead from '@/components/SeoHead.astro'
 
 export interface Props {
   title: string
-  description?: string
+  seo?: {
+    title?: string
+    description?: string
+    image?: string
+    url?: string
+  }
 }
+
+const { title, seo } = Astro.props
+const finalTitle = seo?.title ?? title
 
 const nonce = Astro.locals?.cspNonce ?? ''
 ---
@@ -16,6 +25,14 @@ const nonce = Astro.locals?.cspNonce ?? ''
   <head>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
+    <SeoHead
+      title={finalTitle}
+      {...(seo?.description ? { description: seo.description } : {})}
+      {...(seo?.image ? { image: seo.image } : {})}
+      {...(seo?.url ? { url: seo.url } : {})}
+      titleSuffix=" - ImMau14"
+      siteUrl="https://immau14.vercel.app"
+    />
     
     <!-- Apply dark theme immediately to avoid flash -->
     <script is:inline nonce={nonce}>

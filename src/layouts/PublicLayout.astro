@@ -11,7 +11,9 @@ export interface Props {
 <BaseLayout title={Astro.props.title}>
   <div class="flex min-h-screen flex-col">
     <Header />
-    <slot />
+    <div class="mx-auto w-full max-w-5xl flex-1 px-4 pt-24 sm:px-6 lg:px-8">
+      <slot />
+    </div>
     <Footer />
   </div>
 </BaseLayout>

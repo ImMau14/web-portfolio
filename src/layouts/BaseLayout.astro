@@ -21,7 +21,7 @@ const nonce = Astro.locals?.cspNonce ?? ''
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
   <head>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
@@ -44,8 +44,8 @@ const nonce = Astro.locals?.cspNonce ?? ''
       })();
     </script>
   </head>
-  <body class="bg-ui-back font-geist">
-    <main id="main">
+  <body class="overflow-x-hidden bg-ui-back font-geist">
+    <main id="main" class="scroll-mt-24">
       <slot />
     </main>
   </body>

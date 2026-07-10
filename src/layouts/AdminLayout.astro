@@ -1,6 +1,7 @@
 ---
 // Layout for admin pages with navigation bar, glass effect header, logout, and theme toggle.
 
+import AmbientGlow from '@/components/AmbientGlow'
 import ThemeToggle from '@/features/theme/theme-toggle'
 import BaseLayout from '@/layouts/BaseLayout.astro'
 
@@ -13,7 +14,8 @@ const { title, description } = Astro.props
 ---
 
 <BaseLayout title={title} {...(description ? { seo: { description } } : {})}>
-  <div class="min-h-screen">
+  <div class="relative min-h-screen">
+    <AmbientGlow />
     <header class="sticky top-0 z-40 mx-auto max-w-5xl px-3 pt-3">
       <div class="glass flex items-center justify-between rounded-full px-6 py-3">
         <nav class="flex items-center gap-1">

@@ -1,4 +1,5 @@
 ---
+import AmbientGlow from '@/components/AmbientGlow'
 import Footer from '@/components/Footer.astro'
 import Header from '@/components/Header.astro'
 import BaseLayout from '@/layouts/BaseLayout.astro'
@@ -9,7 +10,8 @@ export interface Props {
 ---
 
 <BaseLayout title={Astro.props.title}>
-  <div class="flex min-h-screen flex-col">
+  <div class="relative flex min-h-screen flex-col overflow-hidden">
+    <AmbientGlow />
     <Header />
     <div class="mx-auto w-full max-w-5xl flex-1 px-4 pt-24 sm:px-6 lg:px-8">
       <slot />

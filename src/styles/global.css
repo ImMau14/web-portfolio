@@ -90,6 +90,9 @@
     --scrollbar-thumb: auto;
     --scrollbar-track: transparent;
     --scrollbar-width: 8px;
+
+    /* Ambient Glow */
+    --ui-glow-primary: hsla(160, 30%, 80%, 0.35);
   }
 
   .dark {
@@ -174,6 +177,9 @@
 
     /* Scrollbar */
     --scrollbar-hover-brightness: 1.25;
+
+    /* Ambient Glow */
+    --ui-glow-primary: hsla(126, 34%, 85%, 0.15);
   }
 }
 
@@ -237,6 +243,9 @@
   --shadow-2ui: var(--shadow-2ui);
   --shadow-3ui: var(--shadow-3ui);
   --shadow-dui: var(--shadow-dui);
+
+  /* Ambient Glow */
+  --color-glow: var(--ui-glow-primary);
 }
 
 /* ================================================================
@@ -312,7 +321,6 @@
    ================================================================ */
 @layer utilities {
   .scrollbar {
-    scrollbar-gutter: stable;
     scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
   }
 

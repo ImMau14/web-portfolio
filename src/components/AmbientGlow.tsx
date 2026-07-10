@@ -1,3 +1,5 @@
+// Decorative ambient glow background component.
+
 export default function AmbientGlow() {
   return (
     <div

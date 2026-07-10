@@ -73,7 +73,7 @@
 
     /* Glassmorphism – Light Mode */
     --glass-bg: hsla(0, 0%, 10%, 0.65);
-    --shadow-glass: inset 0px 2px 0px rgba(255, 255, 255, 0.15), 0 4px 12px rgba(0, 0, 0, 0.3);
+    --shadow-glass: inset 0px 1px 0px rgba(255, 255, 255, 0.1), 0 2px 8px rgba(0, 0, 0, 0.05);
     --glass-bg-smoked: hsla(0, 0%, 5%, 0.8);
     --shadow-glass-smoked:
       inset 0px 2px 0px rgba(255, 255, 255, 0.1), 0 6px 16px rgba(0, 0, 0, 0.45);

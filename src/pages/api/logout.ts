@@ -1,3 +1,5 @@
+// API endpoint for admin logout, clears authentication and CSRF cookies.
+
 import type { APIRoute } from 'astro'
 
 export const POST: APIRoute = async ({ cookies, redirect }) => {

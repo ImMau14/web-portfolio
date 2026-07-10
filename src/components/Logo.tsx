@@ -1,3 +1,5 @@
+// Reusable Logo component as an inline SVG with customizable props.
+
 import type React from 'react'
 
 export type LogoProps = React.SVGProps<SVGSVGElement> & {

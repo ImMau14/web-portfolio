@@ -102,7 +102,7 @@ export default function ProjectList({
                       onClick={() =>
                         (window.location.href = `${editBase}/${encodeURIComponent(p.slug)}/edit`)
                       }
-                      className="rounded-full bg-ui-primary px-3.5 py-1.5 text-xs font-semibold text-on-primary transition-colors hover:bg-ui-primary-hover active:bg-ui-primary-active"
+                      className="rounded-full bg-ui-primary px-3.5 py-2.5 text-xs font-semibold text-on-primary transition-colors hover:bg-ui-primary-hover active:bg-ui-primary-active"
                     >
                       Edit
                     </button>
@@ -110,7 +110,7 @@ export default function ProjectList({
                       type="button"
                       onClick={() => handleDelete(p.slug)}
                       disabled={loading}
-                      className="rounded-full bg-ui-danger/10 px-3.5 py-1.5 text-xs font-semibold text-ui-danger transition-colors hover:bg-ui-danger/20 active:bg-ui-danger/30 disabled:opacity-50"
+                      className="rounded-full bg-ui-danger/10 px-3.5 py-2.5 text-xs font-semibold text-ui-danger transition-colors hover:bg-ui-danger/20 active:bg-ui-danger/30 disabled:opacity-50"
                     >
                       Delete
                     </button>

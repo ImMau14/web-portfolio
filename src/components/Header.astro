@@ -9,7 +9,7 @@ import ThemeToggle from '@/components/ThemeToggle.astro'
   <div class="glass mx-auto flex h-full w-full max-w-5xl items-center justify-between rounded-full px-6 md:px-10">
     <h2 class="font-geist text-lg font-bold tracking-wide z-50">
       <a href="/" class="flex flex-row items-center gap-3">
-        <Logo className="w-8 shrink-0" />
+        <Logo className="w-6 shrink-0" />
         <span>ImMau14</span>
       </a>
     </h2>
@@ -22,7 +22,13 @@ import ThemeToggle from '@/components/ThemeToggle.astro'
       
       <ThemeToggle />
 
-      <button id="mobile-menu-btn" class="ml-4 flex h-9 w-9 items-center justify-center rounded-full bg-white/10 transition-colors hover:bg-white/20 md:hidden" aria-label="Open menu">
+      <button
+        id="mobile-menu-btn"
+        class="ml-4 flex h-9 w-9 items-center justify-center rounded-full bg-white/10 transition-colors hover:bg-white/20 md:hidden"
+        aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="h-5 w-5">
           <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
         </svg>
@@ -30,7 +36,21 @@ import ThemeToggle from '@/components/ThemeToggle.astro'
     </nav>
   </div>
 
-  <div id="mobile-menu" class="glass-smoked absolute top-24 left-4 right-4 z-40 flex flex-col items-center justify-center rounded-3xl py-8 opacity-0 pointer-events-none transition-all duration-300 translate-y-[-10px] shadow-2xl md:hidden">
+  <!-- Backdrop overlay -->
+  <div
+    id="mobile-menu-backdrop"
+    class="fixed inset-0 z-30 bg-black/50 opacity-0 pointer-events-none transition-opacity duration-300 md:hidden"
+    aria-hidden="true"
+  ></div>
+
+  <!-- Mobile menu -->
+  <div
+    id="mobile-menu"
+    class="glass-smoked absolute top-24 left-4 right-4 z-40 flex flex-col items-center justify-center rounded-3xl py-8 opacity-0 pointer-events-none transition-all duration-300 translate-y-[-10px] shadow-2xl md:hidden"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Mobile navigation"
+  >
     <ul class="font-geist flex flex-col items-center gap-6 text-xl font-semibold">
       <li><a href="/" class="mobile-link transition-all hover:scale-105">Home</a></li>
       <li><a href="/projects" class="mobile-link transition-all hover:scale-105">Projects</a></li>
@@ -42,20 +62,76 @@ import ThemeToggle from '@/components/ThemeToggle.astro'
 <script>
   const mobileMenuBtn = document.getElementById('mobile-menu-btn');
   const mobileMenu = document.getElementById('mobile-menu');
+  const mobileBackdrop = document.getElementById('mobile-menu-backdrop');
   const mobileLinks = document.querySelectorAll('.mobile-link');
   let isOpen = false;
 
+  const openMenu = () => {
+    isOpen = true;
+    mobileMenu?.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-[-10px]');
+    mobileMenu?.classList.add('opacity-100', 'pointer-events-auto', 'translate-y-0');
+    mobileBackdrop?.classList.remove('opacity-0', 'pointer-events-none');
+    mobileBackdrop?.classList.add('opacity-100', 'pointer-events-auto');
+    mobileMenuBtn?.setAttribute('aria-expanded', 'true');
+    mobileMenuBtn?.setAttribute('aria-label', 'Close menu');
+    // Focus first link
+    const firstLink = mobileMenu?.querySelector('a');
+    firstLink?.focus();
+  };
+
+  const closeMenu = () => {
+    isOpen = false;
+    mobileMenu?.classList.add('opacity-0', 'pointer-events-none', 'translate-y-[-10px]');
+    mobileMenu?.classList.remove('opacity-100', 'pointer-events-auto', 'translate-y-0');
+    mobileBackdrop?.classList.add('opacity-0', 'pointer-events-none');
+    mobileBackdrop?.classList.remove('opacity-100', 'pointer-events-auto');
+    mobileMenuBtn?.setAttribute('aria-expanded', 'false');
+    mobileMenuBtn?.setAttribute('aria-label', 'Open menu');
+    mobileMenuBtn?.focus();
+  };
+
   const toggleMenu = () => {
-    isOpen = !isOpen;
     if (isOpen) {
-      mobileMenu?.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-[-10px]');
-      mobileMenu?.classList.add('opacity-100', 'pointer-events-auto', 'translate-y-0');
+      closeMenu();
     } else {
-      mobileMenu?.classList.add('opacity-0', 'pointer-events-none', 'translate-y-[-10px]');
-      mobileMenu?.classList.remove('opacity-100', 'pointer-events-auto', 'translate-y-0');
+      openMenu();
     }
   };
 
+  // Toggle on hamburger click
   mobileMenuBtn?.addEventListener('click', toggleMenu);
-  mobileLinks.forEach(link => link.addEventListener('click', toggleMenu));
+
+  // Close on backdrop click
+  mobileBackdrop?.addEventListener('click', closeMenu);
+
+  // Close on link click
+  mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+  // Close on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && isOpen) {
+      closeMenu();
+    }
+  });
+
+  // Focus trap
+  mobileMenu?.addEventListener('keydown', (e) => {
+    if (e.key !== 'Tab' || !isOpen) return;
+
+    const focusableElements = mobileMenu.querySelectorAll<HTMLElement>('a, button');
+    const firstElement = focusableElements[0];
+    const lastElement = focusableElements[focusableElements.length - 1];
+
+    if (e.shiftKey) {
+      if (document.activeElement === firstElement) {
+        e.preventDefault();
+        lastElement?.focus();
+      }
+    } else {
+      if (document.activeElement === lastElement) {
+        e.preventDefault();
+        firstElement?.focus();
+      }
+    }
+  });
 </script>

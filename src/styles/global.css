@@ -4,6 +4,24 @@
 @import "@fontsource-variable/geist";
 
 /* ================================================================
+   Base Typography – Minimal global defaults
+   ================================================================ */
+@layer base {
+  html {
+    font-family: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--ui-text);
+  }
+}
+
+/* ================================================================
    Design Tokens – Light & Dark Themes
    ================================================================ */
 @layer base {
@@ -71,19 +89,38 @@
       0px 2px 3px rgba(0, 0, 0, 7%);
     --shadow-dui: var(--shadow-ui);
 
-    /* Glassmorphism – Light Mode */
-    --glass-bg: hsla(0, 0%, 10%, 0.65);
-    --shadow-glass: inset 0px 1px 0px rgba(255, 255, 255, 0.1), 0 2px 8px rgba(0, 0, 0, 0.05);
-    --glass-bg-smoked: hsla(0, 0%, 5%, 0.8);
+    /* Glassmorphism – Light Mode (Apple-style dark glass) */
+    --glass-bg: linear-gradient(
+      135deg,
+      hsla(0, 0%, 8%, 0.75) 0%,
+      hsla(0, 0%, 5%, 0.6) 50%,
+      hsla(0, 0%, 10%, 0.7) 100%
+    );
+    --shadow-glass:
+      0 8px 32px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.12),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.05);
+    --glass-bg-smoked: linear-gradient(
+      135deg,
+      hsla(0, 0%, 5%, 0.88) 0%,
+      hsla(0, 0%, 3%, 0.75) 50%,
+      hsla(0, 0%, 7%, 0.82) 100%
+    );
     --shadow-glass-smoked:
-      inset 0px 2px 0px rgba(255, 255, 255, 0.1), 0 6px 16px rgba(0, 0, 0, 0.45);
-    --glass-border: hsla(0, 0%, 80%, 0.4);
+      0 12px 40px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.04);
+    --glass-border: hsla(0, 0%, 100%, 0.15);
     --glass-text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 
     /* Glass hover */
-    --glass-hover-bg: hsla(0, 0%, 3%, 0.85);
+    --glass-hover-bg: linear-gradient(
+      135deg,
+      hsla(0, 0%, 10%, 0.82) 0%,
+      hsla(0, 0%, 6%, 0.68) 50%,
+      hsla(0, 0%, 12%, 0.78) 100%
+    );
     --glass-hover-shadow:
-      inset 0px 2px 0px rgba(255, 255, 255, 0.05), 0 6px 14px rgba(0, 0, 0, 0.55);
+      0 12px 40px rgba(0, 0, 0, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.15),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.06);
 
     /* Scrollbar */
     --scrollbar-hover-brightness: 0.85;
@@ -161,19 +198,38 @@
       inset 0px 2px 0px hsl(330 0% 39%), inset 0px -2px 0px rgba(0, 0, 0, 20%),
       0px 3px 5px rgba(0, 0, 0, 20%);
 
-    /* Glassmorphism – Dark Mode */
-    --glass-bg: hsla(0, 0%, 100%, 0.08);
-    --shadow-glass: inset 0px 2px 0px rgba(255, 255, 255, 0.2), 0 8px 32px rgba(0, 0, 0, 0.3);
-    --glass-bg-smoked: hsla(0, 0%, 100%, 0.15);
+    /* Glassmorphism – Dark Mode (Apple-style) */
+    --glass-bg: linear-gradient(
+      135deg,
+      hsla(0, 0%, 25%, 0.55) 0%,
+      hsla(0, 0%, 10%, 0.4) 50%,
+      hsla(0, 0%, 18%, 0.48) 100%
+    );
+    --shadow-glass:
+      0 8px 32px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.12),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.04);
+    --glass-bg-smoked: linear-gradient(
+      135deg,
+      hsla(0, 0%, 20%, 0.7) 0%,
+      hsla(0, 0%, 8%, 0.55) 50%,
+      hsla(0, 0%, 14%, 0.62) 100%
+    );
     --shadow-glass-smoked:
-      inset 0px 2px 0px rgba(255, 255, 255, 0.15), 0 8px 32px rgba(0, 0, 0, 0.5);
-    --glass-border: hsla(0, 0%, 100%, 0.15);
-    --glass-text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+      0 12px 40px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.03);
+    --glass-border: hsla(0, 0%, 100%, 0.12);
+    --glass-text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
 
     /* Glass hover */
-    --glass-hover-bg: hsla(0, 0%, 100%, 0.12);
+    --glass-hover-bg: linear-gradient(
+      135deg,
+      hsla(0, 0%, 30%, 0.6) 0%,
+      hsla(0, 0%, 12%, 0.45) 50%,
+      hsla(0, 0%, 22%, 0.52) 100%
+    );
     --glass-hover-shadow:
-      inset 0px 2px 0px rgba(255, 255, 255, 0.25), 0 8px 24px rgba(0, 0, 0, 0.45);
+      0 12px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.15),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.05);
 
     /* Scrollbar */
     --scrollbar-hover-brightness: 1.25;
@@ -253,25 +309,51 @@
    ================================================================ */
 @layer components {
   .glass {
+    position: relative;
     background: var(--glass-bg);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
     border: 1px solid var(--glass-border);
     box-shadow: var(--shadow-glass);
     border-radius: 1rem;
     color: white;
     text-shadow: var(--glass-text-shadow);
+    overflow: hidden;
+  }
+
+  .glass::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.7), transparent);
+    pointer-events: none;
   }
 
   .glass-smoked {
+    position: relative;
     background: var(--glass-bg-smoked);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(32px) saturate(200%);
+    -webkit-backdrop-filter: blur(32px) saturate(200%);
     border: 1px solid var(--glass-border);
     box-shadow: var(--shadow-glass-smoked);
     border-radius: 1rem;
     color: white;
     text-shadow: var(--glass-text-shadow);
+    overflow: hidden;
+  }
+
+  .glass-smoked::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 8%;
+    right: 8%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+    pointer-events: none;
   }
 
   .btn-glass {
@@ -281,8 +363,8 @@
     gap: 0.5rem;
     border-radius: 1rem;
     background: var(--glass-bg);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(20px) saturate(160%);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
     border: 1px solid var(--glass-border);
     box-shadow: var(--shadow-glass);
     color: white;
@@ -292,18 +374,15 @@
     cursor: pointer;
     text-shadow: var(--glass-text-shadow);
     transition:
-      transform 75ms ease-in-out,
-      background 250ms ease-in-out,
-      box-shadow 250ms ease-in-out,
-      color 250ms ease-in-out;
+      transform 150ms cubic-bezier(0.4, 0, 0.2, 1),
+      box-shadow 200ms cubic-bezier(0.4, 0, 0.2, 1),
+      border-color 200ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .btn-glass:hover:not([disabled]) {
-    background: var(--glass-hover-bg);
     box-shadow: var(--glass-hover-shadow);
+    border-color: rgba(255, 255, 255, 0.4);
     transform: scale(1.02);
-    text-shadow: none;
-    color: white;
   }
 
   .btn-glass:active:not([disabled]) {
@@ -313,6 +392,27 @@
   .btn-glass[disabled] {
     opacity: 0.5;
     pointer-events: none;
+  }
+}
+
+/* ================================================================
+   Reduced Motion – Accessibility
+   ================================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .glass,
+  .glass-smoked,
+  .btn-glass {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: none;
+  }
+
+  .btn-glass:hover:not([disabled]) {
+    transform: none;
+  }
+
+  .btn-glass:active:not([disabled]) {
+    transform: none;
   }
 }
 
@@ -358,4 +458,322 @@
 
 @utility scrollbar-track-* {
   --scrollbar-track: --value(--color-*);
+}
+
+/* From Uiverse.io by csemszepp */
+.zebra-background {
+  width: 100%;
+  height: 100%;
+  --s: 200px;
+
+  --c1: var(--ui-base);
+  --c2: var(--ui-front);
+  --c3: var(--ui-back);
+
+  background:
+    repeating-conic-gradient(from 30deg, #0000 0 120deg, var(--c3) 0 180deg) calc(0.5 * var(--s))
+    calc(0.5 * var(--s) * 0.577),
+    repeating-conic-gradient(from 30deg, var(--c1) 0 60deg, var(--c2) 0 120deg, var(--c3) 0 180deg);
+  background-size: var(--s) calc(var(--s) * 0.577);
+}
+
+/* ================================================================
+   Hero Section Styles
+   ================================================================ */
+@layer components {
+  /* ── Section Container ── */
+  .hero-section {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: calc(100vh - 6rem);
+    margin-bottom: 8rem;
+    overflow: visible;
+  }
+
+  /* ── Zebra Arc Container (full viewport width) ── */
+  /*
+    Occupies the bottom 55% of the section.
+    clip-path with ellipse creates the curved top border (arc).
+    Arc is centered at the bottom → curve appears at the top of the block.
+  */
+  .hero-zebra {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100vw;
+    height: 58%;
+    z-index: 0;
+    clip-path: ellipse(100% 100% at 50% 100%);
+    overflow: hidden;
+  }
+
+  /* Pattern fills the entire arc container */
+  .zebra-inner {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* ── Fade Gradient ── */
+  /*
+    Covers the lower half of the zebra arc to blend it with the background.
+    Goes from background color (solid at bottom) to transparent (at top).
+  */
+  .hero-fade {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100vw;
+    height: 58%;
+    z-index: 1;
+    pointer-events: none;
+    background: linear-gradient(
+      to top,
+      var(--ui-back) 0%,
+      var(--ui-back) 10%,
+      var(--ui-back) 20%,
+      transparent 75%
+    );
+  }
+
+  /* ── Content ── */
+  .hero-content {
+    position: relative;
+    z-index: 10;
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr;
+    align-items: center;
+    gap: 2.5rem;
+    padding-bottom: 5rem;
+  }
+
+  @media (min-width: 768px) {
+    .hero-content {
+      grid-template-columns: 1fr auto;
+      gap: 4rem;
+      padding-inline: 3.75rem;
+    }
+  }
+
+  /* ── Text ── */
+  .hero-text {
+    order: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    text-align: center;
+  }
+
+  @media (min-width: 768px) {
+    .hero-text {
+      order: 1;
+      text-align: left;
+    }
+  }
+
+  .hero-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ui-primary);
+  }
+
+  .hero-title {
+    font-size: clamp(2.2rem, 5vw, 3.75rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--ui-text);
+    margin-top: 0.25rem;
+  }
+
+  .hero-bio {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--ui-text-muted);
+    max-width: 32rem;
+    margin-inline: auto;
+  }
+
+  @media (min-width: 768px) {
+    .hero-bio {
+      margin-inline: 0;
+      font-size: 1.05rem;
+    }
+  }
+
+  .hero-tagline {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--ui-text-muted);
+    border-left: 2px solid var(--ui-primary);
+    padding-left: 0.875rem;
+    margin-inline: auto;
+    width: fit-content;
+  }
+
+  @media (min-width: 768px) {
+    .hero-tagline {
+      margin-inline: 0;
+    }
+  }
+
+  .hero-ctas {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding-top: 0.5rem;
+  }
+
+  @media (min-width: 640px) {
+    .hero-ctas {
+      flex-direction: row;
+      justify-content: center;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .hero-ctas {
+      justify-content: flex-start;
+    }
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    background: var(--ui-primary);
+    padding: 0.75rem 2rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--on-primary);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+    transition:
+      transform 250ms ease,
+      background 250ms ease,
+      box-shadow 250ms ease;
+    text-decoration: none;
+  }
+
+  .btn-primary:hover {
+    background: var(--ui-primary-hover);
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.28);
+  }
+
+  .btn-primary:active {
+    transform: scale(0.98);
+  }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    border: 1px solid var(--ui-border-muted);
+    background: var(--ui-base);
+    padding: 0.75rem 2rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--ui-text);
+    transition:
+      transform 250ms ease,
+      background 250ms ease;
+    text-decoration: none;
+  }
+
+  .btn-secondary:hover {
+    background: var(--ui-base-hover);
+    transform: scale(1.05);
+  }
+
+  .btn-secondary:active {
+    transform: scale(0.98);
+  }
+
+  /* ── Avatar ── */
+  .hero-avatar-wrap {
+    order: 1;
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+    position: relative;
+  }
+
+  @media (min-width: 768px) {
+    .hero-avatar-wrap {
+      order: 2;
+      justify-content: flex-end;
+    }
+  }
+
+  .avatar-glow {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: 2rem;
+    background: radial-gradient(circle at center, var(--ui-glow-primary) 0%, transparent 75%);
+    transform: scale(1.15);
+    filter: blur(24px);
+    transition:
+      transform 400ms ease,
+      opacity 400ms ease;
+  }
+
+  .group:hover .avatar-glow {
+    transform: scale(1.3);
+    opacity: 0.85;
+  }
+
+  .avatar-img {
+    width: 12rem;
+    height: 12rem;
+    border-radius: 1.5rem;
+    border: 2px solid hsl(from var(--ui-border) h s l / 0.25);
+    object-fit: cover;
+    box-shadow: 0 20px 60px hsl(0 0% 0% / 0.18);
+    transition: transform 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  @media (min-width: 640px) {
+    .avatar-img {
+      width: 15rem;
+      height: 15rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .avatar-img {
+      width: 17rem;
+      height: 17rem;
+    }
+  }
+
+  .group:hover .avatar-img {
+    transform: translateY(-0.5rem);
+  }
+
+  /* ── Accessibility: reduced motion ── */
+  @media (prefers-reduced-motion: reduce) {
+    .btn-primary,
+    .btn-secondary,
+    .avatar-img,
+    .avatar-glow {
+      transition: none;
+    }
+    .btn-primary:hover,
+    .btn-secondary:hover {
+      transform: none;
+    }
+    .group:hover .avatar-img {
+      transform: none;
+    }
+  }
 }

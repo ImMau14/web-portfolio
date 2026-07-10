@@ -1,16 +1,70 @@
 ---
-// Home page placeholder with a welcome message.
+// Home page with hero section.
 
+import { Image } from 'astro:assets'
+import Avatar from '@/assets/avatar.png'
 import PublicLayout from '@/layouts/PublicLayout.astro'
+
+const birthDate = new Date(2005, 1, 14) // 14/02/2005
+const today = new Date()
+let age = today.getFullYear() - birthDate.getFullYear()
+const monthDiff = today.getMonth() - birthDate.getMonth()
+if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+  age--
+}
 ---
 
 <PublicLayout title="Home">
-  <section class="flex min-h-[calc(100vh-6rem)] flex-col items-center justify-center text-center">
-    <h1 class="font-geist text-4xl font-bold text-ui-text sm:text-5xl lg:text-6xl">
-      Welcome
-    </h1>
-    <p class="mt-4 max-w-lg text-balance text-lg text-ui-text-muted sm:text-xl">
-      Explore my work.
-    </p>
+  <!--
+    Hero section is the positioning context.
+    Zebra pattern occupies the lower half with an arc on the top border.
+  -->
+  <section class="hero-section">
+
+    <!-- Zebra with an arc shape at the bottom -->
+    <div class="hero-zebra" aria-hidden="true">
+      <div class="zebra-background zebra-inner"></div>
+    </div>
+
+    <!-- Blend gradient over the zebra -->
+    <div class="hero-fade" aria-hidden="true"></div>
+
+    <!-- Main content -->
+    <div class="hero-content">
+
+      <!-- Text -->
+      <div class="hero-text">
+        <div>
+          <p class="hero-label">Fullstack Developer</p>
+          <h1 class="hero-title">Mauricio Rodríguez</h1>
+        </div>
+
+        <p class="hero-bio">
+          {age}-year-old systems engineering student, passionate about
+          programming, drawing, and crafting digital experiences.
+        </p>
+
+        <p class="hero-tagline">
+          Building full-stack apps with clean code &amp; modern UX.
+        </p>
+
+        <div class="hero-ctas">
+          <a href="/projects" class="btn-primary">View Projects</a>
+          <a href="/about" class="btn-secondary">About Me</a>
+        </div>
+      </div>
+
+      <!-- Avatar -->
+      <div class="hero-avatar-wrap group">
+        <div class="avatar-glow"></div>
+        <Image
+          src={Avatar}
+          alt="Mauricio Rodríguez portrait"
+          priority={true}
+          class="avatar-img"
+        />
+      </div>
+
+    </div>
   </section>
 </PublicLayout>

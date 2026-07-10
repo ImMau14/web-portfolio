@@ -9,7 +9,7 @@ export default function LoginForm() {
       initial={{ opacity: 0, y: 24 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, ease: 'easeOut' as const }}
-      className="w-full max-w-sm rounded-3xl border border-ui-border-muted bg-ui-front p-8 shadow-2ui"
+      className="w-full max-w-sm rounded-3xl border border-ui-border-muted bg-ui-front p-6 shadow-2ui sm:p-8"
     >
       <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-ui-primary/10">
         <HiLockClosed className="h-7 w-7 text-ui-primary" aria-hidden="true" />

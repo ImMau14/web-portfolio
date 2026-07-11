@@ -311,8 +311,6 @@
   .glass {
     position: relative;
     background: var(--glass-bg);
-    backdrop-filter: blur(24px) saturate(180%);
-    -webkit-backdrop-filter: blur(24px) saturate(180%);
     border: 1px solid var(--glass-border);
     box-shadow: var(--shadow-glass);
     border-radius: 1rem;
@@ -335,8 +333,6 @@
   .glass-smoked {
     position: relative;
     background: var(--glass-bg-smoked);
-    backdrop-filter: blur(32px) saturate(200%);
-    -webkit-backdrop-filter: blur(32px) saturate(200%);
     border: 1px solid var(--glass-border);
     box-shadow: var(--shadow-glass-smoked);
     border-radius: 1rem;
@@ -363,8 +359,6 @@
     gap: 0.5rem;
     border-radius: 1rem;
     background: var(--glass-bg);
-    backdrop-filter: blur(20px) saturate(160%);
-    -webkit-backdrop-filter: blur(20px) saturate(160%);
     border: 1px solid var(--glass-border);
     box-shadow: var(--shadow-glass);
     color: white;
@@ -402,8 +396,6 @@
   .glass,
   .glass-smoked,
   .btn-glass {
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
     transition: none;
   }
 

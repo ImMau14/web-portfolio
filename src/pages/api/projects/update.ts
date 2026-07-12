@@ -111,7 +111,7 @@ export const POST: APIRoute = async ({ request, cookies, redirect }) => {
       liveUrl: z.url().optional().nullable(),
       image: z.url().optional().nullable(),
       isFeatured: z.boolean().optional(),
-      date: z.date(),
+      date: z.string(),
     })
 
     const inputData: Record<string, unknown> = { ...cleanedData }

@@ -2,7 +2,9 @@
 // Home page with hero section.
 
 import { Image } from 'astro:assets'
+import { FaChalkboardTeacher, FaExternalLinkAlt, FaGithub } from 'react-icons/fa'
 import Avatar from '@/assets/avatar.png'
+import { getAllProjects } from '@/features/projects/projects.service'
 import PublicLayout from '@/layouts/PublicLayout.astro'
 
 const birthDate = new Date(2005, 1, 14) // 14/02/2005
@@ -12,6 +14,8 @@ const monthDiff = today.getMonth() - birthDate.getMonth()
 if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
   age--
 }
+
+const projects = (await getAllProjects())?.filter((p) => p.isFeatured).slice(0, 3) ?? []
 ---
 
 <PublicLayout title="Home">
@@ -66,5 +70,106 @@ if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate()))
       </div>
 
     </div>
+  </section>
+  
+  <!-- The featured projects section -->
+  <section class="flex flex-col gap-4 mb-10">
+    <h1 class="text-ui-text text-3xl font-geist font-bold">My featured projects</h1>
+
+    <!-- If there are registered projects -->
+    {projects.length === 0 ? (
+      <div class="glass-smoked w-full h-106 flex flex-col items-center justify-center p-6 rounded-3xl">
+        <div class="glass w-full h-full flex flex-col items-center justify-center p-8 gap-2 rounded-xl">
+          <div class="p-8 mb-2 rounded-xl glass-smoked">
+            <FaChalkboardTeacher className="text-5xl text-white/80" />
+          </div>
+          <h2 class="text-white/90 text-2xl font-geist text-center font-bold">No featured projects yet</h2>
+          <p class="text-white/60 font-geist text-center">When the administrator registers new projects, they will appear here.</p>
+        </div>
+      </div>
+    ) : (
+      <ul class="w-full h-auto min-h-106 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {projects.map((p) => {
+          const techs = (() => {
+            try {
+              const parsed = JSON.parse(p.technologies)
+              return Array.isArray(parsed) ? parsed : []
+            } catch {
+              return p.technologies.split(',').map(t => t.trim()).filter(Boolean)
+            }
+          })()
+          const formattedDate = new Date(p.date).toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'short'
+          })
+          return (
+            <li class="w-full h-full">
+              <article class="glass group w-full h-full flex flex-col rounded-xl overflow-hidden transition-all duration-300 hover:shadow-[0_16px_48px_rgba(0,0,0,0.4)] hover:scale-[1.02]">
+                {p.image && (
+                  <div class="relative aspect-video w-full overflow-hidden">
+                    <Image
+                      alt={p.title}
+                      src={p.image}
+                      width="1200"
+                      height="630"
+                      class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none"></div>
+                    <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/80 to-transparent pointer-events-none"></div>
+                  </div>
+                )}
+                <div class="p-5 flex flex-col gap-3 flex-1 text-white">
+                  <h1 class="font-bold font-geist text-xl leading-tight">{p.title}</h1>
+                  <p class="font-geist text-sm leading-relaxed text-white/80 line-clamp-3">{p.description}</p>
+
+                  {techs.length > 0 && (
+                    <div class="flex flex-wrap gap-1.5 mt-1">
+                      {techs.slice(0, 4).map(tech => (
+                        <span class="text-[10px] px-2.5 py-1 rounded-full glass border border-white/20 text-white/90 font-geist">
+                          {tech}
+                        </span>
+                      ))}
+                      {techs.length > 4 && (
+                        <span class="text-[10px] px-2.5 py-1 rounded-full glass-smoked border border-white/15 text-white/60 font-geist">
+                          +{techs.length - 4}
+                        </span>
+                      )}
+                    </div>
+                  )}
+
+                  <div class="mt-auto flex items-center justify-between">
+                    <span class="text-xs text-white/50 font-geist">{formattedDate}</span>
+                    <div class="flex gap-2">
+                      {p.githubUrl && (
+                        <a href={p.githubUrl} target="_blank" rel="noopener noreferrer"
+                           class="glass p-1.5 rounded-full border border-white/20 text-white/70 hover:text-white hover:bg-white/10 transition-colors"
+                           title="View source on GitHub">
+                          <FaGithub className="text-sm" />
+                        </a>
+                      )}
+                      {p.liveUrl && (
+                        <a href={p.liveUrl} target="_blank" rel="noopener noreferrer"
+                           class="glass p-1.5 rounded-full border border-white/20 text-white/70 hover:text-white hover:bg-white/10 transition-colors"
+                           title="Live demo">
+                          <FaExternalLinkAlt className="text-xs" />
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </article>
+            </li>
+          )
+        })}
+
+        {projects.length < 3 &&
+          Array.from({ length: 3 - projects.length }).map(() => (
+            <div class="glass group rounded-xl flex items-center justify-center text-white/40 font-geist text-sm border border-white/10 transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_16px_48px_rgba(0,0,0,0.4)]">
+              Coming soon
+            </div>
+          ))
+        }
+      </ul>
+    )}
   </section>
 </PublicLayout>

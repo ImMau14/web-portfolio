@@ -479,7 +479,6 @@
     display: flex;
     align-items: center;
     min-height: calc(100vh - 6rem);
-    margin-bottom: 8rem;
     overflow: visible;
   }
 
@@ -541,14 +540,13 @@
     grid-template-columns: 1fr;
     align-items: center;
     gap: 2.5rem;
-    padding-bottom: 5rem;
   }
 
   @media (min-width: 768px) {
     .hero-content {
       grid-template-columns: 1fr auto;
       gap: 4rem;
-      padding-inline: 3.75rem;
+      /* padding-inline: 3.75rem; */
     }
   }
 

@@ -2,7 +2,7 @@
 // Home page with hero section.
 
 import { Image } from 'astro:assets'
-import { FaChalkboardTeacher, FaExternalLinkAlt, FaGithub } from 'react-icons/fa'
+import { FaBookOpen, FaChalkboardTeacher, FaGithub } from 'react-icons/fa'
 import Avatar from '@/assets/avatar.png'
 import { getAllProjects } from '@/features/projects/projects.service'
 import PublicLayout from '@/layouts/PublicLayout.astro'
@@ -16,6 +16,23 @@ if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate()))
 }
 
 const projects = (await getAllProjects())?.filter((p) => p.isFeatured).slice(0, 3) ?? []
+
+const education = [
+  {
+    degree: 'Systems Engineering',
+    institution: 'Universidad Nacional Experimental de la Fuerza Armada (UNEFA)',
+    period: '2022 – Currently',
+    description:
+      'I chose this degree because I have always been fascinated by programming; through it I have learned to create, use, and maintain any system with my own hands. I am currently in the final stage, about to graduate as an engineer.',
+  },
+  {
+    degree: 'High School Diploma in Science',
+    institution: 'Liceo Bolivariano Ezequiel Zamora',
+    period: '2017 – 2022',
+    description:
+      'During high school I didn’t study programming, yet I found myself drawn to it, spending hours configuring Minecraft server plugins with the help of the documentation. Rather than the game itself, I was fascinated by seeing everything I wrote work. It’s funny how it all started, haha!',
+  },
+]
 ---
 
 <PublicLayout title="Home">
@@ -71,24 +88,28 @@ const projects = (await getAllProjects())?.filter((p) => p.isFeatured).slice(0, 
 
     </div>
   </section>
-  
-  <!-- The featured projects section -->
-  <section class="flex flex-col gap-4 mb-10">
-    <h1 class="text-ui-text text-3xl font-geist font-bold">My featured projects</h1>
 
-    <!-- If there are registered projects -->
+  <!-- The featured projects section -->
+  <section class="flex flex-col gap-4 mb-6">
+    <div class="mb-4">
+      <h1 class="text-ui-text text-3xl font-geist font-bold">My featured projects</h1>
+      <p class="text-ui-text-muted text-sm mt-1">
+        A curated selection of the most relevant and significant projects that have shaped my professional journey as a developer.
+      </p>
+    </div>
+
     {projects.length === 0 ? (
-      <div class="glass-smoked w-full h-106 flex flex-col items-center justify-center p-6 rounded-3xl">
-        <div class="glass w-full h-full flex flex-col items-center justify-center p-8 gap-2 rounded-xl">
-          <div class="p-8 mb-2 rounded-xl glass-smoked">
-            <FaChalkboardTeacher className="text-5xl text-white/80" />
+      <div class="w-full h-106 flex flex-col items-center justify-center p-6 rounded-3xl border border-ui-border bg-ui-front shadow-3ui">
+        <div class="w-full h-full flex flex-col items-center justify-center p-8 gap-2 rounded-xl">
+          <div class="p-8 mb-2 rounded-xl border border-ui-border/50 bg-ui-base">
+            <FaChalkboardTeacher className="text-5xl text-ui-text-muted" />
           </div>
-          <h2 class="text-white/90 text-2xl font-geist text-center font-bold">No featured projects yet</h2>
-          <p class="text-white/60 font-geist text-center">When the administrator registers new projects, they will appear here.</p>
+          <h2 class="text-ui-text text-2xl font-geist text-center font-bold">No featured projects yet</h2>
+          <p class="text-ui-text-muted font-geist text-center">When the administrator registers new projects, they will appear here.</p>
         </div>
       </div>
     ) : (
-      <ul class="w-full h-auto min-h-106 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <ul class="w-full md:p-8 md:bg-ui-base md:border md:border-ui-border md:shadow-ui md:rounded-3xl h-auto min-h-106 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {projects.map((p) => {
           const techs = (() => {
             try {
@@ -104,9 +125,9 @@ const projects = (await getAllProjects())?.filter((p) => p.isFeatured).slice(0, 
           })
           return (
             <li class="w-full h-full">
-              <article class="glass group w-full h-full flex flex-col rounded-xl overflow-hidden transition-all duration-300 hover:shadow-[0_16px_48px_rgba(0,0,0,0.4)] hover:scale-[1.02]">
+              <article class="group relative flex w-full h-full flex-col rounded-2xl border border-ui-border bg-ui-front shadow-3ui transition-all duration-200 hover:border-ui-primary hover:shadow-[0_16px_48px_rgba(0,0,0,0.15)]">
                 {p.image && (
-                  <div class="relative aspect-video w-full overflow-hidden">
+                  <div class="aspect-video w-full overflow-hidden rounded-t-2xl">
                     <Image
                       alt={p.title}
                       src={p.image}
@@ -114,44 +135,46 @@ const projects = (await getAllProjects())?.filter((p) => p.isFeatured).slice(0, 
                       height="630"
                       class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none"></div>
-                    <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/80 to-transparent pointer-events-none"></div>
                   </div>
                 )}
-                <div class="p-5 flex flex-col gap-3 flex-1 text-white">
-                  <h1 class="font-bold font-geist text-xl leading-tight">{p.title}</h1>
-                  <p class="font-geist text-sm leading-relaxed text-white/80 line-clamp-3">{p.description}</p>
+                <div class="p-5 flex flex-col gap-3 flex-1">
+                  <h1 class="font-bold font-geist text-xl leading-tight text-ui-text group-hover:text-ui-primary transition-colors">{p.title}</h1>
+                  <p class="font-geist text-sm leading-relaxed text-ui-text-muted line-clamp-3">{p.description}</p>
 
                   {techs.length > 0 && (
                     <div class="flex flex-wrap gap-1.5 mt-1">
                       {techs.slice(0, 4).map(tech => (
-                        <span class="text-[10px] px-2.5 py-1 rounded-full glass border border-white/20 text-white/90 font-geist">
+                        <span class="text-[10px] px-2.5 py-1 rounded-full border border-ui-border bg-ui-base text-ui-text-muted font-geist">
                           {tech}
                         </span>
                       ))}
                       {techs.length > 4 && (
-                        <span class="text-[10px] px-2.5 py-1 rounded-full glass-smoked border border-white/15 text-white/60 font-geist">
+                        <span class="text-[10px] px-2.5 py-1 rounded-full border border-ui-border-muted bg-ui-back text-ui-text-muted/70 font-geist">
                           +{techs.length - 4}
                         </span>
                       )}
                     </div>
                   )}
 
-                  <div class="mt-auto flex items-center justify-between">
-                    <span class="text-xs text-white/50 font-geist">{formattedDate}</span>
-                    <div class="flex gap-2">
+                  <div class="mt-auto border-t border-ui-border/30 pt-3 flex items-center justify-between gap-3">
+                    <span class="text-xs text-ui-text-muted font-geist">{formattedDate}</span>
+                    <div class="flex items-center gap-1.5">
                       {p.githubUrl && (
-                        <a href={p.githubUrl} target="_blank" rel="noopener noreferrer"
-                           class="glass p-1.5 rounded-full border border-white/20 text-white/70 hover:text-white hover:bg-white/10 transition-colors"
+                        <a href={p.githubUrl} target="_blank" aria-label="GitHub" rel="noopener noreferrer"
+                           class="p-1.5 rounded-lg border border-ui-border/50 hover:bg-ui-base transition-colors text-ui-text-muted hover:text-ui-text"
                            title="View source on GitHub">
                           <FaGithub className="text-sm" />
                         </a>
                       )}
+                      <a href={`/projects/${p.slug}`}
+                         class="p-1.5 rounded-lg border border-ui-border/50 hover:bg-ui-base transition-colors text-ui-text-muted hover:text-ui-text"
+                         title="Project details" aria-label="Project details">
+                        <FaBookOpen className="text-sm" />
+                      </a>
                       {p.liveUrl && (
-                        <a href={p.liveUrl} target="_blank" rel="noopener noreferrer"
-                           class="glass p-1.5 rounded-full border border-white/20 text-white/70 hover:text-white hover:bg-white/10 transition-colors"
-                           title="Live demo">
-                          <FaExternalLinkAlt className="text-xs" />
+                        <a href={p.liveUrl} target="_blank" aria-label="Live" rel="noopener noreferrer"
+                           class="px-3 py-1.5 rounded-lg bg-ui-primary text-on-primary text-xs font-semibold hover:bg-ui-primary-hover transition-colors active:scale-95 duration-200">
+                          Live Demo
                         </a>
                       )}
                     </div>
@@ -164,12 +187,78 @@ const projects = (await getAllProjects())?.filter((p) => p.isFeatured).slice(0, 
 
         {projects.length < 3 &&
           Array.from({ length: 3 - projects.length }).map(() => (
-            <div class="glass group rounded-xl flex items-center justify-center text-white/40 font-geist text-sm border border-white/10 transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_16px_48px_rgba(0,0,0,0.4)]">
-              Coming soon
-            </div>
+            <li class="w-full h-full">
+              <div class="rounded-2xl border border-ui-border bg-ui-front shadow-3ui flex items-center justify-center h-full text-ui-text-muted font-geist text-sm min-h-[12rem] transition-all duration-200 hover:border-ui-primary hover:shadow-[0_16px_48px_rgba(0,0,0,0.15)]">
+                Coming soon
+              </div>
+            </li>
           ))
         }
       </ul>
     )}
+  </section>
+
+  <!-- My Education Section -->
+  <section class="my-30">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+      <!-- Left column: Heading & summary (sticky on desktop) -->
+      <div class="md:col-span-4">
+        <div class="md:sticky md:top-28">
+          <h2 class="text-ui-text text-3xl font-geist font-bold mb-4">Education</h2>
+          <p class="text-ui-text-muted text-sm leading-relaxed mb-8">
+            Timeline of my professional education and academic journey. I focus on bridging the gap between theoretical systems engineering and practical implementation.
+          </p>
+          <!-- Academic Profile indicator (visible only on desktop) -->
+          <div class="hidden md:flex items-center gap-2 text-ui-primary mb-2">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"/>
+            </svg>
+            <span class="text-xs font-semibold uppercase tracking-wider">Academic Profile</span>
+          </div>
+          <div class="hidden md:block h-1 w-20 bg-ui-primary/20 rounded-full"></div>
+        </div>
+      </div>
+
+      <!-- Right column: Timeline -->
+      <div class="md:col-span-8">
+        <div class="space-y-10">
+          {education.map((entry, idx) => {
+            const isLast = idx === education.length - 1;
+            const isCurrent = entry.period.includes('Currently') || entry.period.includes('Present');
+
+            return (
+              <div class={`relative pl-10 ${!isLast ? 'timeline-connector-left' : ''}`}>
+                {/* Dot */}
+                <div class="absolute left-0 top-8 -translate-x-1/2 w-3 h-3 rounded-full bg-ui-primary ring-4 ring-ui-back shadow-[0_0_12px_var(--ui-glow-primary)] z-10"></div>
+
+                {/* Card */}
+                <div class="bg-ui-front border border-ui-border rounded-xl p-6 shadow-3ui transition-all duration-300 hover:border-ui-primary/50 hover:shadow-[0_8px_30px_rgba(0,0,0,0.12)] group">
+                  <div class="flex flex-wrap items-center justify-between gap-4 mb-4">
+                    <span class={`text-[10px] font-semibold uppercase tracking-widest px-3 py-1 rounded-full border ${
+                      isCurrent
+                        ? 'bg-ui-primary/10 text-ui-primary border-ui-primary/20'
+                        : 'bg-ui-back text-ui-text-muted border-ui-border'
+                    }`}>
+                      {entry.period}
+                    </span>
+                  </div>
+                  <h3 class="text-lg font-bold text-ui-text mb-1 group-hover:text-ui-primary transition-colors">{entry.degree}</h3>
+                  <p class="text-xs font-semibold uppercase tracking-tight text-ui-text-muted mb-3">{entry.institution}</p>
+                  <p class="text-sm text-ui-text-muted leading-relaxed">{entry.description}</p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        <!-- Concluding quote -->
+        <div class="mt-12 pt-8 border-t border-ui-border/30">
+          <p class="text-sm text-ui-text-muted font-geist italic leading-relaxed text-left">
+            "I have learned a great deal about programming thanks to numerous content creators such as <span class="text-ui-primary font-medium">Midudev</span>, <span class="text-ui-primary font-medium">FreeCodeCamp</span>, among others, and also to university professors who taught me. Moreover, I have used <span class="text-ui-primary font-medium">artificial intelligence</span> to study related topics more easily."
+          </p>
+        </div>
+      </div>
+    </div>
   </section>
 </PublicLayout>

@@ -387,6 +387,18 @@
     opacity: 0.5;
     pointer-events: none;
   }
+
+  /* ── Timeline connector (left side of card, only between entries) ── */
+  .timeline-connector-left::before {
+    content: "";
+    position: absolute;
+    left: -1px;
+    top: 2rem;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--ui-primary), transparent);
+    z-index: 0;
+  }
 }
 
 /* ================================================================

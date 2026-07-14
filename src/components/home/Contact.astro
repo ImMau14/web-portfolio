@@ -1,0 +1,57 @@
+---
+// Contact section with email and social links.
+
+import { FaEnvelope, FaGithub, FaLinkedin } from 'react-icons/fa'
+---
+
+<section class="my-20">
+  <h2 class="text-ui-text text-3xl font-geist font-bold mb-2">Contact</h2>
+  <p class="text-ui-text-muted text-sm font-geist mb-8">
+    Feel free to reach out through any of these channels.
+  </p>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <a
+      href="mailto:immau14@gmail.com"
+      class="bg-ui-front border border-ui-border rounded-xl p-5 shadow-3ui transition-all duration-200 hover:border-ui-primary hover:shadow-[0_16px_48px_rgba(0,0,0,0.15)] group flex items-center gap-4"
+    >
+      <div class="p-3 rounded-lg border border-ui-border/50 bg-ui-base group-hover:bg-ui-primary/10 transition-colors">
+        <FaEnvelope className="text-xl text-ui-text-muted group-hover:text-ui-primary transition-colors" />
+      </div>
+      <div>
+        <h3 class="text-lg font-geist font-semibold text-ui-text group-hover:text-ui-primary transition-colors">Email</h3>
+        <p class="text-xs text-ui-text-muted font-geist">immau14@gmail.com</p>
+      </div>
+    </a>
+
+    <a
+      href="https://github.com/ImMau14"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="bg-ui-front border border-ui-border rounded-xl p-5 shadow-3ui transition-all duration-200 hover:border-ui-primary hover:shadow-[0_16px_48px_rgba(0,0,0,0.15)] group flex items-center gap-4"
+    >
+      <div class="p-3 rounded-lg border border-ui-border/50 bg-ui-base group-hover:bg-ui-primary/10 transition-colors">
+        <FaGithub className="text-xl text-ui-text-muted group-hover:text-ui-primary transition-colors" />
+      </div>
+      <div>
+        <h3 class="text-lg font-geist font-semibold text-ui-text group-hover:text-ui-primary transition-colors">GitHub</h3>
+        <p class="text-xs text-ui-text-muted font-geist">ImMau14</p>
+      </div>
+    </a>
+
+    <a
+      href="https://linkedin.com/in/ImMau14"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="bg-ui-front border border-ui-border rounded-xl p-5 shadow-3ui transition-all duration-200 hover:border-ui-primary hover:shadow-[0_16px_48px_rgba(0,0,0,0.15)] group flex items-center gap-4"
+    >
+      <div class="p-3 rounded-lg border border-ui-border/50 bg-ui-base group-hover:bg-ui-primary/10 transition-colors">
+        <FaLinkedin className="text-xl text-ui-text-muted group-hover:text-ui-primary transition-colors" />
+      </div>
+      <div>
+        <h3 class="text-lg font-geist font-semibold text-ui-text group-hover:text-ui-primary transition-colors">LinkedIn</h3>
+        <p class="text-xs text-ui-text-muted font-geist">ImMau14</p>
+      </div>
+    </a>
+  </div>
+</section>

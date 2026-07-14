@@ -1,0 +1,132 @@
+---
+// Featured projects section with grid and empty state.
+
+import { Image } from 'astro:assets'
+import { FaBookOpen, FaChalkboardTeacher, FaGithub } from 'react-icons/fa'
+
+interface Project {
+  title: string
+  description: string
+  slug: string
+  image?: string | null
+  technologies: string
+  date: string
+  githubUrl?: string | null
+  liveUrl?: string | null
+  isFeatured: number | boolean
+}
+
+export interface Props {
+  projects: Project[]
+}
+
+const { projects } = Astro.props
+---
+
+<section class="flex flex-col gap-4 mb-6">
+  <div class="mb-4">
+    <h1 class="text-ui-text text-3xl font-geist font-bold">My featured projects</h1>
+    <p class="text-ui-text-muted text-sm mt-1">
+      A curated selection of the most relevant and significant projects that have shaped my professional journey as a developer.
+    </p>
+  </div>
+
+  {projects.length === 0 ? (
+    <div class="w-full h-106 flex flex-col items-center justify-center p-6 rounded-3xl border border-ui-border bg-ui-front shadow-3ui">
+      <div class="w-full h-full flex flex-col items-center justify-center p-8 gap-2 rounded-xl">
+        <div class="p-8 mb-2 rounded-xl border border-ui-border/50 bg-ui-base">
+          <FaChalkboardTeacher className="text-5xl text-ui-text-muted" />
+        </div>
+        <h2 class="text-ui-text text-2xl font-geist text-center font-bold">No featured projects yet</h2>
+        <p class="text-ui-text-muted font-geist text-center">When the administrator registers new projects, they will appear here.</p>
+      </div>
+    </div>
+  ) : (
+    <ul class="w-full md:p-8 md:bg-ui-base md:border md:border-ui-border md:shadow-ui md:rounded-3xl h-auto min-h-106 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {projects.map((p) => {
+        const techs = (() => {
+          try {
+            const parsed = JSON.parse(p.technologies)
+            return Array.isArray(parsed) ? parsed : []
+          } catch {
+            return p.technologies.split(',').map(t => t.trim()).filter(Boolean)
+          }
+        })()
+        const formattedDate = new Date(p.date).toLocaleDateString('en-US', {
+          year: 'numeric',
+          month: 'short'
+        })
+        return (
+          <li class="w-full h-full">
+            <article class="group relative flex w-full h-full flex-col rounded-2xl border border-ui-border bg-ui-front shadow-3ui transition-all duration-200 hover:border-ui-primary hover:shadow-[0_16px_48px_rgba(0,0,0,0.15)]">
+              {p.image && (
+                <div class="aspect-video w-full overflow-hidden rounded-t-2xl">
+                  <Image
+                    alt={p.title}
+                    src={p.image}
+                    width="1200"
+                    height="630"
+                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
+              )}
+              <div class="p-5 flex flex-col gap-3 flex-1">
+                <h1 class="font-bold font-geist text-xl leading-tight text-ui-text group-hover:text-ui-primary transition-colors">{p.title}</h1>
+                <p class="font-geist text-sm leading-relaxed text-ui-text-muted line-clamp-3">{p.description}</p>
+
+                {techs.length > 0 && (
+                  <div class="flex flex-wrap gap-1.5 mt-1">
+                    {techs.slice(0, 4).map(tech => (
+                      <span class="text-[10px] px-2.5 py-1 rounded-full border border-ui-border bg-ui-base text-ui-text-muted font-geist">
+                        {tech}
+                      </span>
+                    ))}
+                    {techs.length > 4 && (
+                      <span class="text-[10px] px-2.5 py-1 rounded-full border border-ui-border-muted bg-ui-back text-ui-text-muted/70 font-geist">
+                        +{techs.length - 4}
+                      </span>
+                    )}
+                  </div>
+                )}
+
+                <div class="mt-auto border-t border-ui-border/30 pt-3 flex items-center justify-between gap-3">
+                  <span class="text-xs text-ui-text-muted font-geist">{formattedDate}</span>
+                  <div class="flex items-center gap-1.5">
+                    {p.githubUrl && (
+                      <a href={p.githubUrl} target="_blank" aria-label="GitHub" rel="noopener noreferrer"
+                         class="p-1.5 rounded-lg border border-ui-border/50 hover:bg-ui-base transition-colors text-ui-text-muted hover:text-ui-text"
+                         title="View source on GitHub">
+                        <FaGithub className="text-sm" />
+                      </a>
+                    )}
+                    <a href={`/projects/${p.slug}`}
+                       class="p-1.5 rounded-lg border border-ui-border/50 hover:bg-ui-base transition-colors text-ui-text-muted hover:text-ui-text"
+                       title="Project details" aria-label="Project details">
+                      <FaBookOpen className="text-sm" />
+                    </a>
+                    {p.liveUrl && (
+                      <a href={p.liveUrl} target="_blank" aria-label="Live" rel="noopener noreferrer"
+                         class="px-3 py-1.5 rounded-lg bg-ui-primary text-on-primary text-xs font-semibold hover:bg-ui-primary-hover transition-colors active:scale-95 duration-200">
+                        Live Demo
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </article>
+          </li>
+        )
+      })}
+
+      {projects.length < 3 &&
+        Array.from({ length: 3 - projects.length }).map(() => (
+          <li class="w-full h-full">
+            <div class="rounded-2xl border border-ui-border bg-ui-front shadow-3ui flex items-center justify-center h-full text-ui-text-muted font-geist text-sm min-h-[12rem] transition-all duration-200 hover:border-ui-primary hover:shadow-[0_16px_48px_rgba(0,0,0,0.15)]">
+              Coming soon
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+  )}
+</section>

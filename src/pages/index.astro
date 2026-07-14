@@ -198,6 +198,130 @@ const education = [
     )}
   </section>
 
+  <!-- Sección: Tech Stack categorizado -->
+  <section class="my-20">
+    <h2 class="text-ui-text text-3xl font-geist font-bold mb-2">Tech Stack</h2>
+    <p class="text-ui-text-muted text-sm font-geist mb-8">
+      Technologies I use daily to build full‑stack projects, from the user interface to the database and deployment.
+    </p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Frontend -->
+      <div class="bg-ui-front border border-ui-border rounded-xl p-5 shadow-3ui">
+        <h3 class="text-lg font-geist font-semibold text-ui-text mb-4 flex items-center gap-2">
+           Frontend
+        </h3>
+        <div class="flex flex-wrap gap-2">
+          {['html','css','js','ts','astro','react','tailwind'].map(icon => (
+            <Image
+              src={`https://skillicons.dev/icons?i=${icon}&theme=dark`}
+              alt={icon}
+              title={icon}
+              width={36}
+              height={36}
+              class="w-9 h-9 rounded-md hover:scale-110 transition-transform"
+            />
+          ))}
+        </div>
+      </div>
+
+      <!-- Backend -->
+      <div class="bg-ui-front border border-ui-border rounded-xl p-5 shadow-3ui">
+        <h3 class="text-lg font-geist font-semibold text-ui-text mb-4 flex items-center gap-2">
+          Backend
+        </h3>
+        <div class="flex flex-wrap gap-2">
+          {['py','flask','actix','rust', 'fastapi'].map(icon => (
+            <Image
+              src={`https://skillicons.dev/icons?i=${icon}&theme=dark`}
+              alt={icon}
+              title={icon}
+              width={36}
+              height={36}
+              class="w-9 h-9 rounded-md hover:scale-110 transition-transform"
+            />
+          ))}
+        </div>
+      </div>
+
+      <!-- Databases -->
+      <div class="bg-ui-front border border-ui-border rounded-xl p-5 shadow-3ui">
+        <h3 class="text-lg font-geist font-semibold text-ui-text mb-4 flex items-center gap-2">
+           Databases
+        </h3>
+        <div class="flex flex-wrap gap-2">
+          {['supabase','sqlite'].map(icon => (
+            <Image
+              src={`https://skillicons.dev/icons?i=${icon}&theme=dark`}
+              alt={icon}
+              title={icon}
+              width={36}
+              height={36}
+              class="w-9 h-9 rounded-md hover:scale-110 transition-transform"
+            />
+          ))}
+        </div>
+      </div>
+
+      <!-- Editors & Terminal -->
+      <div class="bg-ui-front border border-ui-border rounded-xl p-5 shadow-3ui">
+        <h3 class="text-lg font-geist font-semibold text-ui-text mb-4 flex items-center gap-2">
+          Editors
+        </h3>
+        <div class="flex flex-wrap gap-2">
+          {['vim','neovim'].map(icon => (
+            <Image
+              src={`https://skillicons.dev/icons?i=${icon}&theme=dark`}
+              alt={icon}
+              title={icon}
+              width={36}
+              height={36}
+              class="w-9 h-9 rounded-md hover:scale-110 transition-transform"
+            />
+          ))}
+        </div>
+      </div>
+
+      <!-- Design -->
+      <div class="bg-ui-front border border-ui-border rounded-xl p-5 shadow-3ui">
+        <h3 class="text-lg font-geist font-semibold text-ui-text mb-4 flex items-center gap-2">
+          Design
+        </h3>
+        <div class="flex flex-wrap gap-2">
+          {['ps','au'].map(icon => (
+            <Image
+              src={`https://skillicons.dev/icons?i=${icon}&theme=dark`}
+              alt={icon}
+              title={icon}
+              width={36}
+              height={36}
+              class="w-9 h-9 rounded-md hover:scale-110 transition-transform"
+            />
+          ))}
+        </div>
+      </div>
+
+      <!-- DevOps & Others -->
+      <div class="bg-ui-front border border-ui-border rounded-xl p-5 shadow-3ui">
+        <h3 class="text-lg font-geist font-semibold text-ui-text mb-4 flex items-center gap-2">
+          DevOps & Others
+        </h3>
+        <div class="flex flex-wrap gap-2">
+          {['git','vercel','selenium','linux','windows','md'].map(icon => (
+            <Image
+              src={`https://skillicons.dev/icons?i=${icon}&theme=dark`}
+              alt={icon}
+              title={icon}
+              width={36}
+              height={36}
+              class="w-9 h-9 rounded-md hover:scale-110 transition-transform"
+            />
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- My Education Section -->
   <section class="my-30">
     <div class="grid grid-cols-1 md:grid-cols-12 gap-8">

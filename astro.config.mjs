@@ -16,5 +16,14 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
 
+  image: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'skillicons.dev',
+      },
+    ],
+  },
+
   adapter: vercel(),
 })

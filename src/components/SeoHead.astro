@@ -33,7 +33,7 @@ const {
   defaultTitle = 'Default title',
   defaultDescription = 'Default description',
   defaultImage = '/cover.jpg',
-  favicon = '/favicon.webp',
+  favicon = '/favicon.svg',
   themeColor = '#06020f',
   generator = Astro.generator,
   siteUrl,
@@ -55,7 +55,7 @@ const fullTitle = metaTitle + (titleSuffix ? ` ${titleSuffix}` : '')
 
 <Fragment>
   <meta charset="utf-8" />
-  <link rel="icon" type="image/webp" href={favicon} />
+  <link rel="icon" type="image/svg+xml" href={favicon} />
   <meta name="og:site_name" content={metaSiteName} />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="generator" content={generator} />

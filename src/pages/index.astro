@@ -1,11 +1,12 @@
 ---
 // Home page with hero, featured projects, tech stack, education, and contact sections.
 
+import Avatar from '@/assets/avatar.png'
 import Contact from '@/components/home/Contact.astro'
 import Education from '@/components/home/Education.astro'
+import FeaturedProjects from '@/components/home/FeaturedProjects.astro'
 import Hero from '@/components/home/Hero.astro'
 import TechStack from '@/components/home/TechStack.astro'
-import FeaturedProjectsList from '@/features/projects/components/FeaturedProjectsList'
 import { getAllProjects } from '@/features/projects/projects.service'
 import PublicLayout from '@/layouts/PublicLayout.astro'
 
@@ -18,6 +19,14 @@ if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate()))
 }
 
 const projects = (await getAllProjects())?.filter((p) => p.isFeatured).slice(0, 3) ?? []
+
+const seo = {
+  title: 'Home',
+  description:
+    'Full-stack developer portfolio showcasing projects, tech stack, and professional journey.',
+  image: Avatar.src,
+  url: 'https://immau14.vercel.app',
+}
 
 const education = [
   {
@@ -37,9 +46,9 @@ const education = [
 ]
 ---
 
-<PublicLayout title="Home">
+<PublicLayout title="Home" seo={seo}>
   <Hero age={age} />
-  <FeaturedProjectsList projects={projects} />
+  <FeaturedProjects projects={projects} />
   <TechStack />
   <Education education={education} />
   <Contact />

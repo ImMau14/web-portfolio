@@ -14,7 +14,6 @@ export interface Props {
   defaultDescription?: string
   defaultImage?: string
   favicon?: string
-  themeColor?: string
   generator?: string
   siteUrl?: string
   imageWidth?: number
@@ -34,7 +33,6 @@ const {
   defaultDescription = 'Default description',
   defaultImage = '/cover.jpg',
   favicon = '/favicon.svg',
-  themeColor = '#06020f',
   generator = Astro.generator,
   siteUrl,
   imageWidth,
@@ -59,7 +57,8 @@ const fullTitle = metaTitle + (titleSuffix ? ` ${titleSuffix}` : '')
   <meta name="og:site_name" content={metaSiteName} />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="generator" content={generator} />
-  <meta name="theme-color" content={themeColor} />
+  <meta name="theme-color" content="#e5e5e5" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#020002" media="(prefers-color-scheme: dark)" />
   <meta name="description" content={metaDescription} />
 
   <title>{fullTitle}</title>

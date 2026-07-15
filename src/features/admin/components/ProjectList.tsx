@@ -85,7 +85,13 @@ export default function ProjectList({
             >
               {p.image && (
                 <div className="overflow-hidden">
-                  <img src={p.image} alt={p.title} className="w-full object-cover aspect-video" />
+                  <img
+                    src={p.image}
+                    alt={p.title}
+                    loading="lazy"
+                    decoding="async"
+                    className="w-full object-cover aspect-video"
+                  />
                 </div>
               )}
               <div className="p-5">

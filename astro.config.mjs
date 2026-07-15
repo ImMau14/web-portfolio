@@ -22,6 +22,14 @@ export default defineConfig({
         protocol: 'https',
         hostname: 'skillicons.dev',
       },
+      {
+        protocol: 'https',
+        hostname: '*.blob.vercel-storage.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'avatars.githubusercontent.com',
+      },
     ],
   },
 

@@ -1,20 +1,9 @@
 ---
-// Featured projects section with grid and empty state.
+// Featured projects section using Astro Image for optimized rendering.
 
 import { Image } from 'astro:assets'
 import { FaBookOpen, FaChalkboardTeacher, FaGithub } from 'react-icons/fa'
-
-interface Project {
-  title: string
-  description: string
-  slug: string
-  image?: string | null
-  technologies: string
-  date: string
-  githubUrl?: string | null
-  liveUrl?: string | null
-  isFeatured: number | boolean
-}
+import type { Project } from '@/features/projects/types'
 
 export interface Props {
   projects: Project[]
@@ -66,8 +55,8 @@ const { projects } = Astro.props
                   <Image
                     alt={p.title}
                     src={p.image}
-                    width="1200"
-                    height="630"
+                    width={1200}
+                    height={630}
                     class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
@@ -97,20 +86,15 @@ const { projects } = Astro.props
                   <span class="text-xs text-ui-text-muted font-geist">{formattedDate}</span>
                   <div class="flex items-center gap-1.5">
                     {p.githubUrl && (
-                      <a href={p.githubUrl} target="_blank" aria-label="GitHub" rel="noopener noreferrer"
-                         class="p-1.5 rounded-lg border border-ui-border/50 hover:bg-ui-base transition-colors text-ui-text-muted hover:text-ui-text"
-                         title="View source on GitHub">
+                      <a href={p.githubUrl} target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="p-1.5 rounded-lg border border-ui-border/50 hover:bg-ui-base transition-colors text-ui-text-muted hover:text-ui-text" title="View source on GitHub">
                         <FaGithub className="text-sm" />
                       </a>
                     )}
-                    <a href={`/projects/${p.slug}`}
-                       class="p-1.5 rounded-lg border border-ui-border/50 hover:bg-ui-base transition-colors text-ui-text-muted hover:text-ui-text"
-                       title="Project details" aria-label="Project details">
+                    <a href={`/projects/${p.slug}`} class="p-1.5 rounded-lg border border-ui-border/50 hover:bg-ui-base transition-colors text-ui-text-muted hover:text-ui-text" title="Project details" aria-label="Project details">
                       <FaBookOpen className="text-sm" />
                     </a>
                     {p.liveUrl && (
-                      <a href={p.liveUrl} target="_blank" aria-label="Live" rel="noopener noreferrer"
-                         class="px-3 py-1.5 rounded-lg bg-ui-primary text-on-primary text-xs font-semibold hover:bg-ui-primary-hover transition-all duration-200 active:scale-95">
+                      <a href={p.liveUrl} target="_blank" rel="noopener noreferrer" aria-label="Live" class="px-3 py-1.5 rounded-lg bg-ui-primary text-on-primary text-xs font-semibold hover:bg-ui-primary-hover transition-all duration-200 active:scale-95">
                         Live Demo
                       </a>
                     )}

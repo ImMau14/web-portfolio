@@ -26,6 +26,7 @@
     "bcryptjs": "^3.0.3",
     "drizzle-orm": "^0.45.2",
     "jsonwebtoken": "^9.0.3",
+    "marked": "^18.0.6",
     "motion": "^12.42.2",
     "rate-limiter-flexible": "^11.2.0",
     "react": "^19.2.7",
@@ -38,7 +39,9 @@
   "devDependencies": {
     "@biomejs/biome": "^2.5.1",
     "@fontsource-variable/geist": "^5.2.9",
+    "@tailwindcss/typography": "^0.5.20",
     "@types/jsonwebtoken": "^9.0.10",
+    "@types/marked": "^6.0.0",
     "drizzle-kit": "^0.31.10"
   }
 }

@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.9",
-    "@astrojs/react": "^6.0.0",
+    "@astrojs/react": "^6.0.1",
     "@astrojs/vercel": "^11.0.2",
     "@libsql/client": "^0.17.4",
     "@tailwindcss/vite": "^4.3.2",

@@ -1,0 +1,25 @@
+# Mauricio Rodríguez - Full-Stack Developer Portfolio
+
+Personal portfolio showcasing projects, tech stack, and professional journey.
+
+## Pages
+
+- [Home](https://immau14.vercel.app/) - Landing page with featured projects, tech stack, and contact info
+- [About](https://immau14.vercel.app/about) - Background, education, journey, and links
+- [Projects](https://immau14.vercel.app/projects) - All projects with technology filters
+
+## Source
+
+- [README](https://github.com/ImMau14/web-portfolio) - Project documentation and setup instructions
+
+## Tech Stack
+
+- **Framework**: Astro with React
+- **Styling**: Tailwind CSS
+- **Backend**: Drizzle ORM, LibSQL
+- **Deployment**: Vercel
+- **Other**: TypeScript, Motion (Framer Motion), Sharp (image optimization)
+
+## About
+
+This is a personal portfolio site for Mauricio Rodríguez (ImMau14), a systems engineering student and full-stack developer based in Venezuela. Built with Astro for performance, React for interactive components, and deployed on Vercel.

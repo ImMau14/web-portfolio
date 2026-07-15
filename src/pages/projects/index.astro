@@ -1,0 +1,17 @@
+---
+import ProjectsFilter from '@/features/projects/components/ProjectsFilter'
+import { getAllProjects } from '@/features/projects/projects.service'
+import PublicLayout from '@/layouts/PublicLayout.astro'
+
+const projects = await getAllProjects()
+---
+
+<PublicLayout title="Projects">
+  <section class="my-20">
+    <h1 class="text-ui-text text-3xl font-geist font-bold mb-2">All Projects</h1>
+    <p class="text-ui-text-muted text-sm mb-8">
+      Browse all my projects. Click on a technology to filter.
+    </p>
+    <ProjectsFilter client:load projects={projects} />
+  </section>
+</PublicLayout>

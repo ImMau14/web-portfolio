@@ -3,9 +3,9 @@
 
 import Contact from '@/components/home/Contact.astro'
 import Education from '@/components/home/Education.astro'
-import FeaturedProjects from '@/components/home/FeaturedProjects.astro'
 import Hero from '@/components/home/Hero.astro'
 import TechStack from '@/components/home/TechStack.astro'
+import FeaturedProjectsList from '@/features/projects/components/FeaturedProjectsList'
 import { getAllProjects } from '@/features/projects/projects.service'
 import PublicLayout from '@/layouts/PublicLayout.astro'
 
@@ -39,7 +39,7 @@ const education = [
 
 <PublicLayout title="Home">
   <Hero age={age} />
-  <FeaturedProjects projects={projects} />
+  <FeaturedProjectsList projects={projects} />
   <TechStack />
   <Education education={education} />
   <Contact />

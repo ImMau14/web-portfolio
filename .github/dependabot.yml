@@ -5,15 +5,23 @@ updates:
     schedule:
       interval: monthly
     target-branch: main
-    open-pull-requests-limit: 10
+    open-pull-requests-limit: 1
     commit-message:
       prefix: "chore(deps):"
+    groups:
+      all-deps:
+        patterns:
+          - "*"
 
   - package-ecosystem: github-actions
     directory: /
     schedule:
       interval: monthly
     target-branch: main
-    open-pull-requests-limit: 5
+    open-pull-requests-limit: 1
     commit-message:
       prefix: "chore(ci):"
+    groups:
+      all-actions:
+        patterns:
+          - "*"

@@ -1,0 +1,58 @@
+---
+// Hero section with zebra pattern, avatar, and CTAs.
+
+import { Image } from 'astro:assets'
+import Avatar from '@/assets/avatar.png'
+
+export interface Props {
+  age: number
+}
+
+const { age } = Astro.props
+---
+
+<section class="hero-section py-20">
+  <!-- Zebra with an arc shape at the bottom -->
+  <div class="hero-zebra" aria-hidden="true">
+    <div class="zebra-background zebra-inner"></div>
+  </div>
+
+  <!-- Blend gradient over the zebra -->
+  <div class="hero-fade" aria-hidden="true"></div>
+
+  <!-- Main content -->
+  <div class="hero-content">
+    <!-- Text -->
+    <div class="hero-text">
+      <div>
+        <p class="hero-label">Fullstack Developer</p>
+        <h1 class="hero-title">Mauricio Rodríguez</h1>
+      </div>
+
+      <p class="hero-bio">
+        {age}-year-old systems engineering student, passionate about
+        programming, drawing, and crafting digital experiences.
+      </p>
+
+      <p class="hero-tagline">
+        Building full-stack apps with clean code &amp; modern UX.
+      </p>
+
+      <div class="hero-ctas">
+        <a href="/projects" class="btn-primary">View Projects</a>
+        <a href="/about" class="btn-secondary">About Me</a>
+      </div>
+    </div>
+
+    <!-- Avatar -->
+    <div class="hero-avatar-wrap group">
+      <div class="avatar-glow"></div>
+      <Image
+        src={Avatar}
+        alt="Mauricio Rodríguez portrait"
+        priority={true}
+        class="avatar-img"
+      />
+    </div>
+  </div>
+</section>

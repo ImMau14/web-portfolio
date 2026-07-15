@@ -1,5 +1,55 @@
 ---
-import RedirectLayout from "@layouts/RedirectLayout.astro"
+// Home page with hero, featured projects, tech stack, education, and contact sections.
+
+import Avatar from '@/assets/avatar.png'
+import Contact from '@/components/home/Contact.astro'
+import Education from '@/components/home/Education.astro'
+import FeaturedProjects from '@/components/home/FeaturedProjects.astro'
+import Hero from '@/components/home/Hero.astro'
+import TechStack from '@/components/home/TechStack.astro'
+import { getAllProjects } from '@/features/projects/projects.service'
+import PublicLayout from '@/layouts/PublicLayout.astro'
+
+const birthDate = new Date(2005, 1, 14) // 14/02/2005
+const today = new Date()
+let age = today.getFullYear() - birthDate.getFullYear()
+const monthDiff = today.getMonth() - birthDate.getMonth()
+if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+  age--
+}
+
+const projects = (await getAllProjects())?.filter((p) => p.isFeatured).slice(0, 3) ?? []
+
+const seo = {
+  title: 'Home',
+  description:
+    'Full-stack developer portfolio showcasing projects, tech stack, and professional journey.',
+  image: Avatar.src,
+  url: 'https://immau14.vercel.app',
+}
+
+const education = [
+  {
+    degree: 'Systems Engineering',
+    institution: 'Universidad Nacional Experimental de la Fuerza Armada (UNEFA)',
+    period: '2022 – Currently',
+    description:
+      'I chose this degree because I have always been fascinated by programming; through it I have learned to create, use, and maintain any system with my own hands. I am currently in the final stage, about to graduate as an engineer.',
+  },
+  {
+    degree: 'High School Diploma in Science',
+    institution: 'Liceo Bolivariano Ezequiel Zamora',
+    period: '2017 – 2022',
+    description:
+      "During high school I didn't study programming, yet I found myself drawn to it, spending hours configuring Minecraft server plugins with the help of the documentation. Rather than the game itself, I was fascinated by seeing everything I wrote work. It's funny how it all started, haha!",
+  },
+]
 ---
 
-<RedirectLayout destiny="" />
+<PublicLayout title="Home" seo={seo}>
+  <Hero age={age} />
+  <FeaturedProjects projects={projects} />
+  <TechStack />
+  <Education education={education} />
+  <Contact />
+</PublicLayout>

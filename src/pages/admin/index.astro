@@ -1,0 +1,17 @@
+---
+// Admin dashboard page displaying DashboardCards.
+
+import DashboardCards from '@/features/admin/components/DashboardCards'
+import AdminLayout from '@/layouts/AdminLayout.astro'
+---
+
+<AdminLayout title="Admin Dashboard">
+  <div class="space-y-6">
+    <div>
+      <h1 class="font-geist text-3xl font-bold text-ui-text">Dashboard</h1>
+      <p class="mt-1 text-ui-text-muted">Manage your portfolio content</p>
+    </div>
+
+    <DashboardCards client:load />
+  </div>
+</AdminLayout>

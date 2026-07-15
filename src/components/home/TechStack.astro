@@ -1,0 +1,70 @@
+---
+// Tech Stack section with categorized skill icons.
+
+import { Image } from 'astro:assets'
+
+const categories = [
+  {
+    title: 'Frontend',
+    icons: ['html', 'css', 'js', 'ts', 'astro', 'react', 'tailwind'],
+  },
+  {
+    title: 'Backend',
+    icons: ['py', 'flask', 'actix', 'rust', 'fastapi'],
+  },
+  {
+    title: 'Databases',
+    icons: ['supabase', 'sqlite'],
+  },
+  {
+    title: 'Editors',
+    icons: ['vim', 'neovim'],
+  },
+  {
+    title: 'Design',
+    icons: ['ps', 'au'],
+  },
+  {
+    title: 'DevOps & Others',
+    icons: ['git', 'vercel', 'selenium', 'linux', 'windows', 'md'],
+  },
+]
+---
+
+<section class="my-20">
+  <h2 class="text-ui-text text-3xl font-geist font-bold mb-2">Tech Stack</h2>
+  <p class="text-ui-text-muted text-sm font-geist mb-8">
+    Technologies I use daily to build full‑stack projects, from the user interface to the database and deployment.
+  </p>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    {categories.map((cat) => (
+      <div
+        class="bg-ui-front border border-ui-border rounded-xl p-5 shadow-3ui 
+               transition-all duration-300 ease-out
+               hover:-translate-y-1 hover:border-ui-primary"
+      >
+        <h3 class="text-lg font-geist font-semibold text-ui-text mb-3 flex items-center gap-2">
+          {cat.title}
+        </h3>
+        <!-- Thin separator between title and icons -->
+        <hr class="border-ui-border/30 mb-4" />
+        <div class="flex flex-wrap gap-2">
+          {cat.icons.map((icon) => (
+            <Image
+              src={`https://skillicons.dev/icons?i=${icon}&theme=dark`}
+              alt={icon}
+              title={icon}
+              width={36}
+              height={36}
+              class="w-9 h-9 rounded-md 
+                     transition-all duration-300 ease-out
+                     hover:scale-125 hover:rotate-6 hover:brightness-125
+                     hover:drop-shadow-[0_0_6px_rgba(168,85,247,0.5)]"
+            />
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+</section>

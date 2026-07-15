@@ -1,4 +1,6 @@
-import React from "react"
+// Reusable Logo component as an inline SVG with customizable props.
+
+import type React from 'react'
 
 export type LogoProps = React.SVGProps<SVGSVGElement> & {
   className?: string
@@ -11,8 +13,10 @@ const Logo: React.FC<LogoProps> = ({ className, ...props }) => (
     xmlnsXlink="http://www.w3.org/1999/xlink"
     overflow="hidden"
     className={className}
+    role="img"
     {...props}
   >
+    <title>ImMau14 Logo</title>
     <defs>
       <clipPath id="clip0">
         <path d="M538 302 721 302 721 439 538 439Z" fillRule="evenodd" clipRule="evenodd" />

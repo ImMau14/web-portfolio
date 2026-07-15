@@ -1,5 +1,94 @@
 ---
-import RedirectLayout from "@layouts/RedirectLayout.astro"
+// About Me page with profile card, tech stack, journey, hobbies, and links.
+
+import Hobbies from '@/components/about/Hobbies.astro'
+import Journey from '@/components/about/Journey.astro'
+import Links from '@/components/about/Links.astro'
+import ProfileCard from '@/components/about/ProfileCard.astro'
+import StackSkills from '@/components/about/StackSkills.astro'
+import PublicLayout from '@/layouts/PublicLayout.astro'
+
+interface GitHubUser {
+  avatar_url: string
+  bio: string | null
+  public_repos: number
+  followers: number
+  name: string
+  login: string
+}
+
+interface GitHubOrg {
+  id: number
+  login: string
+  avatar_url: string
+}
+
+interface RepoData {
+  stargazers_count: number
+}
+
+let githubUser: GitHubUser | null = null
+let githubOrgs: GitHubOrg[] = []
+let totalStars = 0
+
+try {
+  const [userRes, reposRes, orgsRes] = await Promise.all([
+    fetch('https://api.github.com/users/ImMau14'),
+    fetch('https://api.github.com/users/ImMau14/repos?per_page=100'),
+    fetch('https://api.github.com/users/ImMau14/orgs'),
+  ])
+
+  if (userRes.ok && reposRes.ok) {
+    githubUser = await userRes.json()
+    const reposData: RepoData[] = await reposRes.json()
+    totalStars = reposData.reduce((acc, repo) => acc + (repo.stargazers_count ?? 0), 0)
+  }
+  if (orgsRes.ok) {
+    githubOrgs = await orgsRes.json()
+  }
+} catch {
+  // GitHub data unavailable — render with fallbacks
+}
+
+const seo = {
+  title: 'About Me',
+  description:
+    'Learn more about Mauricio Rodriguez — systems engineering student, full-stack developer, and open-source contributor.',
+  url: 'https://immau14.vercel.app/about',
+}
 ---
 
-<RedirectLayout destiny="about" />
+<PublicLayout title="About Me" seo={seo}>
+  <!-- Page heading -->
+  <section class="mt-20 mb-8">
+    <h1 class="text-ui-text text-3xl font-geist font-bold mb-2">About Me</h1>
+    <p class="text-ui-text-muted text-sm">
+      Learn more about who I am, what I build, and how I got here.
+    </p>
+  </section>
+
+  <!-- Profile Card — full width hero -->
+  <section class="mb-20">
+    <ProfileCard user={githubUser} orgs={githubOrgs} totalStars={totalStars} />
+  </section>
+
+  <!-- Two-column: Stack (left) + Journey (right) -->
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-24">
+    <div class="lg:col-span-7">
+      <StackSkills />
+    </div>
+    <div class="lg:col-span-5">
+      <Journey />
+    </div>
+  </div>
+
+  <!-- Two-column: Hobbies (left) + Links (right) -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mb-16">
+    <div>
+      <Hobbies />
+    </div>
+    <div>
+      <Links />
+    </div>
+  </div>
+</PublicLayout>

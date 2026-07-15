@@ -1,0 +1,139 @@
+---
+// Profile card with avatar, bio, GitHub stats, orgs, and social links.
+// All data fetched server-side in about.astro frontmatter.
+
+import { Image } from 'astro:assets'
+import { FaGithub, FaLinkedin, FaStar, FaUserFriends, FaUsers } from 'react-icons/fa'
+
+interface GitHubUser {
+  avatar_url: string
+  bio: string | null
+  public_repos: number
+  followers: number
+  name: string
+  login: string
+}
+
+interface GitHubOrg {
+  id: number
+  login: string
+  avatar_url: string
+}
+
+interface Props {
+  user: GitHubUser | null
+  orgs: GitHubOrg[]
+  totalStars: number
+}
+
+const { user, orgs, totalStars } = Astro.props
+
+const avatarUrl = user?.avatar_url || 'https://avatars.githubusercontent.com/ImMau14'
+const displayName = user?.name || 'Mauricio Rodriguez'
+const repos = user?.public_repos ?? 0
+const followers = user?.followers ?? 0
+---
+
+<div class="bg-ui-front border border-ui-border rounded-2xl p-8 shadow-3ui transition-all duration-300 hover:-translate-y-1 hover:border-ui-primary">
+  <div class="flex flex-col md:flex-row items-center md:items-start gap-8">
+    <!-- Avatar -->
+    <div class="shrink-0 group">
+      <div class="relative">
+        <div class="absolute inset-0 rounded-2xl bg-[var(--ui-glow-primary)] blur-2xl opacity-0 group-hover:opacity-60 transition-opacity duration-500"></div>
+        <Image
+          src={avatarUrl}
+          alt={`${displayName} avatar`}
+          width={128}
+          height={128}
+          loading="eager"
+          class="relative w-32 h-32 rounded-2xl border-2 border-ui-border object-cover shadow-lg transition-transform duration-500 group-hover:scale-105"
+        />
+      </div>
+    </div>
+
+    <!-- Info -->
+    <div class="flex-1 text-center md:text-left">
+      <div class="flex flex-col md:flex-row items-center md:items-baseline gap-1 md:gap-3 mb-2">
+        <h2 class="text-3xl font-geist font-bold text-ui-text">{displayName}</h2>
+        <span class="text-sm font-geist text-ui-text-muted italic">&quot;Mau&quot;</span>
+      </div>
+      <p class="text-xs font-semibold uppercase tracking-widest text-ui-primary mb-4 font-geist">
+        Systems Engineering Student
+      </p>
+      <p class="text-ui-text-muted text-sm leading-relaxed font-geist max-w-xl mb-5">
+        Final-semester Systems Engineering student with a deep passion for programming and
+        process optimization. I thrive on building clean, efficient software and constantly seek
+        ways to streamline workflows through code. Always eager to learn, grow, and tackle new
+        technical challenges.
+      </p>
+
+      <!-- GitHub Stats -->
+      <div class="flex items-center justify-center md:justify-start gap-5 mb-5">
+        <span class="inline-flex items-center gap-1.5 text-sm text-ui-text-muted">
+          <FaGithub className="text-ui-text-muted" />
+          {repos} repos
+        </span>
+        <span class="inline-flex items-center gap-1.5 text-sm text-ui-text-muted">
+          <FaStar className="text-yellow-400" />
+          {totalStars} stars
+        </span>
+        <span class="inline-flex items-center gap-1.5 text-sm text-ui-text-muted">
+          <FaUserFriends className="text-blue-400" />
+          {followers} followers
+        </span>
+      </div>
+
+      <!-- Organizations -->
+      {orgs.length > 0 && (
+        <div class="mb-5">
+          <p class="text-xs font-semibold uppercase tracking-wider text-ui-text-muted mb-2 font-geist flex items-center justify-center md:justify-start gap-1.5">
+            <FaUsers className="text-ui-primary" />
+            Organizations
+          </p>
+          <div class="flex flex-wrap items-center justify-center md:justify-start gap-2">
+            {orgs.map((org) => (
+              <a
+                href={`https://github.com/${org.login}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-ui-base border border-ui-border/50 text-sm font-geist text-ui-text-muted hover:border-ui-primary/30 hover:text-ui-text transition-all duration-200"
+              >
+                <Image
+                  src={org.avatar_url}
+                  alt={org.login}
+                  width={20}
+                  height={20}
+                  loading="lazy"
+                  class="w-5 h-5 rounded"
+                />
+                {org.login}
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <!-- Social Links -->
+      <div class="flex items-center justify-center md:justify-start gap-4">
+        <a
+          href="https://github.com/ImMau14"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 text-sm font-medium text-ui-text-muted hover:text-ui-primary transition-colors duration-200"
+        >
+          <FaGithub className="w-4 h-4" />
+          GitHub
+        </a>
+        <a
+          href="https://linkedin.com/in/ImMau14"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 text-sm font-medium text-ui-text-muted hover:text-ui-primary transition-colors duration-200"
+        >
+          <FaLinkedin className="w-4 h-4" />
+          LinkedIn
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

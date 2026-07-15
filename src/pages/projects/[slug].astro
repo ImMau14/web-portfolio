@@ -1,0 +1,166 @@
+---
+import { Image } from 'astro:assets'
+import { marked } from 'marked'
+import GitHubStats from '@/components/projects/GitHubStats.astro'
+import { getProjectBySlug } from '@/features/projects/projects.service'
+import PublicLayout from '@/layouts/PublicLayout.astro'
+
+const { slug } = Astro.params
+if (!slug) {
+  return new Response(null, { status: 404 })
+}
+
+const project = await getProjectBySlug(slug)
+if (!project) {
+  return new Response(null, { status: 404 })
+}
+
+const contentHtml = project.content ? marked.parse(project.content) : ''
+
+let technologies: string[] = []
+if (project.technologies) {
+  try {
+    technologies = JSON.parse(project.technologies)
+  } catch {
+    technologies = project.technologies
+      .split(',')
+      .map((t: string) => t.trim())
+      .filter(Boolean)
+  }
+}
+
+const formattedDate = new Date(project.date).toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+})
+
+// Fetch GitHub repo stats server-side
+let repoStats = { stars: 0, forks: 0, watchers: 0 }
+if (project.githubUrl) {
+  const match = project.githubUrl.match(/github\.com\/([^/]+)\/([^/]+?)(?:\.git)?$/)
+  if (match) {
+    const [, owner, repo] = match
+    try {
+      const res = await fetch(`https://api.github.com/repos/${owner}/${repo}`)
+      if (res.ok) {
+        const data = await res.json()
+        repoStats = {
+          stars: data.stargazers_count ?? 0,
+          forks: data.forks_count ?? 0,
+          watchers: data.subscribers_count ?? 0,
+        }
+      }
+    } catch {
+      // GitHub unavailable — render without stats
+    }
+  }
+}
+
+const seo = {
+  title: project.title,
+  description: project.description,
+  ...(project.image ? { image: project.image } : {}),
+  url: `https://immau14.vercel.app/projects/${project.slug}`,
+}
+---
+
+<PublicLayout title={project.title} seo={seo}>
+  <article class="my-12 sm:my-16 md:my-20">
+    <!-- Breadcrumb -->
+    <nav class="mb-8">
+      <a
+        href="/projects"
+        class="inline-flex items-center gap-1.5 text-sm text-ui-text-muted hover:text-ui-primary transition-colors duration-200"
+      >
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+        All Projects
+      </a>
+    </nav>
+
+    <!-- Header -->
+    <header class="mb-10">
+      <h1 class="text-3xl sm:text-4xl md:text-[2.75rem] font-bold text-ui-text font-geist leading-[1.15] tracking-tight">
+        {project.title}
+      </h1>
+
+      <div class="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-ui-text-muted">
+        <time datetime={project.date}>{formattedDate}</time>
+        {project.githubUrl && (
+          <span class="inline-block w-1 h-1 rounded-full bg-ui-border" />
+        )}
+        {project.githubUrl && (
+          <GitHubStats stars={repoStats.stars} forks={repoStats.forks} watchers={repoStats.watchers} />
+        )}
+      </div>
+
+      {project.description && (
+        <p class="mt-4 text-base sm:text-lg text-ui-text-muted leading-relaxed max-w-3xl">
+          {project.description}
+        </p>
+      )}
+
+      <!-- Technologies -->
+      {technologies.length > 0 && (
+        <div class="mt-5 flex flex-wrap gap-2">
+          {technologies.map(tech => (
+            <span class="inline-flex items-center rounded-full bg-ui-base border border-ui-border px-3 py-1 text-xs font-medium text-ui-text-muted transition-colors duration-200 hover:border-ui-primary/50 hover:text-ui-text">
+              {tech}
+            </span>
+          ))}
+        </div>
+      )}
+    </header>
+
+    <!-- Banner image -->
+    {project.image && (
+      <div class="mb-10 overflow-hidden rounded-2xl border border-ui-border shadow-3ui">
+        <Image
+          src={project.image}
+          alt={project.title}
+          width={1200}
+          height={630}
+          class="w-full h-auto object-cover"
+          loading="eager"
+        />
+      </div>
+    )}
+
+    <!-- Markdown content -->
+    {contentHtml ? (
+      <div class="prose-custom max-w-none">
+        <div set:html={contentHtml} />
+      </div>
+    ) : (
+      <p class="text-ui-text-muted italic text-center py-12">No detailed content provided.</p>
+    )}
+
+    <!-- Action links -->
+    {(project.githubUrl || project.liveUrl) && (
+      <div class="mt-12 pt-8 border-t border-ui-border flex flex-wrap gap-4 justify-center">
+        {project.githubUrl && (
+          <a
+            href={project.githubUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-primary text-sm"
+          >
+            View on GitHub
+          </a>
+        )}
+        {project.liveUrl && (
+          <a
+            href={project.liveUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-secondary text-sm"
+          >
+            Live Demo
+          </a>
+        )}
+      </div>
+    )}
+  </article>
+</PublicLayout>

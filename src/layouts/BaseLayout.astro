@@ -1,140 +1,52 @@
 ---
-import "@styles/main.css"
-import Logo from "@components/Logo.tsx"
-import Links from "@components/Links/Links.tsx"
-import type { Page } from "@components/Links/types.ts"
-import { FaGithub, FaLinkedin } from "react-icons/fa6"
-import { FaTelegramPlane } from "react-icons/fa"
+// Base HTML layout with meta tags, favicon, theme initialization script, and CSP nonce support.
 
-import montserratUrl from "@fontsource-variable/montserrat/files/montserrat-latin-wght-normal.woff2?url"
-import kanitUrl from "@fontsource/kanit/files/kanit-latin-400-normal.woff2?url"
-import interUrl from "@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url"
+import '@/styles/global.css'
+import SeoHead from '@/components/SeoHead.astro'
 
-interface BaseLayoutLang {
-  description?: string
-  ogDescription?: string
-  ogImage: string
-  ogUrl: string
-  twitterDescription?: string
-  twitterImage?: string
-  pages?: Page[]
-  footer?: string
-  lang: string
+export interface Props {
+  title: string
+  seo?:
+    | {
+        title?: string | undefined
+        description?: string | undefined
+        image?: string | undefined
+        url?: string | undefined
+      }
+    | undefined
 }
 
-interface LayoutProps {
-  pageName?: string
-  className?: string
-  baseLang?: BaseLayoutLang
-}
+const { title, seo } = Astro.props
+const finalTitle = seo?.title ?? title
 
-const {
-  pageName = "",
-  className,
-  baseLang = {
-    description:
-      "This is the portfolio of Mauricio Rodríguez, Systems Engineering student and developer. Here you'll find projects, information about me, and how to contact me.",
-    ogDescription: "This is the portfolio of Mauricio Rodríguez, Systems Engineering student and developer.",
-    ogImage: "/portfolio-img.webp",
-    ogUrl: "https://immau14.vercel.app",
-    twitterDescription:
-      "This is the portfolio of Mauricio Rodríguez, Systems Engineering student and developer. Here you'll find projects, information about me, and how to contact me.",
-    twitterImage: "/portfolio-img.webp",
-    pages: [
-      { name: "Home", href: "/" },
-      { name: "Projects", href: "/projects" },
-      { name: "About", href: "/about" },
-      { name: "Contact", href: "/contact" },
-    ],
-    footer: '© 2025 · Mauricio "ImMau14" Rodríguez · All rights reserved',
-    lang: "en",
-  },
-} = Astro.props as LayoutProps
+const nonce = Astro.locals?.cspNonce ?? ''
 ---
 
 <!doctype html>
-<html lang={baseLang.lang} class="w-full">
+<html lang="en" class="scroll-smooth scrollbar scrollbar-rounded scrollbar-thumb-ui-border scrollbar-track-transparent" style="scrollbar-color: var(--ui-border) transparent;">
   <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-
-    <link rel="preload" href={montserratUrl} as="font" type="font/woff2" crossorigin="anonymous" />
-    <link rel="preload" href={kanitUrl} as="font" type="font/woff2" crossorigin="anonymous" />
-    <link rel="preload" href={interUrl} as="font" type="font/woff2" crossorigin="anonymous" />
-
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>{pageName && pageName !== "" ? `${pageName} · ImMau14` : "ImMau14"}</title>
-
-    <meta name="description" content={baseLang.description} />
-
-    <meta property="og:title" content={pageName ? `${pageName} · ImMau14` : "ImMau14"} />
-    <meta property="og:description" content={baseLang.ogDescription} />
-    <meta property="og:image" content={baseLang.ogUrl + baseLang.ogImage} />
-    <meta property="og:url" content={baseLang.ogUrl} />
-    <meta property="og:type" content="website" />
-    <meta property="og:locale" content="en_En" />
-
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={pageName ? `${pageName} · ImMau14` : "ImMau14"} />
-    <meta name="twitter:description" content={baseLang.twitterDescription} />
-    <meta name="twitter:image" content={baseLang.ogUrl + baseLang.twitterImage} />
-
-    <meta name="theme-color" content="#0f1011" />
+    <SeoHead
+      title={finalTitle}
+      {...(seo?.description ? { description: seo.description } : {})}
+      {...(seo?.image ? { image: seo.image } : {})}
+      {...(seo?.url ? { url: seo.url } : {})}
+      titleSuffix=" - ImMau14"
+      siteUrl="https://immau14.vercel.app"
+    />
+    
+    <!-- Apply dark theme immediately to avoid flash -->
+    <script is:inline nonce={nonce}>
+      (function () {
+        const stored = localStorage.getItem('theme');
+        if (stored === 'dark' || (!stored && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
   </head>
-  <body class="scrollbar flex min-h-screen w-full flex-col bg-silver-950">
-    <header
-      class="z-20 flex h-16 w-full items-center justify-between border-b-2 border-silver-800 bg-gradient-to-r from-silver-1000 via-silver-950 to-silver-900 p-8 md:h-20 md:border-silver-700 md:from-silver-950 md:via-silver-900 md:to-silver-850"
-    >
-      <div class="flex items-center gap-4">
-        <a href={`/${baseLang.lang}`} aria-label="ImMau14 Logo"><Logo className="w-6 md:w-8" /></a>
-        <a href={`/${baseLang.lang}`}
-          ><h2
-            class="flex flex-col bg-gradient-to-b from-gray-100 via-gray-100 to-gray-200 bg-clip-text font-logo text-xl font-bold text-transparent md:text-xl"
-          >
-            ImMau14
-          </h2></a
-        >
-      </div>
-
-      <nav class="flex text-gray-100">
-        <Links pages={baseLang.pages || []} client:load />
-      </nav>
-    </header>
-
-    <main class={className ? `flex-1 ${className}` : "flex-1"}>
+  <body class="overflow-x-hidden bg-ui-back font-geist">
+    <main id="main" class="scroll-mt-24">
       <slot />
     </main>
-
-    <footer
-      class="flex h-24 w-full flex-col items-center justify-center gap-2 border-t-2 border-silver-800 bg-gradient-to-r from-silver-1000 via-silver-950 to-silver-900 p-4 md:h-20 md:flex-row md:justify-between md:gap-4 md:border-silver-700 md:from-silver-950 md:via-silver-900 md:to-silver-850 md:p-8"
-    >
-      <p class="text-center font-body text-sm text-gray-400 md:text-left">
-        {baseLang.footer}
-      </p>
-      <div class="flex items-center gap-4 md:gap-6">
-        <a
-          href="https://linkedin.com/in/ImMau14"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="text-2xl text-gray-400 transition-colors duration-150 hover:text-white"
-          aria-label="LinkedIn profile"><FaLinkedin client:visible /></a
-        >
-        <a
-          href="https://github.com/ImMau14"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="text-2xl text-gray-400 transition-colors duration-150 hover:text-white"
-          aria-label="GitHub profile"><FaGithub client:visible /></a
-        >
-        <a
-          href="https://t.me/l0mauu"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="text-2xl text-gray-400 transition-colors duration-150 hover:text-white"
-          aria-label="Telegram contact"><FaTelegramPlane client:visible /></a
-        >
-      </div>
-    </footer>
   </body>
 </html>

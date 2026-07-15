@@ -1,4 +1,3 @@
 User-agent: *
-Disallow:
-
-Sitemap: https://immau14.vercel.app/sitemap-index.xml
+Allow: /
+Sitemap: https://immau14.vercel.app/sitemap.xml

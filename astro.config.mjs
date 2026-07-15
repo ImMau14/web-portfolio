@@ -1,70 +1,38 @@
-import { defineConfig } from "astro/config"
+// Astro configuration with React, Vercel adapter, and Tailwind CSS via Vite.
 
-import tailwind from "@astrojs/tailwind"
-import react from "@astrojs/react"
-import sitemap from "@astrojs/sitemap"
+// @ts-check
 
-import { fileURLToPath, URL } from "node:url"
+import react from '@astrojs/react'
+import vercel from '@astrojs/vercel'
+import tailwindcss from '@tailwindcss/vite'
+import { defineConfig } from 'astro/config'
 
+// https://astro.build/config
 export default defineConfig({
-  site: "https://immau14.vercel.app",
-
-  experimental: {
-    csp: {
-      scriptDirective: {
-        resources: ["'self'"],
-      },
-
-      styleDirective: {
-        resources: ["'self'"],
-      },
-
-      directives: ["connect-src 'self' https://api.github.com", "img-src 'self'", "font-src 'self'"],
-    },
-  },
-
-  integrations: [tailwind(), react(), sitemap()],
+  site: 'https://immau14.vercel.app',
+  output: 'server',
+  integrations: [react()],
 
   vite: {
-    plugins: [],
-
-    resolve: {
-      alias: {
-        "@styles": fileURLToPath(new URL("./src/styles", import.meta.url)),
-        "@pages": fileURLToPath(new URL("./src/pages", import.meta.url)),
-        "@assets": fileURLToPath(new URL("./src/assets", import.meta.url)),
-        "@components": fileURLToPath(new URL("./src/components", import.meta.url)),
-        "@layouts": fileURLToPath(new URL("./src/layouts", import.meta.url)),
-        "@content": fileURLToPath(new URL("./src/content", import.meta.url)),
-      },
-    },
-
-    build: {
-      sourcemap: false,
-      rollupOptions: {
-        maxParallelFileOps: 1,
-      },
-    },
-
-    optimizeDeps: {
-      force: false,
-    },
-
-    server: {
-      fs: {
-        deny: [".git", "node_modules", "dist"],
-      },
-    },
+    plugins: [tailwindcss()],
   },
 
-  output: "static",
-
-  build: {
-    inlineStylesheets: "auto",
+  image: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'skillicons.dev',
+      },
+      {
+        protocol: 'https',
+        hostname: '*.blob.vercel-storage.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'avatars.githubusercontent.com',
+      },
+    ],
   },
 
-  server: {
-    host: true,
-    port: 4321,
-  },
+  adapter: vercel(),
 })

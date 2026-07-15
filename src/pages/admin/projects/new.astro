@@ -1,0 +1,11 @@
+---
+// New project creation page with ProjectForm in create mode.
+
+import ProjectForm from '@/features/admin/components/ProjectForm'
+import AdminLayout from '@/layouts/AdminLayout.astro'
+---
+
+<AdminLayout title="New Project">
+  <h1 class="font-geist text-2xl font-bold mb-4 text-ui-text">Create Project</h1>
+  <ProjectForm client:load mode="create" />
+</AdminLayout>

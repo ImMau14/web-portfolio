@@ -1,0 +1,82 @@
+---
+// Reusable SEO head component with Open Graph and Twitter meta tags, configurable via props.
+
+export interface Props {
+  title?: string
+  description?: string
+  image?: string
+  url?: string
+  type?: string
+  twitterCard?: string
+  siteName?: string
+  titleSuffix?: string
+  defaultTitle?: string
+  defaultDescription?: string
+  defaultImage?: string
+  favicon?: string
+  generator?: string
+  siteUrl?: string
+  imageWidth?: number
+  imageHeight?: number
+}
+
+const {
+  title: propTitle,
+  description: propDescription,
+  image: propImage,
+  url: propUrl,
+  type = 'website',
+  twitterCard = 'summary_large_image',
+  siteName,
+  titleSuffix = '',
+  defaultTitle = 'Default title',
+  defaultDescription = 'Default description',
+  defaultImage = '/cover.jpg',
+  favicon = '/favicon.svg',
+  generator = Astro.generator,
+  siteUrl,
+  imageWidth,
+  imageHeight,
+} = Astro.props
+
+const host = siteUrl || (Astro.site ? Astro.site.origin : Astro.url.origin)
+
+const metaTitle = propTitle || defaultTitle
+const metaDescription = propDescription || defaultDescription
+const metaSiteName = siteName || new URL(host).hostname
+
+const metaImage = new URL(propImage || defaultImage, host).toString()
+const canonicalURL = new URL(propUrl || Astro.url.pathname, host).toString()
+
+const fullTitle = metaTitle + (titleSuffix ? ` ${titleSuffix}` : '')
+---
+
+<Fragment>
+  <meta charset="utf-8" />
+  <link rel="icon" type="image/svg+xml" href={favicon} />
+  <meta name="og:site_name" content={metaSiteName} />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content={generator} />
+  <meta name="theme-color" content="#e5e5e5" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#020002" media="(prefers-color-scheme: dark)" />
+  <meta name="description" content={metaDescription} />
+
+  <title>{fullTitle}</title>
+
+  <meta property="og:title" content={metaTitle} />
+  <meta property="og:description" content={metaDescription} />
+  <meta property="og:image" content={metaImage} />
+  {imageWidth && <meta property="og:image:width" content={String(imageWidth)} />}
+  {imageHeight && <meta property="og:image:height" content={String(imageHeight)} />}
+  <meta property="og:url" content={canonicalURL} />
+  <meta property="og:type" content={type} />
+
+  <meta name="twitter:card" content={twitterCard} />
+  <meta name="twitter:title" content={metaTitle} />
+  <meta name="twitter:description" content={metaDescription} />
+  <meta name="twitter:image" content={metaImage} />
+  {imageWidth && <meta name="twitter:image:width" content={String(imageWidth)} />}
+  {imageHeight && <meta name="twitter:image:height" content={String(imageHeight)} />}
+
+  <slot />
+</Fragment>

@@ -1,0 +1,12 @@
+---
+// Login page rendering the LoginForm component.
+
+import LoginForm from '@/features/admin/components/LoginForm'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+---
+
+<BaseLayout title="Admin Login">
+  <div class="flex min-h-screen items-center justify-center px-4">
+    <LoginForm client:load />
+  </div>
+</BaseLayout>

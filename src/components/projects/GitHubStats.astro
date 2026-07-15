@@ -1,0 +1,28 @@
+---
+// GitHub stats display (stars, forks, watchers). Data fetched server-side.
+
+import { FaCodeBranch, FaEye, FaStar } from 'react-icons/fa'
+
+interface Props {
+  stars: number
+  forks: number
+  watchers: number
+}
+
+const { stars, forks, watchers } = Astro.props
+---
+
+<span class="inline-flex items-center gap-3 text-xs text-ui-text-muted">
+  <span class="inline-flex items-center gap-1">
+    <FaStar className="text-yellow-400 text-[10px]" />
+    {stars}
+  </span>
+  <span class="inline-flex items-center gap-1">
+    <FaCodeBranch className="text-blue-400 text-[10px]" />
+    {forks}
+  </span>
+  <span class="inline-flex items-center gap-1">
+    <FaEye className="text-green-400 text-[10px]" />
+    {watchers}
+  </span>
+</span>

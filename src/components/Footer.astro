@@ -1,0 +1,56 @@
+---
+// Footer component displaying copyright and social links.
+
+import { FaEnvelope, FaGithub, FaLinkedin } from 'react-icons/fa'
+
+interface SocialLink {
+  icon: typeof FaGithub
+  href: string
+  label: string
+}
+
+const currentYear = new Date().getFullYear()
+const authorName = 'Mauricio "ImMau14" Rodríguez'
+
+const socialLinks: SocialLink[] = [
+  {
+    icon: FaEnvelope,
+    href: 'mailto:immau14@gmail.com',
+    label: 'Email',
+  },
+  {
+    icon: FaGithub,
+    href: 'https://github.com/ImMau14',
+    label: 'GitHub',
+  },
+  {
+    icon: FaLinkedin,
+    href: 'https://linkedin.com/in/ImMau14',
+    label: 'LinkedIn',
+  },
+]
+---
+
+<footer class="mt-auto border-t border-ui-border-muted bg-ui-base">
+  <div class="mx-auto flex max-w-5xl flex-col items-center justify-between gap-4 px-6 py-10 sm:flex-row">
+    <p class="text-center text-sm text-ui-text-muted sm:text-left">
+      &copy; {currentYear} {authorName}. All rights reserved.
+    </p>
+
+    <div class="flex items-center gap-6">
+      {
+        socialLinks.map((link) => (
+          <a
+            href={link.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-ui-text-muted transition-colors hover:text-ui-text"
+            aria-label={link.label}
+          >
+            <link.icon className="h-5 w-5" />
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</footer>

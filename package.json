@@ -37,7 +37,7 @@
     "typescript": "^6.0.3"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.5.1",
+    "@biomejs/biome": "^2.5.4",
     "@fontsource-variable/geist": "^5.2.9",
     "@tailwindcss/typography": "^0.5.20",
     "@types/jsonwebtoken": "^9.0.10",

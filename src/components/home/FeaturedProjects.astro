@@ -12,7 +12,7 @@ export interface Props {
 const { projects } = Astro.props
 ---
 
-<section class="flex flex-col gap-4 mb-6">
+<section class="flex flex-col gap-4 mb-6 animate-fade-in">
   <div class="mb-4">
     <h1 class="text-ui-text text-3xl font-geist font-bold">My featured projects</h1>
     <p class="text-ui-text-muted text-sm mt-1">
@@ -32,7 +32,7 @@ const { projects } = Astro.props
     </div>
   ) : (
     <ul class="w-full md:p-8 md:bg-ui-base md:border md:border-ui-border md:shadow-ui md:rounded-3xl h-auto min-h-106 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {projects.map((p) => {
+      {projects.map(p => {
         const techs = (() => {
           try {
             const parsed = JSON.parse(p.technologies)
@@ -46,7 +46,7 @@ const { projects } = Astro.props
           month: 'short'
         })
         return (
-          <li class="w-full h-full">
+          <li class="w-full h-full animate-fade-in">
             <article class="group relative flex w-full h-full flex-col rounded-2xl border border-ui-border bg-ui-front shadow-3ui 
                            transition-all duration-300 ease-out
                            hover:-translate-y-1 hover:border-ui-primary">

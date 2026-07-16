@@ -31,7 +31,7 @@ const categories = [
 ]
 ---
 
-<section class="my-20">
+<section class="my-20 animate-fade-in">
   <h2 class="text-ui-text text-3xl font-geist font-bold mb-2">Tech Stack</h2>
   <p class="text-ui-text-muted text-sm font-geist mb-8">
     Technologies I use daily to build full‑stack projects, from the user interface to the database and deployment.
@@ -40,9 +40,9 @@ const categories = [
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
     {categories.map((cat) => (
       <div
-        class="bg-ui-front border border-ui-border rounded-xl p-5 shadow-3ui 
+        class={`bg-ui-front border border-ui-border rounded-xl p-5 shadow-3ui 
                transition-all duration-300 ease-out
-               hover:-translate-y-1 hover:border-ui-primary"
+               hover:-translate-y-1 hover:border-ui-primary animate-fade-in`}
       >
         <h3 class="text-lg font-geist font-semibold text-ui-text mb-3 flex items-center gap-2">
           {cat.title}

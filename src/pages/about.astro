@@ -1,6 +1,7 @@
 ---
 // About Me page with profile card, tech stack, journey, hobbies, and links.
 
+import HeroImage from '@/assets/hero-image.webp'
 import Hobbies from '@/components/about/Hobbies.astro'
 import Journey from '@/components/about/Journey.astro'
 import Links from '@/components/about/Links.astro'
@@ -55,12 +56,13 @@ const seo = {
   description:
     'Learn more about Mauricio Rodriguez — systems engineering student, full-stack developer, and open-source contributor.',
   url: 'https://immau14.vercel.app/about',
+  image: HeroImage.src,
 }
 ---
 
 <PublicLayout title="About Me" seo={seo}>
   <!-- Page heading -->
-  <section class="mt-20 mb-8">
+  <section class="mt-20 mb-8 animate-fade-in">
     <h1 class="text-ui-text text-3xl font-geist font-bold mb-2">About Me</h1>
     <p class="text-ui-text-muted text-sm">
       Learn more about who I am, what I build, and how I got here.
@@ -68,26 +70,26 @@ const seo = {
   </section>
 
   <!-- Profile Card — full width hero -->
-  <section class="mb-20">
+  <section class="mb-20 animate-fade-in">
     <ProfileCard user={githubUser} orgs={githubOrgs} totalStars={totalStars} />
   </section>
 
   <!-- Two-column: Stack (left) + Journey (right) -->
   <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-24">
-    <div class="lg:col-span-7">
+    <div class="lg:col-span-7 animate-fade-in">
       <StackSkills />
     </div>
-    <div class="lg:col-span-5">
+    <div class="lg:col-span-5 animate-fade-in">
       <Journey />
     </div>
   </div>
 
   <!-- Two-column: Hobbies (left) + Links (right) -->
   <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mb-16">
-    <div>
+    <div class="animate-fade-in">
       <Hobbies />
     </div>
-    <div>
+    <div class="animate-fade-in">
       <Links />
     </div>
   </div>

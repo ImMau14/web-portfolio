@@ -15,9 +15,9 @@ import ThemeToggle from '@/components/ThemeToggle.astro'
     </h2>
     <nav class="opacity-90 flex items-center z-50" aria-label="Main navigation">
       <ul class="font-geist hidden flex-row items-center gap-1 md:flex">
-        <li><a href="/" class="rounded-full px-4 py-2 text-sm font-medium text-white/80 transition-colors hover:bg-white/10 hover:text-white">Home</a></li>
-        <li><a href="/projects" class="rounded-full px-4 py-2 text-sm font-medium text-white/80 transition-colors hover:bg-white/10 hover:text-white">Projects</a></li>
-        <li><a href="/about" class="rounded-full px-4 py-2 text-sm font-medium text-white/80 transition-colors hover:bg-white/10 hover:text-white">About Me</a></li>
+        <li><a href="/" class="rounded-full px-4 py-2 text-sm font-medium text-white/80 transition-all duration-200 hover:bg-white/10 hover:text-white hover:scale-105">Home</a></li>
+        <li><a href="/projects" class="rounded-full px-4 py-2 text-sm font-medium text-white/80 transition-all duration-200 hover:bg-white/10 hover:text-white hover:scale-105">Projects</a></li>
+        <li><a href="/about" class="rounded-full px-4 py-2 text-sm font-medium text-white/80 transition-all duration-200 hover:bg-white/10 hover:text-white hover:scale-105">About Me</a></li>
       </ul>
       
       <ThemeToggle />
@@ -60,78 +60,75 @@ import ThemeToggle from '@/components/ThemeToggle.astro'
 </header>
 
 <script>
-  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-  const mobileMenu = document.getElementById('mobile-menu');
-  const mobileBackdrop = document.getElementById('mobile-menu-backdrop');
-  const mobileLinks = document.querySelectorAll('.mobile-link');
-  let isOpen = false;
+  function initMobileMenu() {
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileBackdrop = document.getElementById('mobile-menu-backdrop');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+    let isOpen = false;
 
-  const openMenu = () => {
-    isOpen = true;
-    mobileMenu?.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-[-10px]');
-    mobileMenu?.classList.add('opacity-100', 'pointer-events-auto', 'translate-y-0');
-    mobileBackdrop?.classList.remove('opacity-0', 'pointer-events-none');
-    mobileBackdrop?.classList.add('opacity-100', 'pointer-events-auto');
-    mobileMenuBtn?.setAttribute('aria-expanded', 'true');
-    mobileMenuBtn?.setAttribute('aria-label', 'Close menu');
-    // Focus first link
-    const firstLink = mobileMenu?.querySelector('a');
-    firstLink?.focus();
-  };
+    const openMenu = () => {
+      isOpen = true;
+      mobileMenu?.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-[-10px]');
+      mobileMenu?.classList.add('opacity-100', 'pointer-events-auto', 'translate-y-0');
+      mobileBackdrop?.classList.remove('opacity-0', 'pointer-events-none');
+      mobileBackdrop?.classList.add('opacity-100', 'pointer-events-auto');
+      mobileMenuBtn?.setAttribute('aria-expanded', 'true');
+      mobileMenuBtn?.setAttribute('aria-label', 'Close menu');
+      const firstLink = mobileMenu?.querySelector('a');
+      firstLink?.focus();
+    };
 
-  const closeMenu = () => {
-    isOpen = false;
-    mobileMenu?.classList.add('opacity-0', 'pointer-events-none', 'translate-y-[-10px]');
-    mobileMenu?.classList.remove('opacity-100', 'pointer-events-auto', 'translate-y-0');
-    mobileBackdrop?.classList.add('opacity-0', 'pointer-events-none');
-    mobileBackdrop?.classList.remove('opacity-100', 'pointer-events-auto');
-    mobileMenuBtn?.setAttribute('aria-expanded', 'false');
-    mobileMenuBtn?.setAttribute('aria-label', 'Open menu');
-    mobileMenuBtn?.focus();
-  };
+    const closeMenu = () => {
+      isOpen = false;
+      mobileMenu?.classList.add('opacity-0', 'pointer-events-none', 'translate-y-[-10px]');
+      mobileMenu?.classList.remove('opacity-100', 'pointer-events-auto', 'translate-y-0');
+      mobileBackdrop?.classList.add('opacity-0', 'pointer-events-none');
+      mobileBackdrop?.classList.remove('opacity-100', 'pointer-events-auto');
+      mobileMenuBtn?.setAttribute('aria-expanded', 'false');
+      mobileMenuBtn?.setAttribute('aria-label', 'Open menu');
+      mobileMenuBtn?.focus();
+    };
 
-  const toggleMenu = () => {
-    if (isOpen) {
-      closeMenu();
-    } else {
-      openMenu();
-    }
-  };
-
-  // Toggle on hamburger click
-  mobileMenuBtn?.addEventListener('click', toggleMenu);
-
-  // Close on backdrop click
-  mobileBackdrop?.addEventListener('click', closeMenu);
-
-  // Close on link click
-  mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
-
-  // Close on Escape key
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && isOpen) {
-      closeMenu();
-    }
-  });
-
-  // Focus trap
-  mobileMenu?.addEventListener('keydown', (e) => {
-    if (e.key !== 'Tab' || !isOpen) return;
-
-    const focusableElements = mobileMenu.querySelectorAll<HTMLElement>('a, button');
-    const firstElement = focusableElements[0];
-    const lastElement = focusableElements[focusableElements.length - 1];
-
-    if (e.shiftKey) {
-      if (document.activeElement === firstElement) {
-        e.preventDefault();
-        lastElement?.focus();
+    const toggleMenu = () => {
+      if (isOpen) {
+        closeMenu();
+      } else {
+        openMenu();
       }
-    } else {
-      if (document.activeElement === lastElement) {
-        e.preventDefault();
-        firstElement?.focus();
+    };
+
+    mobileMenuBtn?.addEventListener('click', toggleMenu);
+    mobileBackdrop?.addEventListener('click', closeMenu);
+    mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && isOpen) {
+        closeMenu();
       }
-    }
-  });
+    });
+
+    mobileMenu?.addEventListener('keydown', (e) => {
+      if (e.key !== 'Tab' || !isOpen) return;
+
+      const focusableElements = mobileMenu.querySelectorAll<HTMLElement>('a, button');
+      const firstElement = focusableElements[0];
+      const lastElement = focusableElements[focusableElements.length - 1];
+
+      if (e.shiftKey) {
+        if (document.activeElement === firstElement) {
+          e.preventDefault();
+          lastElement?.focus();
+        }
+      } else {
+        if (document.activeElement === lastElement) {
+          e.preventDefault();
+          firstElement?.focus();
+        }
+      }
+    });
+  }
+
+  initMobileMenu();
+  document.addEventListener('astro:page-load', initMobileMenu);
 </script>

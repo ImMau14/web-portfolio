@@ -4,7 +4,7 @@
 import { FaEnvelope, FaGithub, FaLinkedin } from 'react-icons/fa'
 ---
 
-<section class="my-20">
+<section class="my-20 animate-fade-in">
   <h2 class="text-ui-text text-3xl font-geist font-bold mb-2">Contact</h2>
   <p class="text-ui-text-muted text-sm font-geist mb-8">
     Feel free to reach out through any of these channels.
@@ -13,9 +13,9 @@ import { FaEnvelope, FaGithub, FaLinkedin } from 'react-icons/fa'
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
     <a
       href="mailto:immau140@gmail.com"
-      class="bg-ui-front border border-ui-border rounded-xl p-5 shadow-3ui 
+      class={`bg-ui-front border border-ui-border rounded-xl p-5 shadow-3ui 
              transition-all duration-300 ease-out 
-             hover:-translate-y-1 hover:border-ui-primary group flex items-center gap-4"
+             hover:-translate-y-1 hover:border-ui-primary group flex items-center gap-4 animate-fade-in`}
     >
       <div class="p-3 rounded-lg border border-ui-border/50 bg-ui-base group-hover:bg-ui-primary/10 transition-all duration-300 group-hover:scale-110">
         <FaEnvelope className="text-xl text-ui-text-muted group-hover:text-ui-primary transition-colors duration-300" />
@@ -32,7 +32,7 @@ import { FaEnvelope, FaGithub, FaLinkedin } from 'react-icons/fa'
       rel="noopener noreferrer"
       class="bg-ui-front border border-ui-border rounded-xl p-5 shadow-3ui 
              transition-all duration-300 ease-out 
-             hover:-translate-y-1 hover:border-ui-primary group flex items-center gap-4"
+             hover:-translate-y-1 hover:border-ui-primary group flex items-center gap-4 animate-fade-in"
     >
       <div class="p-3 rounded-lg border border-ui-border/50 bg-ui-base group-hover:bg-ui-primary/10 transition-all duration-300 group-hover:scale-110">
         <FaGithub className="text-xl text-ui-text-muted group-hover:text-ui-primary transition-colors duration-300" />
@@ -49,7 +49,7 @@ import { FaEnvelope, FaGithub, FaLinkedin } from 'react-icons/fa'
       rel="noopener noreferrer"
       class="bg-ui-front border border-ui-border rounded-xl p-5 shadow-3ui 
              transition-all duration-300 ease-out 
-             hover:-translate-y-1 hover:border-ui-primary group flex items-center gap-4"
+             hover:-translate-y-1 hover:border-ui-primary group flex items-center gap-4 animate-fade-in"
     >
       <div class="p-3 rounded-lg border border-ui-border/50 bg-ui-base group-hover:bg-ui-primary/10 transition-all duration-300 group-hover:scale-110">
         <FaLinkedin className="text-xl text-ui-text-muted group-hover:text-ui-primary transition-colors duration-300" />

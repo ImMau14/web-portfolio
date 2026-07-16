@@ -15,6 +15,9 @@ export default defineConfig({
 
   vite: {
     plugins: [tailwindcss()],
+    ssr: {
+      noExternal: ['tailwind-animations', 'react-icons'],
+    },
   },
 
   image: {

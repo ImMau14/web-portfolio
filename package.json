@@ -41,7 +41,7 @@
     "@fontsource-variable/geist": "^5.2.9",
     "@tailwindcss/typography": "^0.5.20",
     "@types/jsonwebtoken": "^9.0.10",
-    "@types/marked": "^6.0.0",
-    "drizzle-kit": "^0.31.10"
+    "drizzle-kit": "^0.31.10",
+    "tailwind-animations": "^1.0.1"
   }
 }

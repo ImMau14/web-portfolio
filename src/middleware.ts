@@ -52,7 +52,7 @@ export const onRequest: MiddlewareHandler = async (context, next) => {
   if (import.meta.env.DEV) {
     headers.set(
       'Content-Security-Policy',
-      "default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https:; font-src 'self' data: https:; script-src 'self' 'unsafe-inline'; connect-src 'self' https://api.github.com https://*.blob.vercel-storage.com;",
+      "default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https:; font-src 'self' data: https:; script-src 'self' 'unsafe-inline'; connect-src 'self' https://api.github.com https://*.blob.vercel-storage.com https://astro.build;",
     )
   } else {
     headers.set(

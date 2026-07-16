@@ -2,6 +2,7 @@
 // Base HTML layout with meta tags, favicon, theme initialization script, and CSP nonce support.
 
 import '@/styles/global.css'
+import { ClientRouter } from 'astro:transitions'
 import SeoHead from '@/components/SeoHead.astro'
 
 export interface Props {
@@ -33,6 +34,7 @@ const nonce = Astro.locals?.cspNonce ?? ''
       titleSuffix=" - ImMau14"
       siteUrl="https://immau14.vercel.app"
     />
+    <ClientRouter />
     
     <!-- Apply dark theme immediately to avoid flash -->
     <script is:inline nonce={nonce}>
@@ -42,6 +44,17 @@ const nonce = Astro.locals?.cspNonce ?? ''
           document.documentElement.classList.add('dark');
         }
       })();
+    </script>
+    <!-- Reapply theme after View Transitions swap -->
+    <script is:inline nonce={nonce}>
+      document.addEventListener('astro:after-swap', () => {
+        const stored = localStorage.getItem('theme');
+        if (stored === 'dark' || (!stored && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      });
     </script>
   </head>
   <body class="overflow-x-hidden bg-ui-back font-geist">

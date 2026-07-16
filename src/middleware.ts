@@ -57,7 +57,7 @@ export const onRequest: MiddlewareHandler = async (context, next) => {
   } else {
     headers.set(
       'Content-Security-Policy',
-      `default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https:; font-src 'self' data: https:; script-src 'self' 'nonce-${nonce}'; connect-src 'self' https://api.github.com https://*.blob.vercel-storage.com;`,
+      `default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https:; font-src 'self' data: https:; script-src 'self' 'nonce-${nonce}' 'strict-dynamic'; connect-src 'self' https://api.github.com https://*.blob.vercel-storage.com;`,
     )
   }
 

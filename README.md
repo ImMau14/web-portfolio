@@ -2,6 +2,12 @@
 
 A full-stack developer portfolio built with Astro, showcasing projects, tech stack, and a dynamic About Me page with live GitHub data.
 
+---
+
+![Portfolio preview](./src/assets/hero-image.webp)
+
+---
+
 ## Table of Contents
 
 - [About](#about)

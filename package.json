@@ -15,14 +15,14 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.9",
-    "@astrojs/react": "^6.0.0",
-    "@astrojs/vercel": "^11.0.2",
+    "@astrojs/react": "^6.0.1",
+    "@astrojs/vercel": "^11.0.3",
     "@libsql/client": "^0.17.4",
     "@tailwindcss/vite": "^4.3.2",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
-    "@vercel/blob": "^2.5.0",
-    "astro": "^7.0.5",
+    "@vercel/blob": "^2.6.1",
+    "astro": "^7.0.9",
     "bcryptjs": "^3.0.3",
     "drizzle-orm": "^0.45.2",
     "jsonwebtoken": "^9.0.3",
@@ -37,7 +37,7 @@
     "typescript": "^6.0.3"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.5.1",
+    "@biomejs/biome": "^2.5.3",
     "@fontsource-variable/geist": "^5.2.9",
     "@tailwindcss/typography": "^0.5.20",
     "@types/jsonwebtoken": "^9.0.10",

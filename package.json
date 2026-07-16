@@ -34,10 +34,10 @@
     "react-icons": "^5.7.0",
     "sharp": "^0.35.3",
     "tailwindcss": "^4.3.2",
-    "typescript": "^6.0.3"
+    "typescript": "^7.0.2"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.5.3",
+    "@biomejs/biome": "^2.5.4",
     "@fontsource-variable/geist": "^5.2.9",
     "@tailwindcss/typography": "^0.5.20",
     "@types/jsonwebtoken": "^9.0.10",

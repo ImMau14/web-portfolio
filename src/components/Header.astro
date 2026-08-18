@@ -5,7 +5,7 @@ import Logo from '@/components/Logo'
 import ThemeToggle from '@/components/ThemeToggle.astro'
 ---
 
-<header class="fixed top-0 left-0 z-50 h-24 w-full px-4 py-4 text-white md:px-10">
+<header class="fixed top-0 left-0 z-50 h-24 w-full px-4 py-4 md:px-10">
   <div class="glass backdrop-blur-2xl mx-auto flex h-full w-full max-w-5xl items-center justify-between rounded-full px-6 md:px-10">
     <h2 class="font-geist text-lg font-bold tracking-wide z-50">
       <a href="/" class="flex flex-row items-center gap-3">
@@ -15,16 +15,16 @@ import ThemeToggle from '@/components/ThemeToggle.astro'
     </h2>
     <nav class="opacity-90 flex items-center z-50" aria-label="Main navigation">
       <ul class="font-geist hidden flex-row items-center gap-1 md:flex">
-        <li><a href="/" class="rounded-full px-4 py-2 text-sm font-medium text-white/80 transition-all duration-200 hover:bg-white/10 hover:text-white hover:scale-105">Home</a></li>
-        <li><a href="/projects" class="rounded-full px-4 py-2 text-sm font-medium text-white/80 transition-all duration-200 hover:bg-white/10 hover:text-white hover:scale-105">Projects</a></li>
-        <li><a href="/about" class="rounded-full px-4 py-2 text-sm font-medium text-white/80 transition-all duration-200 hover:bg-white/10 hover:text-white hover:scale-105">About Me</a></li>
+        <li><a href="/" class="rounded-full px-4 py-2 text-sm font-medium text-glass-text-muted transition-all duration-200 hover:bg-glass-hover-surface hover:text-glass-text hover:scale-105">Home</a></li>
+        <li><a href="/projects" class="rounded-full px-4 py-2 text-sm font-medium text-glass-text-muted transition-all duration-200 hover:bg-glass-hover-surface hover:text-glass-text hover:scale-105">Projects</a></li>
+        <li><a href="/about" class="rounded-full px-4 py-2 text-sm font-medium text-glass-text-muted transition-all duration-200 hover:bg-glass-hover-surface hover:text-glass-text hover:scale-105">About Me</a></li>
       </ul>
       
       <ThemeToggle />
 
       <button
         id="mobile-menu-btn"
-        class="ml-4 flex h-9 w-9 items-center justify-center rounded-full bg-white/10 transition-colors hover:bg-white/20 md:hidden"
+        class="ml-4 flex h-9 w-9 items-center justify-center rounded-full bg-glass-hover-surface transition-colors hover:bg-glass-hover-strong md:hidden"
         aria-label="Open menu"
         aria-expanded="false"
         aria-controls="mobile-menu"

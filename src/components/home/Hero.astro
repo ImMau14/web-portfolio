@@ -11,39 +11,50 @@ export interface Props {
 const { age } = Astro.props
 ---
 
-<section class="hero-section py-20 animate-fade-in">
+<section
+  class="relative flex items-center overflow-visible animate-fade-in pt-44 pb-24"
+>
   <!-- Main content -->
-  <div class="hero-content">
+  <div class="relative z-10 grid w-full grid-cols-1 items-center gap-10 md:grid-cols-[1fr_auto] md:gap-16">
     <!-- Text -->
-    <div class="hero-text">
+    <div class="order-2 flex flex-col gap-5 text-center md:order-1 md:text-left">
       <div>
-        <p class="hero-label">Fullstack Developer</p>
-        <h1 class="hero-title">Mauricio Rodríguez</h1>
+        <h1
+          class="mt-1 flex flex-col font-outfit text-5xl md:text-6xl leading-[1.1] font-semibold tracking-[-0.02em] text-ui-text"
+        >
+          <span>Hi, I'm</span>
+          <span>Mauricio Rodríguez</span>
+        </h1>
       </div>
 
-      <p class="hero-bio">
+      <p class="mx-auto max-w-[32rem] text-base leading-[1.7] text-ui-text-muted md:mx-0 md:text-[1.05rem]">
         {age}-year-old systems engineering student, passionate about
         programming, drawing, and crafting digital experiences.
       </p>
 
-      <p class="hero-tagline">
+      <p
+        class="mx-auto w-fit border-l-2 border-ui-primary pl-3.5 text-sm font-medium text-ui-text-muted md:mx-0"
+      >
         Building full-stack apps with clean code &amp; modern UX.
       </p>
 
-      <div class="hero-ctas">
+      <div class="flex flex-col gap-4 pt-2 sm:flex-row sm:justify-center md:justify-start">
         <a href="/projects" class="btn-primary">View Projects</a>
         <a href="/about" class="btn-secondary">About Me</a>
       </div>
     </div>
 
     <!-- Avatar -->
-    <div class="hero-avatar-wrap group">
-      <div class="avatar-glow"></div>
+    <div class="group relative order-1 flex justify-center p-4 md:order-2 md:justify-end">
+      <div
+        class="absolute inset-0 -z-10 scale-125 rounded-[2rem] bg-[radial-gradient(circle_at_center,var(--ui-glow-primary)_0%,transparent_60%)] transition-[transform,opacity] duration-[400ms] motion-reduce:transition-none group-hover:scale-[1.4] group-hover:opacity-85"
+      >
+      </div>
       <Image
         src={Avatar}
         alt="Mauricio Rodríguez portrait"
         priority={true}
-        class="avatar-img"
+        class="h-48 w-48 rounded-3xl border-2 border-ui-border/25 object-cover shadow-[0_20px_60px_hsl(0_0%_0%/0.18)] transition-transform duration-[400ms] ease-[cubic-bezier(0.34,1.56,0.64,1)] sm:h-60 sm:w-60 lg:h-[17rem] lg:w-[17rem] motion-reduce:transition-none group-hover:-translate-y-2"
       />
     </div>
   </div>

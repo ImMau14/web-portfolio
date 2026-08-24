@@ -15,12 +15,12 @@ export interface Props {
 const { education } = Astro.props
 ---
 
-<section class="my-30 animate-fade-in">
+<section class="animate-fade-in">
   <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
     <!-- Left column: Heading & summary (sticky on desktop) -->
     <div class="md:col-span-4">
       <div class="md:sticky md:top-28">
-        <h2 class="text-ui-text text-3xl font-geist font-bold mb-4">Education</h2>
+        <h2 class="text-ui-text text-3xl font-semibold mb-4">Education</h2>
         <p class="text-ui-text-muted text-sm leading-relaxed mb-8">
           Timeline of my professional education and academic journey. I focus on bridging the gap between theoretical systems engineering and practical implementation.
         </p>
@@ -59,7 +59,7 @@ const { education } = Astro.props
                     {entry.period}
                   </span>
                 </div>
-                <h3 class="text-lg font-bold text-ui-text mb-1 group-hover:text-ui-primary transition-colors">{entry.degree}</h3>
+                <h3 class="text-lg font-semibold text-ui-text mb-1 group-hover:text-ui-primary transition-colors">{entry.degree}</h3>
                 <p class="text-xs font-semibold uppercase tracking-tight text-ui-text-muted mb-3">{entry.institution}</p>
                 <p class="text-sm text-ui-text-muted leading-relaxed">{entry.description}</p>
               </div>

@@ -12,9 +12,9 @@ export interface Props {
 const { projects } = Astro.props
 ---
 
-<section class="flex flex-col gap-4 mb-6 animate-fade-in">
+<section class="flex flex-col gap-4 animate-fade-in">
   <div class="mb-4">
-    <h1 class="text-ui-text text-3xl font-geist font-bold">My featured projects</h1>
+    <h1 class="text-ui-text text-3xl font-semibold">My featured projects</h1>
     <p class="text-ui-text-muted text-sm mt-1">
       A curated selection of the most relevant and significant projects that have shaped my professional journey as a developer.
     </p>
@@ -26,7 +26,7 @@ const { projects } = Astro.props
         <div class="p-8 mb-2 rounded-xl border border-ui-border/50 bg-ui-base transition-all duration-300 hover:scale-105 hover:border-ui-border">
           <FaChalkboardTeacher className="text-5xl text-ui-text-muted" />
         </div>
-        <h2 class="text-ui-text text-2xl font-geist text-center font-bold">No featured projects yet</h2>
+        <h2 class="text-ui-text text-2xl text-center font-semibold">No featured projects yet</h2>
         <p class="text-ui-text-muted font-geist text-center">When the administrator registers new projects, they will appear here.</p>
       </div>
     </div>
@@ -62,7 +62,7 @@ const { projects } = Astro.props
                 </div>
               )}
               <div class="p-5 flex flex-col gap-3 flex-1">
-                <h1 class="font-bold font-geist text-xl leading-tight text-ui-text group-hover:text-ui-primary transition-colors duration-300">{p.title}</h1>
+                <h1 class="font-semibold text-xl leading-tight text-ui-text group-hover:text-ui-primary transition-colors duration-300">{p.title}</h1>
                 <p class="font-geist text-sm leading-relaxed text-ui-text-muted line-clamp-3">{p.description}</p>
 
                 {techs.length > 0 && (

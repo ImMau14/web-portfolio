@@ -48,8 +48,10 @@ const education = [
 
 <PublicLayout title="Home" seo={seo}>
   <Hero age={age} />
-  <FeaturedProjects projects={projects} />
-  <TechStack />
-  <Education education={education} />
-  <Contact />
+  <div class="space-y-24 pb-24">
+    <FeaturedProjects projects={projects} />
+    <TechStack />
+    <Education education={education} />
+    <Contact />
+  </div>
 </PublicLayout>

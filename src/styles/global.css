@@ -2,6 +2,7 @@
 
 @import "tailwindcss";
 @import "@fontsource-variable/geist";
+@import "@fontsource-variable/outfit";
 @import "tailwind-animations";
 @plugin "@tailwindcss/typography";
 
@@ -20,6 +21,16 @@
     font-size: 1rem;
     line-height: 1.6;
     color: var(--ui-text);
+  }
+
+  /* Headings default to display font; override per-element if needed */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-outfit);
   }
 }
 
@@ -264,7 +275,6 @@
     /* Logo */
     --logo-green-start: #a9d18e;
     --logo-green-end: #70ad47;
-
     /* Navigation surface */
     --nav-surface-bg: hsla(28, 18%, 6%, 0.88);
     --nav-surface-border: var(--ui-border);
@@ -277,6 +287,7 @@
    ================================================================ */
 @theme {
   --font-geist: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-outfit: "Outfit Variable", ui-sans-serif, system-ui, sans-serif;
 
   /* Backgrounds */
   --color-ui-back: var(--ui-back);
@@ -718,121 +729,9 @@
 }
 
 /* ================================================================
-   Hero Section Styles
+   Hero buttons (shared: home Hero + projects/[slug])
    ================================================================ */
 @layer components {
-  /* ── Section Container ── */
-  .hero-section {
-    position: relative;
-    display: flex;
-    align-items: center;
-    min-height: calc(100vh - 6rem);
-    overflow: visible;
-  }
-
-  /* ── Content ── */
-  .hero-content {
-    position: relative;
-    z-index: 10;
-    display: grid;
-    width: 100%;
-    grid-template-columns: 1fr;
-    align-items: center;
-    gap: 2.5rem;
-  }
-
-  @media (min-width: 768px) {
-    .hero-content {
-      grid-template-columns: 1fr auto;
-      gap: 4rem;
-      /* padding-inline: 3.75rem; */
-    }
-  }
-
-  /* ── Text ── */
-  .hero-text {
-    order: 2;
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
-    text-align: center;
-  }
-
-  @media (min-width: 768px) {
-    .hero-text {
-      order: 1;
-      text-align: left;
-    }
-  }
-
-  .hero-label {
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--ui-primary);
-  }
-
-  .hero-title {
-    font-size: clamp(2.2rem, 5vw, 3.75rem);
-    font-weight: 800;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-    color: var(--ui-text);
-    margin-top: 0.25rem;
-  }
-
-  .hero-bio {
-    font-size: 1rem;
-    line-height: 1.7;
-    color: var(--ui-text-muted);
-    max-width: 32rem;
-    margin-inline: auto;
-  }
-
-  @media (min-width: 768px) {
-    .hero-bio {
-      margin-inline: 0;
-      font-size: 1.05rem;
-    }
-  }
-
-  .hero-tagline {
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: var(--ui-text-muted);
-    border-left: 2px solid var(--ui-primary);
-    padding-left: 0.875rem;
-    margin-inline: auto;
-    width: fit-content;
-  }
-
-  @media (min-width: 768px) {
-    .hero-tagline {
-      margin-inline: 0;
-    }
-  }
-
-  .hero-ctas {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    padding-top: 0.5rem;
-  }
-
-  @media (min-width: 640px) {
-    .hero-ctas {
-      flex-direction: row;
-      justify-content: center;
-    }
-  }
-
-  @media (min-width: 768px) {
-    .hero-ctas {
-      justify-content: flex-start;
-    }
-  }
-
   .btn-primary {
     display: inline-flex;
     align-items: center;
@@ -887,80 +786,14 @@
     transform: scale(0.98);
   }
 
-  /* ── Avatar ── */
-  .hero-avatar-wrap {
-    order: 1;
-    display: flex;
-    justify-content: center;
-    padding: 1rem;
-    position: relative;
-  }
-
-  @media (min-width: 768px) {
-    .hero-avatar-wrap {
-      order: 2;
-      justify-content: flex-end;
-    }
-  }
-
-  .avatar-glow {
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    border-radius: 2rem;
-    background: radial-gradient(circle at center, var(--ui-glow-primary) 0%, transparent 60%);
-    transform: scale(1.25);
-    transition:
-      transform 400ms ease,
-      opacity 400ms ease;
-  }
-
-  .group:hover .avatar-glow {
-    transform: scale(1.4);
-    opacity: 0.85;
-  }
-
-  .avatar-img {
-    width: 12rem;
-    height: 12rem;
-    border-radius: 1.5rem;
-    border: 2px solid hsl(from var(--ui-border) h s l / 0.25);
-    object-fit: cover;
-    box-shadow: 0 20px 60px hsl(0 0% 0% / 0.18);
-    transition: transform 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
-  }
-
-  @media (min-width: 640px) {
-    .avatar-img {
-      width: 15rem;
-      height: 15rem;
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .avatar-img {
-      width: 17rem;
-      height: 17rem;
-    }
-  }
-
-  .group:hover .avatar-img {
-    transform: translateY(-0.5rem);
-  }
-
   /* ── Accessibility: reduced motion ── */
   @media (prefers-reduced-motion: reduce) {
     .btn-primary,
-    .btn-secondary,
-    .avatar-img,
-    .avatar-glow {
+    .btn-secondary {
       transition: none;
     }
     .btn-primary:hover,
     .btn-secondary:hover {
-      transform: none;
-    }
-    .group:hover .avatar-img {
       transform: none;
     }
   }

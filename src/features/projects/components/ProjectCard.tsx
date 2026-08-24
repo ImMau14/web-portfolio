@@ -38,7 +38,7 @@ export default function ProjectCard({ project }: { project: Project }) {
       )}
 
       <div className="p-5 flex flex-col gap-3 flex-1">
-        <h1 className="font-bold font-geist text-xl leading-tight text-ui-text group-hover:text-ui-primary transition-colors duration-300">
+        <h1 className="font-semibold text-xl leading-tight text-ui-text group-hover:text-ui-primary transition-colors duration-300">
           {project.title}
         </h1>
         <p className="font-geist text-sm leading-relaxed text-ui-text-muted line-clamp-3">

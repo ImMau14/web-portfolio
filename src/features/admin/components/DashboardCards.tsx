@@ -35,7 +35,7 @@ export default function DashboardCards() {
             <HiOutlineArchiveBox className="h-5 w-5" aria-hidden="true" />
           </div>
           <div>
-            <h2 className="font-geist text-lg font-semibold text-ui-text">Projects</h2>
+            <h2 className=" text-lg font-semibold text-ui-text">Projects</h2>
             <p className="text-sm text-ui-text-muted">Create and edit portfolio projects</p>
           </div>
         </div>
@@ -50,7 +50,7 @@ export default function DashboardCards() {
             <HiOutlinePlus className="h-5 w-5" aria-hidden="true" />
           </div>
           <div>
-            <h2 className="font-geist text-lg font-semibold text-ui-text-muted">Coming soon</h2>
+            <h2 className=" text-lg font-semibold text-ui-text-muted">Coming soon</h2>
             <p className="text-sm text-ui-text-muted/70">More admin tools on the way</p>
           </div>
         </div>

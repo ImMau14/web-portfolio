@@ -97,9 +97,7 @@ export default function ProjectList({
               <div className="p-5">
                 <div className="flex items-start justify-between gap-4">
                   <div className="min-w-0">
-                    <h3 className="truncate font-geist text-lg font-semibold text-ui-text">
-                      {p.title}
-                    </h3>
+                    <h3 className="truncate text-lg font-semibold text-ui-text">{p.title}</h3>
                     <p className="text-sm text-ui-text-muted">{p.slug}</p>
                   </div>
                   <div className="flex shrink-0 gap-1.5">

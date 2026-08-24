@@ -15,7 +15,7 @@ export default function LoginForm() {
         <HiLockClosed className="h-7 w-7 text-ui-primary" aria-hidden="true" />
       </div>
 
-      <h1 className="mb-2 text-center font-geist text-2xl font-bold text-ui-text">Admin</h1>
+      <h1 className="mb-2 text-center text-2xl font-semibold text-ui-text">Admin</h1>
       <p className="mb-8 text-center text-sm text-ui-text-muted">Enter your password to continue</p>
 
       <form method="POST" action="/api/login" className="space-y-4">

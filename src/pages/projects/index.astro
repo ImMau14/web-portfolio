@@ -16,11 +16,13 @@ const seo = {
 ---
 
 <PublicLayout title="Projects" seo={seo}>
-  <section class="my-20 animate-fade-in">
-    <h1 class="text-ui-text text-3xl font-geist font-bold mb-2">All Projects</h1>
-    <p class="text-ui-text-muted text-sm mb-8">
-      Browse all my projects. Click on a technology to filter.
-    </p>
-    <ProjectsFilter client:load projects={projects} />
-  </section>
+  <div class="pt-44 pb-24">
+    <section class="animate-fade-in">
+      <h1 class="text-ui-text text-3xl font-semibold mb-2">All Projects</h1>
+      <p class="text-ui-text-muted text-sm mb-8">
+        Browse all my projects. Click on a technology to filter.
+      </p>
+      <ProjectsFilter client:load projects={projects} />
+    </section>
+  </div>
 </PublicLayout>

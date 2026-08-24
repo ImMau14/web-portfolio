@@ -4,6 +4,7 @@
 import '@/styles/global.css'
 import { ClientRouter } from 'astro:transitions'
 import SeoHead from '@/components/SeoHead.astro'
+import AuraBackground from '@/components/ui/AuraBackground.astro'
 
 export interface Props {
   title: string
@@ -58,8 +59,10 @@ const nonce = Astro.locals?.cspNonce ?? ''
     </script>
   </head>
   <body class="overflow-x-hidden bg-ui-back font-geist">
-    <main id="main" class="scroll-mt-24">
-      <slot />
-    </main>
+    <AuraBackground>
+      <main id="main" class="scroll-mt-24">
+        <slot />
+      </main>
+    </AuraBackground>
   </body>
 </html>

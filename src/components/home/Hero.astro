@@ -1,5 +1,5 @@
 ---
-// Hero section with zebra pattern, avatar, and CTAs.
+// Hero section with avatar and CTAs.
 
 import { Image } from 'astro:assets'
 import Avatar from '@/assets/avatar.png'
@@ -12,14 +12,6 @@ const { age } = Astro.props
 ---
 
 <section class="hero-section py-20 animate-fade-in">
-  <!-- Zebra with an arc shape at the bottom -->
-  <div class="hero-zebra" aria-hidden="true">
-    <div class="zebra-background zebra-inner"></div>
-  </div>
-
-  <!-- Blend gradient over the zebra -->
-  <div class="hero-fade" aria-hidden="true"></div>
-
   <!-- Main content -->
   <div class="hero-content">
     <!-- Text -->

@@ -66,7 +66,6 @@ This is my personal portfolio website where I showcase the projects I've built, 
 │   └── favicon.svg
 ├── src/
 │   ├── assets/
-│   │   └── avatar.png
 │   ├── components/
 │   │   ├── about/
 │   │   │   ├── Hobbies.astro
